@@ -1,0 +1,17 @@
+{% extends 'User/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+    {% for field in form %}
+        <p>{{ field.label_tag }}</p>
+        <p>{{ field }}</p>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>
