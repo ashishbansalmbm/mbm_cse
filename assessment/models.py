@@ -1,18 +1,8 @@
 from django.db import models
-from enum import Enum
+from enumerations.enum import QuestionType, AssessmentType
 from user.models import User
-from course.models import Course
+from course.models import Course, CourseOutcome
 from faculty.models import Faculty
-
-
-class QuestionType(Enum):
-    T = "Theory"
-    P = "Practical"
-
-
-class AssessmentType(Enum):
-    Int = "Internal"
-    M = "Main"
 
 
 class Assessment(models.Model):
@@ -21,7 +11,7 @@ class Assessment(models.Model):
     start_date = models.DateField()
     duration = models.DurationField()
     faculty_id = models.ForeignKey(Faculty, on_delete=None)
-    year = models.PositiveSmallIntegerField(max_length=4)
+    year = models.PositiveSmallIntegerField()
 
 
 class AssessmentQuestion(models.Model):
@@ -31,14 +21,11 @@ class AssessmentQuestion(models.Model):
     max_marks = models.PositiveSmallIntegerField()
     question_order = models.PositiveSmallIntegerField()
     marking_scheme = models.TextField()
-  # outcome = models.ForeignKey(CourseOutcome , on_delete=None)
+    outcome = models.ForeignKey(CourseOutcome , on_delete=None)
 
 
 class AssessmentResult(models.Model):
     question = models.ForeignKey(AssessmentQuestion, on_delete=None)
     student = models.ForeignKey(User, on_delete=None)
-
-    class Meta:
-        unique_together = (('question_id', 'student_id'),)
     obtained_marks = models.PositiveSmallIntegerField()
     remarks = models.TextField()

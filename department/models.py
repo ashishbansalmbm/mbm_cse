@@ -11,5 +11,5 @@ class Department(models.Model):
     mission = models.TextField()
     resources = models.TextField()
     rules_reg = models.TextField()
-    calendar = models.FileField() # calendar app bookmark
+    calendar = models.IntegerField()
 

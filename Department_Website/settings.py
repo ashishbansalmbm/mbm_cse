@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'department.apps.DepartmentConfig',
     'assessment.apps.AssessmentConfig',
     'project.apps.ProjectConfig',
+    'course.apps.CourseConfig',
+    'program.apps.ProgramConfig',
+    'forum.apps.ForumConfig',
+    'publications.apps.PublicationsConfig'
 ]
 
 MIDDLEWARE = [

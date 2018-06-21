@@ -1,10 +1,12 @@
 from django.db import models
 from user.models import User
+from course.models import Course
+from program.models import Program
+from department.models import Department
 # Create your Student models here.
 
 
 class Student(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=True)
     semester = models.ForeignKey(Course, on_delete=None)
     program = models.ForeignKey(Program, on_delete=None)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
