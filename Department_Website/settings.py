@@ -31,13 +31,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'User.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user.apps.UserConfig',
+    'student.apps.StudentConfig',
+    'faculty.apps.FacultyConfig',
+    'department.apps.DepartmentConfig',
+    'assessment.apps.AssessmentConfig',
+    'project.apps.ProjectConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +82,7 @@ WSGI_APPLICATION = 'Department_Website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CSE_DEPARTMENT',
+        'NAME': 'cse_department',
         'USER': 'cse',
         'PASSWORD': 'interns',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on

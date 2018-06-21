@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Of Users</title>
+</head>
+<body>
+<ul></ul>
+    {% for user in user_list %}
+        <li><a href="{% url 'User:user_profile' %}"> {{ user.Name }}</a></li>
+    {% endfor %}
+<ul></ul>
+</body>
+</html>
