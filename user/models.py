@@ -4,39 +4,6 @@ from enum import Enum
 
 # Create your models here.
 # User Table
-# enum for User_type
-class UserType(Enum):
-    S = "Student"
-    F = "Faculty"
-    U = "User"
-    A = "Alumni"
-
-
-# enum for blood group
-class BloodGroup(Enum):
-    OM = "O-Minus"
-    OP = "O-Positive"
-    AM = "A-Minus"
-    AP = "A-Positive"
-    BM = "B-Minus"
-    ABM = "AB-Minus"
-    ABP = "AB-Positive"
-    BP = "B-Positive"
-
-
-
-class Gender(Enum):
-    M = "Male"
-    F = "Female"
-    OT = "Other"
-
-
-class Category(Enum):
-    GEN = "General"
-    OBC = "Other Backward Class"
-    SC = "Scheduled Caste"
-    ST = "Scheduled Tribe"
-
 
 class User(models.Model):
     user_name = models.CharField(unique=True, max_length=30)
