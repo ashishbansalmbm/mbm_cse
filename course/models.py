@@ -9,7 +9,6 @@ from enumerations.enum import FeedbackQuestionType, Semester
 
 
 class Course(models.Model):
-    department = models.ForeignKey(Department, on_delete=None)
     semester = [(tag, tag.value) for tag in Semester ]
     name = models.CharField(max_length=50)
     course_code = models.CharField(max_length=50)
@@ -20,7 +19,7 @@ class Course(models.Model):
     text_books = models.TextField()
     ref_material = models.TextField()
     prerequisite = models.TextField()
-    type = models.CharField(max_length=50)
+    course_type = models.CharField(max_length=50)
     duration = models.DurationField()
     hours = models.DurationField()
     updated_on = models.DateField()
@@ -31,7 +30,7 @@ class Course(models.Model):
 class CourseEnrollment(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=None)
-    year = models.PositiveSmallIntegerField()
+    year = models.DateField()
 
 
 class CourseOutcome(models.Model):
@@ -43,21 +42,7 @@ class CourseFeedback(models.Model):
     course = models.ForeignKey(Course, on_delete=None)
     year = models.DateField()
     active = models.BooleanField(default=False)
-
-
-class FeedbackQuestion(models.Model):
-    feedback = models.ForeignKey(CourseFeedback, on_delete=None)
-    type = [(tag, tag.value) for tag in FeedbackQuestionType]
-    options = models.PositiveSmallIntegerField()
-    quesText = models.TextField()
-    order = models.PositiveSmallIntegerField()
-
-
-class FeedbackAnswer(models.Model):
-    question = models.ForeignKey(FeedbackQuestion, on_delete=None)
-    user = models.ForeignKey(User, on_delete=None)
-    answer = models.TextField()
-
+    created_by = models.ForeignKey(User, on_delete=None)
 
 class CourseAvailable(models.Model):
     course = models.ForeignKey(Course, on_delete=None)
