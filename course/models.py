@@ -1,17 +1,17 @@
 from django.db import models
 from program.models import Program
 from user.models import User
-from department.models import Department
-#from forum.models import Forum
+# from forum.models import Forum
 from enumerations.enum import CourseType, Semester
 
 
 class Course(models.Model):
-    department = models.ForeignKey(Department, on_delete=None)
-    semester = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in Semester)
+    semester = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in Semester],
+                                default=Semester.SEM_1)
     name = models.CharField(max_length=50)
     course_code = models.CharField(max_length=50)
-    course_type = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in CourseType)
+    course_type = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in CourseType],
+                                   default=CourseType.M_TH)
     max_marks = models.IntegerField()
     credits = models.PositiveSmallIntegerField()
     objective = models.TextField()
@@ -23,13 +23,13 @@ class Course(models.Model):
     hours = models.DurationField()
     updated_on = models.DateField()
     # forum = models.ForeignKey(Forum, on_delete=None) ##
- 
- 
+
+
 class CourseProgram(models.Model):
     course = models.ForeignKey(Course, on_delete=None)
     program = models.ForeignKey(Program, on_delete=None)
- 
- 
+
+
 class CourseEnrollment(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=None)
