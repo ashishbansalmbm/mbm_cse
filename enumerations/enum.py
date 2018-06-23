@@ -34,7 +34,8 @@ class Designation(Enum):
     ASC_PROF = "Associate Professor"
     PROF = "Professor"
     OT = "Other"
-    
+
+
 # enum for User_type
 class UserType(Enum):
     S = "Student"
@@ -55,7 +56,6 @@ class BloodGroup(Enum):
     BP = "B-Positive"
 
 
-
 class Gender(Enum):
     M = "Male"
     F = "Female"
@@ -67,3 +67,19 @@ class Category(Enum):
     OBC = "Other Backward Class"
     SC = "Scheduled Caste"
     ST = "Scheduled Tribe"
+
+
+class CourseType(Enum):
+    M_TH  = "Mandatory Theory"
+    M_LAB = "Mandatory Lab"
+    ELEC_TH = "Elective Theory"
+    ELEC_LAB = "Elective lab"
+    VOL = "Voluntary"
+
+
+class FeedbackType(Enum):
+    PROG = 'Program'
+    CRSE = 'Course'
+    PLACE = 'Placement'
+    EVNT = 'Event'
+    OT = 'Other'
