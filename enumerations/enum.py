@@ -12,11 +12,26 @@ class AssessmentType(Enum):
     M = "Main"
 
 
+class CourseType(Enum):
+    M_TH  = "Mandatory Theory"
+    M_LAB = "Mandatory Lab"
+    ELEC_TH = "Elective Theory"
+    ELEC_LAB = "Elective lab"
+    VOL = "Voluntary"
+
+
 class FeedbackQuestionType(Enum):
     TF = 'True/False'
     MCQ = 'Multiple Choice'
     R = 'Rating'
 
+
+class FeedbackType(Enum):
+    PROG = 'Program'
+    CRSE = 'Course'
+    PLACE = 'Placement'
+    EVNT = 'Event'
+    OT = 'Other'
 
 class Semester(Enum):
     SEM_1 = '1st Semester'
@@ -34,36 +49,3 @@ class Designation(Enum):
     ASC_PROF = "Associate Professor"
     PROF = "Professor"
     OT = "Other"
-    
-# enum for User_type
-class UserType(Enum):
-    S = "Student"
-    F = "Faculty"
-    U = "User"
-    A = "Alumni"
-
-
-# enum for blood group
-class BloodGroup(Enum):
-    OM = "O-Minus"
-    OP = "O-Positive"
-    AM = "A-Minus"
-    AP = "A-Positive"
-    BM = "B-Minus"
-    ABM = "AB-Minus"
-    ABP = "AB-Positive"
-    BP = "B-Positive"
-
-
-
-class Gender(Enum):
-    M = "Male"
-    F = "Female"
-    OT = "Other"
-
-
-class Category(Enum):
-    GEN = "General"
-    OBC = "Other Backward Class"
-    SC = "Scheduled Caste"
-    ST = "Scheduled Tribe"
