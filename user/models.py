@@ -11,16 +11,18 @@ class User(models.Model):
     password = models.CharField(max_length=256)
     name = models.CharField(max_length=20)
     date_of_birth = models.DateField()
-    gender = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in Gender])
+    gender = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in Gender], default=Gender.M)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=10)
     state = models.CharField(max_length=10)
     contact = models.CharField(max_length=12)
     email = models.EmailField()
     photo = models.ImageField()
-    category = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in Category])
-    blood_group = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in BloodGroup])
-    type = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in UserType])
-
+    category = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in Category], 
+                                default=Category.GEN)
+    blood_group = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in BloodGroup], 
+                                   default=BloodGroup.ABP)
+    type = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in UserType], default=UserType.U)
+    
     def get_absolute_url(self):
         return reverse('user:user_list')
