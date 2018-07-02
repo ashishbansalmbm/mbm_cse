@@ -38,16 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
-    'student.apps.StudentConfig',
-    'faculty.apps.FacultyConfig',
-    'department.apps.DepartmentConfig',
-    'assessment.apps.AssessmentConfig',
-    'project.apps.ProjectConfig',
-    'course.apps.CourseConfig',
-    'program.apps.ProgramConfig',
-    'forum.apps.ForumConfig',
-    'publications.apps.PublicationsConfig'
-]
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'Department_Website.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'Department_Website.urls'
@@ -64,7 +56,7 @@ ROOT_URLCONF = 'Department_Website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,3 +126,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+LOGIN_REDIRECT_URL = '/user/home/'
+
+LOGIN_URL = '/accounts/login'
+
+LOGIN_EXEMPT_URLS = (
+    'accounts/logout/',
+    'user/register/',
+    'accounts/password_reset/',
+    'accounts/password_reset/done/'
+    'accounts/password/reset/<uidb64>/<token>/',
+    'accounts/reset/done/',
+    'accounts/reset/<uidb64>/set-password/',
+)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
