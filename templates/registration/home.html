@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+ {% load staticfiles %}
+{% block head %}
+<title>
+    <img src="{% static 'Logo.png' %}" width="30" height="30" alt="">
+    Home
+</title>
+{% endblock %}
+
+{% block body %}
+<strong>Home</strong>
+    <a href="{% url 'user:update_profile' %}">Update Profile</a>
+{% endblock %}
