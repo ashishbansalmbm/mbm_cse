@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <ul>
+        <h1>Profile</h1>
+        {% if profile.photo %}
+        <img src="{{ profile.photo.url }}" width="240"/>
+        {% endif %}
+        <p>Username: {{ user }}</p>
+        <p>{{ profile.get_type_display }}</p>
+        <p>Name: {{ user.get_full_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>{{ profile.get_gender_display }}</p>
+        <p>{{ profile.date_of_birth }}</p>
+        <p>{{ profile.get_blood_group_display }}</p>
+        <p>{{ profile.address }}</p>
+        <p>{{ profile.city }}</p>
+        <p>{{ profile.state }}</p>
+        <p>{{ profile.get_category_display}}</p>
+        <p>{{ profile.contact }}</p>
+
+
+
+
+    </div>
+
+{% endblock %}

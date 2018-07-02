@@ -1,28 +1,68 @@
+from email.policy import default
+
 from django.db import models
 from enumerations.enum import UserType, BloodGroup, Gender, Category
 from django.urls import reverse
-
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from datetime import date
 
 # Create your models here.
 # User Table
 
-class User(models.Model):
-    user_name = models.CharField(unique=True, max_length=30)
-    password = models.CharField(max_length=256)
-    name = models.CharField(max_length=20)
-    date_of_birth = models.DateField()
-    gender = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in Gender], default=Gender.M)
-    address = models.CharField(max_length=200)
-    city = models.CharField(max_length=10)
-    state = models.CharField(max_length=10)
-    contact = models.CharField(max_length=12)
-    email = models.EmailField()
-    photo = models.ImageField()
-    category = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in Category], 
-                                default=Category.GEN)
-    blood_group = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in BloodGroup], 
-                                   default=BloodGroup.ABP)
-    type = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in UserType], default=UserType.U)
-    
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_of_birth = models.DateField(default=date.today)
+    gender = models.CharField(max_length=3, choices=[(tag.name, tag.value) for tag in Gender], default='')
+    address = models.CharField(max_length=200, default='')
+    city = models.CharField(max_length=10, default='')
+    state = models.CharField(max_length=10, default='')
+    contact = models.CharField(max_length=15, default='+919876543210')
+    photo = models.ImageField(upload_to='profile_photo', help_text='Your Photo name should be same as your name')
+    category = models.CharField(max_length=5, choices=[(tag.name, tag.value) for tag in Category],
+                                default='')
+    blood_group = models.CharField(max_length=5, choices=[(tag.name, tag.value) for tag in BloodGroup],
+                                   default='')
+    type = models.CharField(max_length=3, choices=[(tag.name, tag.value) for tag in UserType], default='')
+    verified = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.first_name + ' ' + self.user.last_name
+
     def get_absolute_url(self):
-        return reverse('user:user_list')
+        return reverse('user:home')
+
+    class Meta:
+        permissions = (
+            ('can_view_profile', 'can view user profile'),
+        )
+
+
+
+
+# Automatically Called Whenever an user instance is created
+
+
+def create_profile(sender, **kwargs):
+    user = kwargs["instance"]
+    if kwargs["created"]:
+        user_profile = Profile.objects.create(user=user)
+        user_profile.save()
+
+
+post_save.connect(create_profile, sender=User)
+
+# Checks for the permission
+
+
+
+
+
+
+
+
+
+
+
+

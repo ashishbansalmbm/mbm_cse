@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <form action="" method="post"  enctype="multipart/form-data" >
+            {% csrf_token %}
+            {% for field in user_form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {% if field.label != 'Password' %}
+                    {{ field.label_tag }} {{ field }}
+                {% endif %}
+            {% endfor %}
+            </div>
+            {% for field in profile_form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+
+                {% if not request.user.profile.verified %}
+                    {{ field.label_tag }} {{ field }}
+                {% else %}
+
+
+                   {% if field.label != 'Type' %}
+                    {{ field.label_tag }} {{ field }}
+                   {% endif %}
+
+                {% endif %}
+
+
+            {% endfor %}
+            <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
