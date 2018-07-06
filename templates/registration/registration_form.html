@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'registration/base.html' %}
 
 {% block head %}
     <title>Register</title>
@@ -10,7 +10,15 @@
         <h1>Register</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {% for field in form %}
+              <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% for error in field.errors %}
+                  <p style="color: red">{{ error }}</p>
+                {% endfor %}
+              </p>
+            {% endfor %}
             <button type="submit">
                 Regiter
             </button>
