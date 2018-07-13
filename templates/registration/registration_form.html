@@ -1,4 +1,4 @@
-{% extends 'registration/base.html' %}
+{% extends 'base.html' %}
 
 {% block head %}
     <title>Register</title>
@@ -6,23 +6,26 @@
 
 {% block body %}
 
-    <div class="container">
+    {% load widget_tweaks %}
+
+    <div class="container" style="padding-top: 150px ; padding-bottom: 150px">
         <h1>Register</h1>
-        <form method="post">
+
+        <form  method="post">
+
             {% csrf_token %}
+
             {% for field in form %}
-              <p>
+              <div class="form-group">
+                {{ field.errors }}
                 {{ field.label_tag }}<br>
-                {{ field }}
-                {% for error in field.errors %}
-                  <p style="color: red">{{ error }}</p>
-                {% endfor %}
-              </p>
+                {% render_field field class="form-control" %}
+              </div>
             {% endfor %}
-            <button type="submit">
-                Regiter
-            </button>
-         </form>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+
+        </form>
 
     </div>
 
