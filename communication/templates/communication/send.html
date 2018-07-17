@@ -1,0 +1,68 @@
+{% extends 'user/base.html' %}
+
+{% load static %}
+{% block head %}
+
+<title>Send</title>
+
+    <style>
+      .ui-autocomplete-loading {
+        background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+      }
+
+        table {
+            font-size: 1em;
+        }
+        .ui-draggable, .ui-droppable {
+            background-position: top;
+        }
+    </style>
+
+    <!--Autocomplete Receiver -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'communication/css/tags.css' %}">
+
+
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container" style="padding-top: 150px; padding-bottom: 150px">
+        <h1 style="margin-bottom: 20px">Send</h1>
+
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="ui-widget">
+    <label for="receiver">Receiver:</label>
+    <input class="ui-autocomplete-loading input-tags" type="text" name="receiver" id="id_receiver">
+                 <input type="hidden" name="receiver_id" id="receiver_id" value=""/>
+    <div id="tag_holder" class="clearfix "><i class="fa fa-group float-left" style="padding-right: 5px ; padding-top: 2px"></i></div>
+
+
+    </div>
+    {% for field in form %}
+    <div>
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+    <input type="submit">
+
+    </form>
+    </div>
+
+
+
+
+    {% block script %}
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="{% static 'communication/js/send.js' %}"></script>
+
+
+    {% endblock %}
+
+{% endblock %}
