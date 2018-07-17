@@ -13,8 +13,18 @@
         <h2>Login</h2>
         <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Login">
+            <div class="mt-10">
+                <input type="text" name="username" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'" required class="single-input col-md-5">
+            </div>
+            <div class="mt-10">
+                <input type="password" name="password" placeholder="Pass Word" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input col-md-5">
+            </div>
+            <div class="mt-10">
+                <button type="submit" class="genric-btn success-border radius" >Login</button>
+            </div>
+
+
+
         </form>
     </div>
 {% endblock %}
