@@ -1,18 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <!--Loads the path to your static files -->
-    {% load staticfiles %}
-    <link rel="stylesheet" href="https:maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-</head>
-<body>
-{% block body %}
-{% endblock %}
-</body>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+		<!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
+
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet'>
+
+        {% load static %}
+        <!-- Syntax Highlighter -->
+        <link rel="stylesheet" type="text/css" href="{% static 'user/syntax-highlighter/styles/shCore.css' %}" media="all">
+        <link rel="stylesheet" type="text/css" href="{% static 'user/syntax-highlighter/styles/shThemeDefault.css' %}" media="all">
+
+		<!-- Font Awesome CSS-->
+        <link rel="stylesheet" href="{% static 'user/css/font-awesome.min.css' %}">
+        <!-- Normalize/Reset CSS-->
+		<link rel="stylesheet" href="{% static 'user/css/normalize.min.css' %}">
+		<!-- Main CSS-->
+        <link rel="stylesheet" href="{% static 'user/css/main.css' %}">
+
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="{% static 'home/css/linearicons.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/bootstrap.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/magnific-popup.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/nice-select.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/animate.min.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/owl.carousel.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/main.css' %}">
+
+
+
+        {% block head %}
+        <title>User</title>
+        {% endblock %}
+
+
+
+    </head>
+
+    <body id="welcome">
+
+        <aside class="left-sidebar" style="background-color: #eaeaea">
+            <div class="logo">
+                <a href="{% url 'user:home' %}">
+                    <img src="{% static 'home/img/cse_logo.png' %}" alt="" height="80">
+                    <p style="font-family: 'Goudy Old Style'"><b>Cse Department</b></p>
+                </a>
+            </div>
+
+            <nav class="left-nav ">
+                <ul >
+                    <li class="current"><a href="{% url 'user:dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'user:view_profile' %}">Profile</a></li>
+                    <li><a href="#tmpl-structure">Courses</a></li>
+                    <li><a href="{% url 'message:send' %}">Send Message</a></li>
+                    <li><a href="{% url 'message:read' %}">My Messages</a></li>
+                    <li><a href="#contact-form">Project</a></li>
+                    <li><a href="#subscription-form">Result</a></li>
+                    <li><a href="#video">Useful Links</a></li>
+                    <li><a href="#credit">Resources</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+		<div id="main-wrapper">
+		    <div class="main-content">
+		        <section id="welcome">
+
+                    {% block content %}
+
+
+                        {% endblock %}
+
+		        </section>
+
+                {% block body %}
+
+                {% endblock %}
+                <!-- <section id="installation">
+                    <div class="content-header">
+		                <h1>Startup Landing Page</h1>
+                    </div>
+                    <h2 class="title">Installing Template.</h2>
+
+                    <div class="section-content">
+                        <ol>
+                            <li>After unzip the download pack, you'll found a Template Folder with all the files.</li>
+                            <li>You can view this Template in any browser, you can display or edit the Template without an internet connection.(May not wotrk fonts and google map).</li>
+                            <li>The only section that will not work is the Contact Section which contains PHP code and requires a server environment for send messages.</li>
+                            <li>Now go to your cpanel or open your FTP Client (like <a target="_blank" href="https://filezilla-project.org/download.php">Filezilla</a>) and upload the content of the Template on your server root.</li>
+                            <li>Once the files are done uploading go to www.yourdomainname.com/index.html</li>
+                        </ol>
+                    </div>
+
+		        </section> -->
+
+
+
+		    </div>
+		</div>
+
+        {% block script %}
+		<!-- Essential JavaScript Libraries
+		==============================================-->
+        <script type="text/javascript" src="{% static 'user/js/jquery-1.11.0.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/js/jquery.nav.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shCore.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shBrushXml.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shBrushCss.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shBrushJScript.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shBrushPhp.js' %}"></script>
+        <script type="text/javascript">
+            SyntaxHighlighter.all()
+        </script>
+        <script type="text/javascript" src="{% static 'user/js/custom.js' %}"></script>
+
+
+        {% endblock %}
+
+
+    </body>
 </html>

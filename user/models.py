@@ -39,11 +39,7 @@ class Profile(models.Model):
         )
 
 
-
-
 # Automatically Called Whenever an user instance is created
-
-
 def create_profile(sender, **kwargs):
     user = kwargs["instance"]
     if kwargs["created"]:

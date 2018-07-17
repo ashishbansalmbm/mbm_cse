@@ -1,39 +1,155 @@
-{% extends 'base.html' %}
+{% extends 'user/base.html' %}
+{% load widget_tweaks %}
 
 {% block head %}
 <title>Profile</title>
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <form action="" method="post"  enctype="multipart/form-data" >
+
+    <div class="container" style="padding-top: 150px; padding-bottom: 150px">
+        <form class="form-group" action="" method="post"  enctype="multipart/form-data" novalidate>
             {% csrf_token %}
-            {% for field in user_form %}
             <div class="fieldWrapper">
-                {{ field.errors }}
-                {% if field.label != 'Password' %}
-                    {{ field.label_tag }} {{ field }}
-                {% endif %}
-            {% endfor %}
-            </div>
-            {% for field in profile_form %}
-            <div class="fieldWrapper">
-                {{ field.errors }}
+            {% if profile.verified %}
 
-                {% if not request.user.profile.verified %}
-                    {{ field.label_tag }} {{ field }}
-                {% else %}
+                <div class="fieldWrapper" style="margin-left: 150px">
+                <div >
+							<div class="col-lg-10 col-md-10">
+                            <div class="mt-10">
+                            <div class="row">
+                                    <div class="col-md-4 col-lg-4 text-capitalize text-dark mt-8">
+                                        <p>User Name</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        {{ user.username }}
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 text-capitalize text-dark mt-8">
+                                        <p>Name</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 text-capitalize">
+                                        {{ user.get_full_name }}
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 text-capitalize text-dark mt-8">
+                                        <p>User Type</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        {{ profile.get_type_display }}
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 text-capitalize text-dark mt-8">
+                                        <p>Gender</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        {{ profile.get_gender_display }}
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 text-capitalize text-dark mt-8">
+                                        <p>Date of Birth</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        {{ profile.date_of_birth }}
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 text-capitalize text-dark mt-8">
+                                        <p>Category</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        {{ profile.get_category_display }}
+                                    </div>
 
+                            </div>
+                {% for field in user_form %}
+                    <p>{{ field.errors }}</p>
+                        {% if field.label == 'Password' %}
+                        {% else %}
+                            <div class="row">
+                                    <div class="col-md-2 col-lg-2 text-capitalize mt-8 text-dark">
+                                        {{ field.label_tag }}
+                                    </div>
+                                    <div class="col-md-10 col-lg-10">
+                                        {% render_field field class="single-input" %}
+                                    </div>
+                                </div>
+                        {% endif %}
+                {% endfor %}
+                            </div>
+                            </div>
+                </div>
+                {% for field in profile_form %}
+                <p><bold>{{ field.errors }}</bold></p>
+                    <div >
+							<div class="col-lg-10 col-md-10">
+                            <div class="mt-10">
+                                <div class="row">
+                                    <div class="col-md-2 col-lg-2 text-capitalize mt-8 text-dark ">
+                                        {{ field.label_tag }}
+                                    </div>
+                                    <div class="col-md-10 col-lg-10">
+                                        {% render_field field class="single-input" %}
+                                    </div>
+                                </div>
 
-                   {% if field.label != 'Type' %}
-                    {{ field.label_tag }} {{ field }}
-                   {% endif %}
+                            </div>
+                            </div>
+                    </div>
+                {% endfor %}
+                <div class="mt-10">
+                 <button type="submit" class="genric-btn success-border radius" style="margin-left: 150px" >Update</button>
+                </div>
+                </div>
 
-                {% endif %}
+            {% else %}
+                <div class="fieldWrapper" style="margin-left: 150px">
+                <div >
+							<div class="col-lg-10 col-md-10">
+                            <div class="mt-10">
+                            <div class="row">
+                                    <div class="col-md-4 col-lg-4 text-capitalize text-dark mt-8">
+                                        <p>User Name</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        {{ user.username }}
+                                    </div>
+                            </div>
+                {% for field in user_form %}
+                    <p>{{ field.errors }}</p>
+                        {% if field.label == 'Password' %}
+                        {% else %}
+                            <div class="row">
+                                    <div class="col-md-2 col-lg-2 text-capitalize mt-8 text-dark">
+                                        {{ field.label_tag }}
+                                    </div>
+                                    <div class="col-md-10 col-lg-10">
+                                        {% render_field field class="single-input" %}
+                                    </div>
+                                </div>
+                        {% endif %}
+                {% endfor %}
+                            </div>
+                            </div>
+                </div>
+                {% for field in profile_form %}
+                <p><bold>{{ field.errors }}</bold></p>
+                    <div >
+							<div class="col-lg-10 col-md-10">
+                            <div class="mt-10">
+                                <div class="row">
+                                    <div class="col-md-2 col-lg-2 text-capitalize mt-8 text-dark ">
+                                        {{ field.label_tag }}
+                                    </div>
+                                    <div class="col-md-10 col-lg-10">
+                                        {% render_field field class="single-input" %}
+                                    </div>
+                                </div>
 
+                            </div>
+                            </div>
+                    </div>
+                {% endfor %}
+                <div class="mt-10">
+                 <button type="submit" class="genric-btn success-border radius" style="margin-left: 150px" >Update</button>
+                </div>
+                </div>
+            {% endif %}
 
-            {% endfor %}
-            <input type="submit" value="Submit">
             </div>
         </form>
     </div>

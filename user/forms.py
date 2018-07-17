@@ -17,6 +17,7 @@ class RegistrationForm(UserCreationForm):
                   'password2'
                   ]
 
+
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
         user.first_name = self.cleaned_data['first_name']
@@ -30,10 +31,20 @@ class RegistrationForm(UserCreationForm):
 class UpdateUserForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'password']
+        fields = ['email', 'password']
 
 
-class UpdateProfileForm(forms.ModelForm):
+class UpdateProfileFormNotVerified(forms.ModelForm):
+
     class Meta:
         model = Profile
         exclude = ['user', 'verified']
+
+
+class UpdateProfileFormVerified(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        exclude = ['user', 'verified', 'category', 'type', 'date_of_birth', 'gender']
+
+

@@ -1,15 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'user/base.html' %}
 
 {% block head %}
 <title>Profile</title>
 {% endblock %}
 
-{% block body %}
-    <div class="container">
+{% block content %}
+    <div class="container" style="padding-top: 150px; padding-bottom: 150px">
     <ul>
-        <h1>Profile</h1>
+    <div class="container">
+         <h1 class="float-left">Profile</h1>
+        <a href="{% url 'user:update_profile' %}" class="genric-btn success-border radius float-right">Update Profile</a>
+    </div>
+
+    <br>
+    <br>
+    <hr style="margin-bottom: 20px">
+
         {% if profile.photo %}
-        <img src="{{ profile.photo.url }}" width="240"/>
+
+            <div class="col-md-4">
+                <a href="{{ profile.photo.url }}" class="img-pop-up">
+                    <div class="single-gallery-image" style="background: url({{ profile.photo.url }});"></div></a>
+            </div>
         {% endif %}
         <p>Username: {{ user }}</p>
         <p>{{ profile.get_type_display }}</p>
