@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+{% extends 'user/base.html' %}
+{% load static %}
+{% block body %}
+
+    <img src="{% static 'images/newsletter.jpg'%}" alt="Cinque Terre" width="1000px" height="150px">
+
+    <div class="btn float-left mt-10"style="margin-top: 10px;">
+        <a href="{% url 'publications:newsletter-publish'%}" class="btn btn-info"><span class="fa fa-plus"></span> Publish Newsletter</a>
+
+        </div>
+
+<br>
+ <br>
+    <br>
+<div class="container">
+        <div class="table" style="margin:50px;">
+                <ul>
+                    {% for newsletter in object_list %}
+                    <li>
+                      <a href="{{newsletter.attachment.url}}" class="img-responsive" style="font-size:23px;">{{ newsletter.title.upper }} <br></a>
+                        <br>
+                        <h4>Author: <span class="fa fa-user"></span>  {{ newsletter.author.get_full_name.upper}},  <span class="fa fa-calendar"></span> {{newsletter.date}} , Edition : {{ newsletter.edition}}  </h4>
+<br>
+</li>
+                    <hr>
+                    {% endfor %}
+                </ul>
+
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {
+     box-sizing:border-box ;
+    font-size: 20px;
+    padding: 10px;
+
+}
+.leftcolumn{
+    padding:  10px;
+    width:60%;
+    line-height:130%;
+    box-sizing:  border-box;
+    background-color: lightgrey;
+    margin: 25px;
+    border-style:solid;
+    border-color:#287EC7;
+
+}
+
+.header{
+margin-top:200px;
+margin-left:50px;
+}
+</style>
+
+</head>
+<body>
+<div class="header">
+<h1 style="text-align:left;">
+    <mark>PUBLICATIONS </mark>
+</h1>
+</div>
+<br>
+
+            <dl class="leftcolumn ">
+            {% for publication in object_list %}
+
+
+                {{ publication.title }}
+                </a>
+            <dd> {{ publication.date_of_addition}}</dd>
+            <dd>{{publication.author}}</dd>
+            {% endfor %}
+
+          </dl>
+
+<br>
+</body>
+</html>
+{% endblock %}

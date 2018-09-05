@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: lavender;
+
+}
+.header{
+margin-top:200px;
+margin-left:50px;
+margin-bottom:100px;
+
+}
+</style>
+</head>
+<body>
+<h1 class="header"> <mark>NEWSLETTERS </mark></h1>
+
+        <ul>
+
+            {% for newsletter in object_list %}
+              <li>
+                  <a href="{{newsletter.attachment.url}}" class="img-responsive">{{ newsletter.title }} , {{newsletter.editor.get_full_name}}</a>
+                  <h5> Edition : {{ newsletter.edition}}</h5>
+                  <h5>Date: {{newsletter.date}}</h5>
+
+                  {% endfor %}
+              </li>
+        </ul>
+</body>
+{% endblock %}
+
+
+
+

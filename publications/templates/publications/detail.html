@@ -1,0 +1,108 @@
+{% extends 'user/base.html' %}
+{% block title %}Publication Details{% endblock %}
+
+{% block body %}
+<html lang="en">
+<head>
+    {%load staticfiles%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script async src="https://static.addtoany.com/menu/page.js"></script>
+
+<style>
+/* Style the header */
+body {
+     box-sizing:border-box ;
+   }
+   body{
+       background: white;
+
+
+}
+
+
+
+
+.header h1{
+    font-size: 110px;
+}
+.leftcolumn {
+    width: 100%;
+    line-height: 300%;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 20px;
+    text-align: left;
+}
+
+
+
+.leftcolumn a{
+font-size:20px;
+}
+
+</style>
+</head>
+<body>
+<img src="{%static 'images/publications.jpg'%}" alt="this is the image" height="200px" width="1100px" >
+
+
+<div class="col-sm-8">
+    <div class="row">
+         <div class="leftcolumn">
+
+                 <div class="" ><h2>{{ publication.title }}  {{publication.year}}</h2></div>
+                 <h4><span class="glyphicon glyphicon-calendar"></span>{{publication.date_of_addition}}</h4>
+                 <div class="well well-sm"><h4>{{publication.description}}</h4></div>
+
+                 <div class="well well-sm">
+                     <h3>Abstract</h3>
+                     <h4>{{publication.abstract}} </h4>
+                 </div>
+                     <h3>Share:</h3>        <!-- AddToAny BEGIN -->
+                     <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                         <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                         <a class="a2a_button_facebook"></a>
+                         <a class="a2a_button_email"></a>
+                         <a class="a2a_button_google_plus"></a>
+                         <a class="a2a_button_linkedin"></a>
+                         <a class="a2a_button_google_gmail"></a>
+                         <a class="a2a_button_whatsapp"></a>
+                         <a class="a2a_button_google_classroom"></a>
+                     </div>
+
+
+             </div>
+    </div>
+</div>
+
+
+
+<div class="col-sm-4">
+     <div class="row">
+         <div class="leftcolumn">
+                 <h2><mark>General Information</mark></h2>
+    <div class="text-primary well">
+
+        <h4>Publisher  :  {{publication.publisher_name }}</h4>
+        <h4>Author  :<span class="glyphicon glyphicon-user"></span> {{ publication.author.get_full_name}}</h4>
+        <h4>Edition : {{publication.edition}}</h4>
+        <h4>Type   : {{publication.type}}</h4>
+        <h4>Volume :  {{publication.volume}}</h4>
+        <h4>No. of pages  :  {{ publication.pages }}</h4>
+        <h4>ISBN   :  {{publication.isbn}}</h4>
+        <h4>DOI    : {{publication.doi}}</h4>
+        <h4>Available Languages</h4>
+        <h4>{{publication.language}}</h4>
+<!-- AddToAny END -->
+    </div>
+</div>
+         </div>
+     </div>
+
+{% endblock %}
+</body>
+</html>
