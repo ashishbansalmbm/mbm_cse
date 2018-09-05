@@ -1081,7 +1081,6 @@ h1, h2, h3, h4, h5, h6 {
 .progress-table {
   background: #f9f9ff;
   padding: 15px 0px 30px 0px;
-  min-width: 800px;
 }
 
 .progress-table .serial {
@@ -1249,11 +1248,12 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   line-height: 40px;
   border: none;
-  outline: none;
   background: #f9f9ff;
   padding: 0 20px;
+  outline-color: #d0e4d0;
+  outline-style:  solid;
+  outline-width: 1px;
 }
-
 .single-input:focus {
   outline: none;
 }
@@ -1283,11 +1283,13 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   line-height: 40px;
   border: none;
-  outline: none;
   background: #f9f9ff;
   padding: 0 20px;
   height: 100px;
   resize: none;
+  outline-color: #d0e4d0;
+  outline-style: solid;
+  outline-width: 1px;
 }
 
 .single-textarea:focus {
@@ -1772,9 +1774,10 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   border-radius: 0px;
   height: 40px;
-  background: #f9f9ff;
+  background: #ececf5;
   padding-left: 20px;
   padding-right: 40px;
+
 }
 
 .default-select .nice-select .list {
@@ -1876,13 +1879,14 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  padding: 14px 0;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  transition: all 0.5s;
-  z-index: 997;
+    padding: 14px 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: #f9f9ff;
+    transition: all 0.5s;
+    z-index: 997;
 }
 
 #header.header-scrolled {
@@ -2262,12 +2266,12 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .banner-area {
-  background: url(../img/header-bg.jpg) center;
+  background: #fcfcf center;
   background-size: auto;
 }
 
 .banner-content {
-  margin-top: -90px;
+  margin-top: 96px;
   text-align: center;
 }
 
@@ -2993,3 +2997,42 @@ h6 {
     margin: 25px 0px 0;
     padding: 5px 5px 5px 5px;
 }
+
+
+.pretitle {
+	color: #87959c;
+	letter-spacing: 5px;
+	margin-bottom: 8px;
+}
+
+.partner {
+    box-shadow: 0 0 15px rgba(0,0,0,.2);
+    border-radius: 6px;
+		margin: 15px;
+		background-color: #fff;
+		display: block;
+		height: auto;
+	  width: 250px;
+}
+
+.partner img{
+	margin: 30px 68px;
+    min-height: 90px;
+}
+
+.partner h6{
+    font-family: 'Montserrat', sans-serif;
+    color: #171717;
+    font-size: 15px;
+    font-weight: 600;
+		text-align: center;
+}
+
+.partner p{
+    font-size: 13px;
+    color: #5f5f5f;
+    line-height: 26px;
+    padding: 10px 30px 26px;
+
+}
+
