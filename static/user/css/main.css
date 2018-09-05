@@ -107,6 +107,15 @@ section p {
     min-height: 100%;
     position: fixed;
     width: 18%;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+
+}
+
+.left-sidebar:hover {
+    overflow-y: scroll;
+
 }
 
 .logo {
