@@ -1,0 +1,60 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+{% block title %} Select PO {% endblock %}
+{% load widget_tweaks %}
+
+{% block body %}
+
+<div style="margin-top: 80px ; padding: 10px 50px; margin-bottom: 80px;">
+    <h2 class="text-left"> Select PO for {{ outcome }} </h2>
+    <br>
+    <br>
+
+
+    <div style="margin-left: 0px ; ">
+
+        <form class="form-horizontal" role="form" id="po_form" action="{% url 'course:po-select' outcome.id %}"
+            method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ formset.management_form }}
+                {% for form in formset %}
+                <div class="row mt-3">
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                </div>
+                <br>
+                {% endfor %}
+
+              <div class="mt-2" style="margin-left: 300px;">
+                  <button type="submit" class="btn btn-default">Submit</button>
+              </div>
+
+
+        </form>
+    </div>
+</div>
+
+{% block script %}
+
+<script type="application/javascript">
+    $(document).ready(function(){
+        $("#po_form select").each(function(){
+            id = $(this).attr("name");
+            val = $(this).val();
+            txt = $(this).children("option:selected").text();
+            if(id.indexOf("outcome")>=0)
+            {
+                //$(this).attr("readonly","readonly");
+                $(this).after("<input type='hidden' name='"+id+"' value='"+val+"'/>");
+                $(this).after("<h5>"+txt+":</h5>");
+                $(this).hide();
+            }
+
+        });
+
+    });
+</script>
+{% endblock %}
+
+{% endblock %}

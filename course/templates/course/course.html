@@ -1,0 +1,18 @@
+<html>
+<head>
+    <style>
+        body
+        {background-color: palegoldenrod;}
+    </style>
+</head>
+<body>
+<h1> Course Form </h1>
+<form method ="post" action="" >
+    {% csrf_token %}
+    <div>
+        {{ form.as_p }}
+    </div>
+    <button type="submit"> Submit </button>
+</form>
+</body>
+</html>

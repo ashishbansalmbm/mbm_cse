@@ -1,0 +1,28 @@
+{% extends 'user/base.html'%}
+{%  load staticfiles %}
+{% block title %}Offered Courses{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+                  <h1> Offered Courses </h1>
+                  <table class="table table-striped" style="margin-top: 20px ;">
+                  <tr>
+                       <th>Course </th>
+                       <th>Year</th>
+                  </tr>
+
+                      {% for course in av_courses %}
+                          <tr>
+                               <td> {{course.course }}</td>
+                               <td>{{ course.year }}</td>
+                          </tr>
+
+                      {% endfor %}
+                  </table>
+              </div>
+          </div>
+
+
+
+{% endblock %}

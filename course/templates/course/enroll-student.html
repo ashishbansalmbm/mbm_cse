@@ -1,0 +1,24 @@
+{% extends 'user/base.html' %}
+{% block body %}
+
+   <div style="margin: 50px 10px ;">
+<form action="" method="Post">
+    {% csrf_token %}
+    <table class="table">
+     <tr>
+                    <th>#Students</th>
+                    <th>#Enroll</th>
+        </tr>
+    {% for st in students %}
+
+                <tr>
+                    <td>{{st}}</td>
+                    <td><input type="checkbox" name="student" value="{{st.user.id}}""></td>
+                </tr>
+     {% endfor %}
+    </table>
+    <button type="submit" onclick="return confirm('Are you Sure');" class="btn btn-info">Submit</button>
+
+</form>
+   </div>
+{% endblock %}

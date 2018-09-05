@@ -1,0 +1,85 @@
+
+{% extends 'user/base.html'%}
+{%  load staticfiles %}
+{% load widget_tweaks    %}
+{% block title %} Course Index {% endblock %}
+
+{% block body %}
+
+
+{% if request.user.profile.type == "F" %}
+
+<div class="row" style="margin-top: 50px;margin-left:0px; margin-right: 10px; margin-bottom: 50px;">
+
+             <div class="col-lg-3" style="padding-left: 50px">
+                  <a href="{% url 'course:course-add' %}" class="btn btn-info"> <i class="fa fa-plus"></i>  ADD COURSE</a>
+                  <a href="{% url 'course:mycourse-faculty'%}" class="btn btn-info mt-3"><i class="fa fa-envelope"></i>  MY COURSE</a>
+                  <a href="{% url 'course:course-offer'%}" class="btn btn-info mt-3"><i class="fa fa-envelope"></i>  OFFER COURSE</a>
+
+             </div>
+
+             <div class="col-lg-9" >
+                 <form class="form-row" action="" method="get">
+                    {% for field in filter.form %}
+                        <div class="mt-10 ml-3">
+                        {% render_field field class="single-input" placeholder=field.label %}
+                        </div>
+                    {% endfor %}
+                    <button type="search" class="btn btn-success ml-3 mt-2"><i class="fa fa-search"></i> Search</button>
+                </form>
+             </div>
+</div>
+
+{% elif request.user.profile.type == "S" %}
+
+<div class="row " style="margin-top: 50px; margin-left: 10px;margin-right: 10px;margin-bottom: 50px;">
+
+             <div class="col-lg-2" style="padding-top: 10px;">
+                   <a href="{% url 'course:mycourse-student'%}" class="btn btn-info"><span class="fa fa-envelope"></span> MY COURSE</a>
+             </div>
+
+            <div class="row col-lg-9" style="padding-left: 150px;">
+                 <form class="form-row" action="" method="get">
+                    {% for field in filter.form %}
+                        <div class="mt-10 ml-3">
+                        {% render_field field class="single-input" placeholder=field.label %}
+                        </div>
+                    {% endfor %}
+                    <button type="search" class="btn btn-success ml-3 mt-2"><i class="fa fa-search"></i> Search</button>
+                </form>
+             </div>
+
+
+</div>
+
+{% endif %}
+
+<div class="container">
+
+
+
+        <div class="container">
+                  <h1 class="mt-3"> Courses </h1>
+                  <table class="table table-striped">
+                  <tr>
+                       <th>Course Code</th>
+                      <th>Name</th>
+                      <th>Semester</th>
+                  </tr>
+
+                      {% for course in filter.qs %}
+                          <tr>
+                               <td> {{course.course.course_code }}</td>
+                              <td><a href ="{% url 'course:detail' course.course.id %}">{{ course.course.name }}</a></td>
+                              <td>{{ course.course.get_semester_display }}</td>
+                          </tr>
+
+                      {% endfor %}
+                  </table>
+        </div>
+
+
+
+
+
+{% endblock %}

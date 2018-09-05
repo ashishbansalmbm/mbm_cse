@@ -1,0 +1,107 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+{% block head %} <title>Detail</title> {% endblock %}
+{% load widget_tweaks %}
+
+{% block body %}
+<div style="margin: 50px 10px ;">
+
+<h2> COURSE DETAILS  </h2>
+
+            <h3> {{ course.name }} , {{course.get_semester_display}}</h3>
+        <h8><font color="red"> General Information </font> </h8>
+
+
+        <div class="container mt-10">
+
+            <table class="table">
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Type</th>
+                    <th>Max Marks</th>
+                    <th>Credits</th>
+                    <th>Hours</th>
+                    <th>Duration</th>
+                    <th>Updated On</th>
+                </tr>
+                <tr>
+                    <td> {{course.course_code }}</td>
+                    <td>{{course.get_course_type_display }}</td>
+                    <td>{{course.max_marks}}</td>
+                    <td>{{course.credits}}</td>
+                    <td>{{course.hours}}</td>
+                    <td>{{course.duration}}</td>
+                    <td>{{course.updated_on}}</td>
+                </tr>
+
+                </table>
+            <br>
+
+
+                <table class="table">
+                <tr>
+
+                    <th>Objective</th>
+                    <th>Syllabus</th>
+                    <th>Text Books</th>
+                    <th>Reference Material</th>
+                    <th>Prerequisite</th>
+
+                </tr>
+                <tr>
+                    <td>{{ course.objective }}</td>
+                    <td>{{course.syllabus}}</td>
+                    <td>{{course.text_books}}</td>
+                    <td>{{course.ref_material}}</td>
+                    <td>{{course.prerequisite}}</td>
+                </tr>
+                </table>
+
+        </div>
+
+    {% if request.user.profile.type == 'F' %}
+             <div class="mt-3" style="margin-left: 678px; ">
+                    <a href="{% url 'course:co-new' course.id %}">
+                        <input class="btn btn default btn-default" type="submit" value="ADD COURSE OUTCOMES" >
+                    </a>
+
+             </div>
+
+
+               <form  action="{% url 'course:course-update' course.id %}" method="get" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'course/form_template.html' %}
+                   <div class="mt-3" style="margin-left: 678px;">
+                       <input class="btn btn default btn-default" type="submit" value="Edit" >
+                   </div>
+                </form>
+
+                <form class="form-horizontal" role="form"  action="{% url 'course:course-delete' course.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <div class="mt-3" style="margin-left: 678px;">
+                       <input id="delete_{{ course.id }}" class="btn btn default btn-default" type="submit" value="Delete" >
+                   </div>
+                     {% block script %}
+
+                        <script type="application/javascript">
+                        $("#delete_{{ course.id }}").click(function(event) {
+                        event.stopPropagation();
+                        if(confirm("Do You want To Delete "))
+                        {
+                            alert('hi');
+                         currenElem.remove();
+                        }
+                        event.preventDefault();
+                        });
+                        </script>
+
+                     {% endblock %}
+
+                </form>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}
+
