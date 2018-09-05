@@ -1,0 +1,43 @@
+{% extends 'user/base.html' %}
+
+{% block head %}
+    <title>Add Assessment</title>
+{% endblock %}
+{% block body %}
+
+    <div style="margin-top: 80px ; padding: 0px 50px;">
+<h3>Add a New Assessment</h3>
+
+
+<form class="from-row mt-5"  action="" method="post" enctype="multipart/form-data" target="_self">
+    {% csrf_token %}
+    {% include 'assessment/form_template.html' %}
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-10">
+            <button type="submit" formtarget="_self" class="genric-btn info-border radius">Save</button>
+            {% if assessment.id %}
+            <a href="{% url 'assessment:detail' assessment.id %}" class="genric-btn info-border radius">Questions</a></button>
+            {% else %}
+            {% endif %}
+
+
+
+
+
+</form>
+        {% if assessment.id %}
+        <form action="{% url 'assessment:detail' assessment.id %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Are you Sure?');" class="genric-btn info-border radius" name="submit_assessment" >Submit</button>
+</form>
+        {% else %}
+        {% endif %}
+</div>
+    </div>
+ </div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

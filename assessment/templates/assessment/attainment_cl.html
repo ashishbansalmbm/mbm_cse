@@ -1,0 +1,80 @@
+{% extends "user/base.html" %}
+{% block head %}
+    <title>Calculate Attainment</title>
+{% endblock %}
+{% load mathfilters %}
+{%  block body %}
+<style >
+
+.table {
+    background: #f9f9ff;
+    padding: 15px 0px 30px 0px;
+    min-width: 800px;
+}
+
+.td, .th {
+    color: #222222;
+    line-height: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+ #id_course , #id_year {
+    display: block;
+    line-height: 24px;
+    border: none;
+    background: #f9f9ff;
+    padding: 3px 24px;
+    outline-color: #d0e4d0;
+    outline-style: solid;
+    outline-width: 1px;
+ }
+
+</style>
+<div style="margin-top: 80px ; padding: 0px 50px;">
+    <h1 class="mb-30" align="center">Course Level</h1>
+
+    <input type="text" id="myInput" onkeyup="myfunction()" placeholder="Search for course.." >
+    <br><br>
+    <a href="{% url 'assessment:search_or_calculate' %}">Calculate</a>
+    <div class="table-responsive">
+    <table id="MyTable" class="table">
+        <tr class="header">
+            <th>Course</th>
+            <th>Year</th>
+            <th>Avg (in %)</th>
+            {% for oc in count %}
+                <th>C.O. {{ oc }} (in %)</th>
+            {% endfor %}
+        </tr>
+
+        {% for value in details %}
+            <tr>
+                {% for c in value %}
+                    <td>{{ c }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+</div>
+
+    <script>
+        function myfunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+{% endblock %}

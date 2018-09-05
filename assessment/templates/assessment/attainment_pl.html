@@ -1,0 +1,57 @@
+{% extends "user/base.html" %}
+{% load mathfilters %}
+{%  block body %}
+<style >
+
+.table {
+    background: #f9f9ff;
+    padding: 15px 0px 30px 0px;
+    min-width: 800px;
+}
+
+.td, .th {
+    color: #222222;
+    line-height: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+ #id_course , #id_year {
+    display: block;
+    line-height: 24px;
+    border: none;
+    background: #f9f9ff;
+    padding: 3px 24px;
+    outline-color: #d0e4d0;
+    outline-style: solid;
+    outline-width: 1px;
+ }
+
+</style>
+<div style="margin-top: 80px ; padding: 0px 50px;">
+    <h1 class="mb-30" align="center">Program Level</h1>
+    <div class="table-responsive">"
+
+    <table class="table">
+        <tr>
+            <th>Program</th>
+            <th>Year</th>
+            <th>Average (in %)</th>
+            {% for oc in count %}
+                {% if oc < 13 %}
+                    <th>P.O.- {{ oc }} (in %)</th>
+                    {% else %}
+                    <th>P.S.O.- {{ oc|sub:12 }} (in %)</th>
+                {% endif %}
+
+
+            {% endfor %}
+        </tr>
+        {% for value in details %}
+            <tr>
+                {% for c in value %}
+                    <td>{{ c }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
