@@ -1,0 +1,17 @@
+{% extends 'course/base.html' %}
+
+{% block body %}
+<h1> Program </h1>
+<ul>
+   {% for program in object_list %}
+           <li>
+            {{ program.id }}
+           </li>
+
+   {% endfor %}
+     <a href="{% url 'program:co-new' %}">
+       <input type="submit" name="Create new" value="Add Course Outcomes">  </input>
+     </a> <br>
+
+</ul>
+{% endblock %}
