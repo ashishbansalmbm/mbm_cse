@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block head %}
+    <title>Student List</title>
+
+
+     {% endblock %}
+
+{% block body %}
+<ul>
+
+ <style>
+    .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
+
+    #button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    #a {
+        text-decoration: none;
+        font-size: 22px;
+        color: black;
+    }
+
+    button:hover, a:hover {
+        opacity: 0.7;
+    }
+    </style>
+
+    <div class="row" style="padding: 160px 100px">
+
+    <div class="col-lg-12" style="margin-left:180px">
+    <form class="form-row" action="" method="get">
+        {% for field in filter.form %}
+            <div class="mt-10 ml-3">
+            {% if field.label == 'Semester' or field.label == 'Program' %}
+                {% render_field field class="nice-select" placeholder=field.label style="background-color: #f9f9ff;border-radius: 0px;margin-top: -1px;" %}
+            {% else %}
+            {% render_field field class="single-input" placeholder=field.label %}
+            {% endif %}
+            </div>
+        {% endfor %}
+        <button type="search" class="btn btn-success ml-3 mt-2"><i class="fa fa-search"></i> Search</button>
+    </form>
+
+    </div>
+
+
+    {% for f in filter.qs %}
+            <div class="col-md-4">
+                <div class="card mt-5">
+                    {% if f.user.profile.photo %}
+                        <img src="{{ f.user.profile.photo.url }}" alt="{{ f.user.get_full_name }}" style="align-self: center" height="100%" width="100%">
+                    {% else %}
+                        <img src="{% static 'user/img/dummy_profile.png' %}" alt="{{ f.user.get_full_name }}" style="align-self: center" height="200" width="200">
+                    {% endif %}
+                  <h1>{{ f.user.first_name  }} {{ f.user.last_name  }}</h1>
+                  <p class="title"></p>
+                  <p>Department of CSE</p>
+                  <p>{{ f.get_semester_display }}</p>
+                  <p>{{ f.program }}</p>
+                  <p><button id="button">Contact</button></p>
+                </div>
+            </div>
+    {% endfor %}
+    </div>
+</ul>
+ {% endblock %}
