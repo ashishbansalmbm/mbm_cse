@@ -1,0 +1,125 @@
+<!Doctype html>
+{% extends 'user/base.html' %}
+{% block body %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+
+body {
+box-sizing:  border-box;
+}
+
+/* Style the header */
+body{
+    font-family: Arial;
+    padding: 0px;
+    background: white;
+
+
+}
+.header {
+    background-color:lavender
+    padding: 50px;
+        margin-top:160px;
+        margin-left:10px;
+
+
+
+}
+.header h1{
+    font-size: 110px;
+}
+.leftcolumn{
+    width:   100%;
+    line-height=300%;
+    margin-left:50px;
+    margin-top:0px;
+    padding: 10px;
+    text-align:centre
+
+
+}.leftcolumn a{
+font-size:14px;
+}
+.leftcolumn p{
+font-size:20px;
+}
+.d{
+margin-left:700px;}
+
+    </style>
+</head>
+
+<body>
+
+<img src="http://riverstonetogether.com/wp-content/uploads/2017/09/Resources-page-photo_0.jpg"  alt="Cinque Terre" width="1100" height="156">
+
+    <div class="col-sm-11">
+      <div class="row" >
+      <div class="leftcolumn">
+        <div class="">
+             <div class="btn ">
+            <a href="{% url 'resources:resources-add' %}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>ADD RESOURCES</a>
+            <a href="{% url 'resources:resource-my'%}" class="btn btn-success"><span class="glyphicon glyphicon-envelope"></span>MY RESOURCES</a>
+          </div>
+
+          <form class="navbar navbar-right" method="post" action="{% url 'resources:resource-search' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                       <div class="col-lg-10">
+                          <input type="text" name="srh" class="form-control" placeholder="Enter Date , Title, Type " >
+                       </div>
+                        <label class="col-lg-2">
+                            <button type="submit" class="btn btn-default">Search</button>
+                        </label>
+                    </div>
+                </form>
+          </div>
+          <hr>
+
+            <div class="well well-sm">
+            <div>
+                {% if messages %}
+                <ul class="messages">
+                {% for k in messages %}
+                <li style="color:red">{{ k }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div style="color:">
+                {% if sr %}
+                {% for k in sr %}
+                 <ul>
+                     <li>
+
+                  <h4>{{k.title}} ,  {{k.type}}</h4>
+                      <h5>{{ k.date}}
+                      <div class="btn btn-sm">
+                          <div class="d">
+                          <a href="{{resource.attachment.url}}" target="_blank" class="img-responsive">
+                                <input class="btn btn-primary" type="submit" value="Download"></a>
+                      </div>
+                      </div>
+                      </h5>
+
+                  <hr>
+
+                     </li>
+                 </ul>
+                <hr>
+                {% endfor %}
+        {% endif %}
+            </div>
+            </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</body>
+</html>
+{% endblock  %}
