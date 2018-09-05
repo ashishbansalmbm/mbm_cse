@@ -1,0 +1,58 @@
+#tag_holder{
+    border:1px solid #666;
+    padding:6px;
+    clear: both;
+    width: 600px;
+}
+
+
+.tag{
+    padding: 2px;
+    background:#ddd;
+    border:1px solid #666;
+    color:#44a;
+    height: 22px;
+    float: left;
+    display: block;
+    margin-right: 5px;
+}
+.tag .label{
+    font-style: normal;
+    font-size: 12px;
+    margin-right:4px;
+    display:inline-block;
+    line-height: 19px;
+    float: left;
+}
+.tag .tag_close{
+    display:inline-block;
+    width: 10px;
+    font-weight: bold;
+    cursor:pointer;
+    float: left;
+    height: 14px;
+    line-height: 16px;
+}
+.tag .tag_close:hover{
+    color:red;
+}
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.ui-autocomplete-loading {
+        background: white right center no-repeat;
+      }
+
+        table {
+            font-size: 1em;
+        }
+        .ui-draggable, .ui-droppable {
+            background-position: top;
+
+
+        }
