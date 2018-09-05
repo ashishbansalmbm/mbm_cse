@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <style>
+     .ratings
+     {   position: left;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%,-50%) rotateY(180deg);
+         display: flex;
+     }
+
+     .ratings input
+     {display: none;}
+
+     .ratings label
+     {   display: block;
+         cursor: pointer;
+         width: 50px;
+     }
+
+     .ratings label:before
+     {   content: '\f005';
+         font-family: fontAwesome ;
+         position: relative;
+         display: block;
+         font-size: 20px;
+         color: palegoldenrod;
+     }
+
+     .ratings label:after
+     {   content: '\f005';
+         font-family: fontAwesome ;
+         position: absolute;
+         display: block;
+         font-size: 20px;
+         color: yellow;
+         top: 0px;
+         opacity:0;
+         transition: 0.1s ;
+     }
+
+     .ratings label:hover:after,
+     .ratings label:hover ~ label:after,
+     .ratings input:checked ~ label:after
+     {opacity:1;}
+
+    </style>
+
+    <title>Form</title>
+</head>
+
+<h2> <u>
+{{ coursefeedback.course }} Feedback Form
+</u> </h2>
+<h4>{{ coursefeedback.year }} </h4>
+<br>
+{% for feedbackquestion in course_fbs %}
+     {{ feedbackquestion.order }}. &nbsp  {{ feedbackquestion }}
+    <br>
+      {% if feedbackquestion.ques_type == 'TF' %}
+          <input type="radio" name="True/False{{ feedbackquestion.id }}" value="True" > True
+          <input type="radio" name="True/False{{ feedbackquestion.id }}" value="False"> False
+      {% endif %}
+
+      {% if feedbackquestion.ques_type == 'MCQ' %}
+          <input type="radio" name="MCQ{{ feedbackquestion.id }}" value="a"> a<br>
+          <input type="radio" name="MCQ{{ feedbackquestion.id }}" value="b"> b<br>
+          <input type="radio" name="MCQ{{ feedbackquestion.id }}" value="c"> c<br>
+          <input type="radio" name="MCQ{{ feedbackquestion.id }}" value="d"> d<br>
+      {% endif %}
+
+       {% if feedbackquestion.ques_type == 'R' %}
+           <br>
+           <div class="ratings" >
+            <input type="radio" name="R{{ feedbackquestion.id }}" id="st1" value="1"> <label for="st1"></label> &nbsp;
+            <input type="radio" name="R{{ feedbackquestion.id }}" id="st2" value="2"> <label for="st2"></label> &nbsp;
+            <input type="radio" name="R{{ feedbackquestion.id }}" id="st3" value="3"> <label for="st3"></label> &nbsp;
+            <input type="radio" name="R{{ feedbackquestion.id }}" id="st4" value="4"> <label for="st4"></label> &nbsp;
+            <input type="radio" name="R{{ feedbackquestion.id }}" id="st5" value="5"> <label for="st5"></label>
+           </div>
+       {% endif %}
+     <br><br>
+{% endfor %}
+
+</body>
+</html>
