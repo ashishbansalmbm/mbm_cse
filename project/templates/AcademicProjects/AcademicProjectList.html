@@ -1,0 +1,26 @@
+{% extends 'user/base.html' %}
+{% block head %}<title>Academic List</title> {% endblock %}
+{% block body %}
+<div class="pro-main" style="margin-left:10px; margin-right: 10px ; margin-top: 50px">
+<h2 class="text-center">ALLOT ACADEMIC PROJECT</h2>
+
+{% if A_pro_list %}
+<table class="table">
+    <th>PROJECT TITLE</th>
+    <th>ADDED BY</th>
+    <th>ALLOT THIS</th>
+    {% for project in A_pro_list %}
+                     <tr>
+                         <td><a href="{% url 'project:description' project.id %}">{{ project.title }}</a></td>
+                         <td>{{ project.added_by }}</td>
+                         <td><a title="Allot" href="{% url 'project:teamss' project.id %}"><i class="fa fa-hand-o-left"></i></a></td>
+                     </tr>
+    {% endfor %}
+</table>
+{% else %}
+    <h1>No project entries found on the database.</h1>
+
+{% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'user/base.html' %}
+{% block head %} <title>Add Project</title>  {% endblock %}
+
+{% load widget_tweaks %}
+
+{% block body %}
+    <style>
+     #id_remarks{
+            display: block;
+            width: 100%;
+            line-height: 40px;
+            border: none;
+            background: #f9f9ff;
+            padding: 0 20px;
+            height: 100px;
+            resize: none;
+     }
+    </style>
+<div class="pro-main" style="margin-left:150px; margin-right: 150px">
+  <h3 style="text-align: center;">Add a New Project Idea</h3>
+
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form action="" method="post" enctype="multipart/form-data" class="center">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="row mt-3">
+        <div class="col-lg-3">
+            <label style="text-align: left">{{ field.label_tag }}</label>
+        </div>
+            <div class="col-lg-6">
+            {% render_field field class="single-input" %}
+        </div>
+        </div>
+    {% endfor %}
+    <div class="form-group">
+          <!--  <button type="submit" class="btn btn-success"  onclick="return confirm('Are you sure you want to submit?');">Submit</button>-->
+        <form action="{% url 'project:index' %}" method="post"  style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-info mt-3"onclick="return confirm('Are you sure you want to submit?');">Submit</button>
+        </form>
+    </div>
+</form>
+</div>
+{% endblock %}

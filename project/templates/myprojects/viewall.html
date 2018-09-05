@@ -1,0 +1,84 @@
+
+{% extends 'user/base.html' %}
+{% block head %}<title>View Project</title>{% endblock %}
+{% block body %}
+    <nav class="nav justify-content-end">
+                <a class="nav-link genric-btn default-border" href="/project/create-team/">Create Team</a>
+                <a class="nav-link genric-btn default-border" href="/project/entry/">Create Project Entry</a>
+</nav>
+<div class="pro-main" style="margin-left:10px; margin-top: 50px; margin-right: 10px">
+<h4 class="text-center">** MY ADDED PROJECTS **</h4>
+    <table class="table mt-3">
+    <tr>
+        <th>TITLE</th>
+        <th>FUNDING AGENCY</th>
+        <th>DATE OF START</th>
+        <th>STATUS</th>
+    </tr>
+{% if obj3 %}
+{% for project in obj3 %}
+    <tr>
+        <td><a href="{% url 'project:description' project.id %}">{{ project.title }}</a></td>
+        <td>{{ project.funding_agency }}</td>
+        <td>{{ project.date_of_start }}</td>
+        <td>{{ project.status }}</td>
+    </tr>
+{% endfor %}
+{% else %}
+    <h5> NO PROJECTS TO SHOW.</h5>
+{% endif %}
+</table>
+
+<h4 class="text-center">** MY PROJECTS-SUPERVISED **</h4>
+    <table class="table mt-3">
+    <tr>
+        <th>TITLE</th>
+        <th>DESCRIPTION</th>
+        <th>DATE OF START</th>
+        <th>STATUS</th>
+        <th>UPDATE STATUS</th>
+        <th>TEAM</th>
+        <th>OTHER UPDATES</th>
+    </tr>
+{% if obj %}
+{% for project in obj %}
+    <tr>
+    <td><a href="{% url 'project:description' project.id %}">{{ project.title }}</a></td>
+    <td width="30%">{{ project.description }}</td>
+    <td>{{ project.date_of_start }}</td>
+    <td>{{ project.status }}</td>
+
+    <td><a href="{% url 'project:update-status' project.id %}">Update Status</a></td>
+    <td><a href="{% url 'project:view-team' project.id %}" >View Team </a></td>
+    <td><a href="{% url 'project:project-update' project.id %}">Other Updates </a></td>
+    </tr>
+{% endfor %}
+{% else %}
+    <h5> NO PROJECTS TO SHOW.</h5>
+{% endif %}
+
+
+</table>
+    <h4 class="text-center">** MY PROJECTS-MEMBER **</h4>
+    <table class="table mt-3">
+    <tr>
+        <th>TITLE</th>
+        <th>DESCRIPTION</th>
+        <th>DATE OF START</th>
+        <th>STATUS</th>
+    </tr>
+{% if obj2 %}
+{% for project in obj2 %}
+    <tr>
+        <td><a href="{% url 'project:description' project.id %}">{{ project.title }}</a></td>
+        <td>{{ project.description }}</td>
+        <td>{{ project.date_of_start }}</td>
+        <td>{{ project.status }}</td>
+    </tr>
+{% endfor %}
+{% else %}
+    <h5> NO PROJECTS TO SHOW.</h5>
+{% endif %}
+</table>
+</div>
+{% endblock %}

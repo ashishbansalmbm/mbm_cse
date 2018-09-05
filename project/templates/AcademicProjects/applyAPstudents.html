@@ -1,0 +1,47 @@
+{% extends 'user/base.html' %}
+{% block head %}<title>Project Team</title> {% endblock %}
+{% block body %}
+<div class="text-center"  style="margin-top:50px;">
+    <ul>
+        <li><h5>You can apply for your created project here.</h5></li><br>
+        <li>STEPS**</li>
+        <li>Go get a team first.</li>
+        <li>Select one of your project and one of your team.</li>
+        <li>Press enter to allot the project to the respective team.</li>
+    </ul>
+    <br>
+    <br>
+      <form action="{% url 'project:allotapplied' %}" method="post"  style="">
+          {% csrf_token %}
+            <h3>Select a Project</h3>
+
+    {% if pro %}
+        <div class="row" style="justify-content: center">
+        <select  name="pallot">
+            {% for project in pro %}
+                <option value="{{project.id}}">{{project.title}}</option>
+            {% endfor %}
+        </select>
+        </div>
+    {% else %}
+
+        <h5>NO PROJECTS TO DISPLAY</h5>
+    {% endif %}
+<h3>Select Your Team</h3>
+
+    {% if teams%}
+        <div class="row" style="justify-content: center">
+    <select name="tallot">
+        {% for t in teams %}
+            <option value="{{t.id}}">{{t.team_name}}</option>
+        {% endfor %}
+    </select>
+        </div>
+    {% else %}
+        <h5>NO TEAMS TO DISPLAY</h5>
+    {% endif %}
+
+          <button type="submit" class="btn btn-default btn-sm mt-3"><i class="fa fa-thumbs-up"></i> ALLOT</button>
+    </form>
+</div>
+{% endblock %}

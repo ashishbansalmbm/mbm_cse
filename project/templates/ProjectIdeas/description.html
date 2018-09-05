@@ -1,0 +1,36 @@
+{% extends 'user/base.html' %}
+{% block head %} <title>{{obj.title}}</title>  {% endblock %}
+{% block body %}
+{% if obj %}
+<div class="pro-main" style="margin:0px 40px;">
+<h1 align="center">{{obj.title}}</h1>
+    <table class="table">
+        <tr>
+
+            <th>Added-by</th>
+            <th>Type</th>
+            <th>Supervisor</th>
+            <th>Funding Agency</th>
+            <th>Amount</th>
+            <th>Duration</th>
+            <th>Date of start</th>
+        </tr>
+        <tr>
+            <td>{{ obj.added_by }}</td>
+            <td>{{obj.type}}</td>
+            <td>{{obj.supervisor.get_full_name}}</td>
+            <td>{{obj.funding_agency}}</td>
+            <td>{{obj.amount}}</td>
+            <td>{{obj.duration}}</td>
+            <td>{{obj.date_of_start}}</td>
+
+        </tr>
+    </table>
+    <div >
+        <h5 style="color: red">DESCRIPTION</h5><br>
+        <p class="sample-text text-uppercase">{{obj.description}}</p>
+        <h5 style="color: red">RESOURCES</h5><br>
+            <p class="sample-text text-capitalize">{{obj.resources}}</p></div>
+</div>
+{% endif %}
+{% endblock %}

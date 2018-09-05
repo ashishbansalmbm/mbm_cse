@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block head %} <title>Assign</title>{% endblock %}
+{% block body %}
+<div class="pro-main" style="margin-left:220px;">
+<h1>Assign Project</h1>
+<input type="text" value="TEAM NAME " disabled/>
+<input type="text" value="TEAM ID" disabled/>
+<input type="text" value="PROJECT" disabled/>
+<br>
+<br>
+
+<div class="form-group">
+    <form action="" method="post" enctype="multipart/form-data">
+{% for team in team_list %}
+        <input type="text" value="{{team.team_name}}" disabled/>
+        <input type="text" name="teamid" value="{{team.team_id}}" />
+        {% csrf_token %}
+        <select name="pro">
+            {% for project in project_list %}
+            <option value="{{ project.id }}">{{ project.title }}</option>
+            {% endfor %}
+        </select>
+        <!--<input type="number" name="pro"/>-->
+<br>
+{% endfor %}
+
+    <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success" >Submit</button>
+    </div>
+    </form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'user/base.html' %}
+{% block head %} <title>Teams</title> {% endblock %}
+{% block body %}
+     <div style="margin: 0px 10px;">
+{% if teams %}
+
+<table class="table">
+    <th>TEAM NAME</th>
+    <th>TEAM LEADER</th>
+    <th>ALLOT</th>
+{% for team in teams %}
+<tr>
+    <td><a href="{% url 'project:view-team' team.id %}">{{ team.team_name }}</a></td>
+    <td>{{ team.team_leader }}</td>
+    <td><a type="button" class="btn-outline-info" href="{% url 'project:Ateamss' pro team.id%}" onclick="return confirm('Are you sure you want to allot project to this item?');">Allot</a></td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+</div>
+{% endblock %}

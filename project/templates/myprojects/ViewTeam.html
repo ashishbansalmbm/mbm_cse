@@ -1,0 +1,18 @@
+{% extends 'user/base.html' %}
+{% block head %}<title> Project Team</title> {% endblock %}
+{% block body %}
+<div  style="margin: 50px 10px;" >
+<h4 class="text-center"> APPROVED MEMBERS </h4>
+    <table class="table mt-3">
+        <tr>
+            <th>MEMBER NAME</th>
+        </tr>
+
+{% for members in obj2 %}
+<tr>
+<td>{{ members.first_name }} {{ members.last_name }}</td>
+</tr>
+{% endfor %}
+    </table>
+</div>
+{% endblock %}
