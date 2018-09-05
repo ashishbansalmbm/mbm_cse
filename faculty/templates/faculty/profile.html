@@ -1,0 +1,18 @@
+{% extends 'user/base.html' %}
+
+ {% block head %}
+    <title>Student Profile</title>
+{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+        <p>Department: {{ faculty.department }}</p>
+        <p>Program: {{ faculty.designation}}</p>
+        <p>Semester: {{ faculty.qualification }}</p>
+        <p>Father's Name: {{ faculty.specialization }}</p>
+        <p>Mother's Name: {{ faculty.date_of_join }}</p>
+        </div>
+
+
+{% endblock %}
