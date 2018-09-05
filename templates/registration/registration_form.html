@@ -4,16 +4,24 @@
     <title>Register</title>
 {% endblock %}
 
+{% load widget_tweaks %}
+
 {% block body %}
 
-    {% load widget_tweaks %}
+
 
                         <div class="section-top-border" style="margin-left: 150px ; padding-top: 150px" >
 						<div class="row">
 							<div class="col-lg-8 col-md-8">
 								<h3 class="mb-30">Register</h3>
-								<form action="" method="post">
+
+                                <form action="" method="post">
                                     {% csrf_token %}
+                                    {% for field in form %}
+                                        <p>{{ field.errors }}</p>
+                                    {% endfor %}
+
+
 									<div class="mt-10">
 										<input type="text" name="username" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'" required class="single-input">
 									</div>

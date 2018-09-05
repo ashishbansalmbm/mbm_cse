@@ -7,6 +7,10 @@
 {% block body %}
     <div class="container" style="padding: 150px">
         <h1>Welcome</h1>
+    <br>
+        {% if form.errors %}
+        <h5>Please Check Your Username And Password</h5>
+        {% endif %}
         <p>
             You Can Login Here
         </p>

@@ -6,22 +6,62 @@
 
         <title>Home</title>
 
-    {% endblock %}
+        <style>
+
+            #cardHod {
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                width: 100%;
+            }
+
+            #cardHod:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+
+            /* Add some padding inside the card container */
+            .hod {
+                padding: 2px 16px;
+            }
+
+        #tags {
+            top: -41px;
+            height: 3px;
+            background-color: #bba6a6;
+        }
+        </style>
+
+
+     {% endblock %}
 
 
     {% block body %}
 
-
+<div style="background-color: #f9f9ff">
         <!-- carousel -->
                 <div id="carouselExampleIndicators" class="carousel slide " style="padding-top: 110px;height: 500px;" data-ride="carousel">
 				<ol class="carousel-indicators">
-				  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-				  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				  <li id="tags" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				  <li id="tags" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				  <li id="tags" data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 				</ol>
-				<div class="carousel-inner" style="max-height: 300px ; position: relative; margin: auto">
-                  <div class="carousel-item active">
-				    <img class="d-block w-100" src="{% static 'home/img/corousal1.PNG' %}" alt="Third slide">
+				<div class="carousel-inner" style="max-height: 330px ; position: relative; margin: auto">
+                  <div class="carousel-item active" style="background-color: #f9f9ff;">
+                      <img src="{% static 'home/img/MBM LOGO.png' %}" style="height: 110px;margin: 5px 45% -65px">
+                      <div class="banner-content col-lg-7" style="margin: 0px 281px;padding: 50px;">
+							<h1 id="welcome" style="height: 124px;">
+							</h1>
+							<p class="pt-20 pb-20" >
+
+
+
+                        The Department of Computer Science and Engineering at MBM is renowned
+                        for cutting edge research and for imparting state of the art education.
+                        We attract some of the brightest students and faculty, and invite you to
+                        join us in the excitement.
+
+							</p>
+						</div>
 				  </div>
 				  <div class="carousel-item">
 				    <img class="d-block w-100" src="http://mbm.ac.in/assets/img/banner/001.jpg" alt="First slide">
@@ -33,11 +73,11 @@
 				</div>
 
 				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-				  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				  <span class="fa fa-arrow-circle-left" style="color: #0b0b0b" aria-hidden="true"></span>
 				  <span class="sr-only">Previous</span>
 				</a>
 				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-				  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				  <span class="fa fa-arrow-circle-right" style="color: #0b0b0b"></span>
 				  <span class="sr-only">Next</span>
 				</a>
 
@@ -49,42 +89,133 @@
 			<!-- Vision Mission-->
 			<div class="container">
 						<div class="row">
-							<div class="col-md-4">
+
+							<div class="col-md-12 ">
 								<div class="single-defination">
-									<h4 class="mb-20">Mission</h4>
-									<p>Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. As a result of this law, most of the popular online casino networks</p>
+									<h4 class="mb-20 text-center"><img src="{%  static 'home/img/s1.png' %}" alt="">
+                                        Vision</h4>
+									<ul class="unordered-list">
+                                        <hr>
+                                        <li>To provide quality education through state-of-the-art
+                                        teaching-learning methods to produce competent graduates and post graduates in the field
+                                            of Computer Science, Information Technology and Computer Applications.</li>
+
+                                       <li> To create facilities and resources to discover and disseminate knowledge to
+                                        students for the advancement of society and industry.
+                                       </li>
+
+
+                                        <li>To partner and collaborate with industry, government and R&D institutions to pace
+                                            with latest research & sustainable technologies and ensure quality assurance.</li>
+
+
+                                        <li>To impart innovative and entrepreneurial outlook, values, ethics and vision
+                                            to students to make them responsible professionals and global citizens.</li>
+
+                                        <hr>
+
+                                    </ul>
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="single-defination">
-									<h4 class="mb-20">Vision</h4>
-									<p>Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. As a result of this law, most of the popular online casino networks</p>
+
+
+
+                        <div class="col-md-4 mt-30">
+								<div class="single-defination" >
+									<h4 class="mb-20 text-center">
+                                        Mission</h4>
+									<ul class="unordered-list">
+                                        <hr>
+                                        <li>To be a leader in providing excellent educational,
+                                        research and techno-entrepreneurial resources in the field of
+                                        Computer Science and Engineering to meet out the existing,
+                                            future and inter disciplinary needs of industry and society.</li>
+                                        <br>
+                                        <hr>
+                                    </ul>
 								</div>
 							</div>
-                            <div class="col-md-4">
+
+                         <div class="col-md-4 mt-30">
+								<div class="single-defination">
+									<h4 class="mb-20 text-center">
+                                        Program Specific Outcomes</h4>
+									<ul class="unordered-list">
+
+                                        <hr>
+                                        <li>To collect requirements, analyze, design, implement, test and maintain software systems.</li>
+
+                                       <li>  To analyze existing software solutions with respect to known trade-offs and
+                                           constraints and propose better solutions.
+                                       </li>
+
+                                        <li>  To train in project based assignments.
+                                       </li>
+
+                                        <hr>
+
+                                    </ul>
+								</div>
+							</div>
+
+                            <div class="col-md-4 mt-30">
 								<div class="single-defination">
 									<h4 class="mb-20 text-center">Notifications</h4>
-                                        <div class="col-md-4">
+                                        <div class="col-md-12 ">
 
                                     <!--Notification Table -->
+                                            <div class="jumbotron" style="padding: 0px 4px;" id="cardHod">
+                                                <marquee height="200" onmouseout="this.start();" onmouseover="this.stop();" behavior="scroll" scrollamount="2" direction="up" class="newseventmq">
 
-							<div class="progress-table" style="min-height: 250px ; min-width: 350px">
-								<div class="table-head">
-									<div class="serial">#</div>
+                                                    <ul class="">
+                                                        {% for i in notice %}
+                                                        <li style="border: solid 1px #e4d6da; color: #0b0b0b; ;text-align: center; padding: 10px;">
+                                                            {{ i.information }}<br>
+                                                            {% if i.attachment %}
+                                                            <img src="{{ i.attachment.url }}" height="200" width="100%">
+                                                            {% endif %}
+                                                            <span><span class="">&nbsp;&nbsp;&nbsp;<span style="color:lightcoral">Posted on {{ i.created_on }}&nbsp;</span></span>
+                                                                <span style="color:lightseagreen"><br> --{{ i.created_by }}</span></span>
+                                                        </li>
+                                                        {% endfor %}
 
-								</div>
-								<div class="table-row">
+                                                    </ul>
 
-										<div class="progress">
-											<div class="progress-bar color-1" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</div>
-								</div>
+                                                </marquee>
+                                            </div>
+
+
+
 
                             <!--end Notification Table -->
 						</div>
 							</div>
 							</div>
+
+                        <div class="col-md- mt-30">
+								<div class="single-defination">
+									<h4 class="mb-20 text-center"><img src="{%  static 'home/img/s4.png' %}">Program Educational Objectives</h4>
+									<ul class="unordered-list">
+                                        <hr>
+                                        <li>Graduate will establish himself/herself as effective professional by
+                                            solving real world problems using exploratory and analytical skills
+                                            through the offered courses.</li>
+
+                                       <li>  Graduate will demonstrate his/her ability to implement various software
+                                           development concepts and adapt to rapidly changing environment in
+                                           advanced areas of Computer Science.
+                                       </li>
+
+
+                                        <li>Graduate will embrace professional code of ethics, right conduct and responsible team leadership while
+                                            deliberately being part of projects which contributes to the society at large without disturbing
+                                            the ecological balance.</li>
+                                        <br>
+                                    </ul>
+								</div>
+							</div>
+
+
 
 						</div>
 					</div>
@@ -94,16 +225,19 @@
         <div class="section-top-border container">
 						<h3 class="mb-30 text-center">Message From HOD</h3>
 						<div class="row">
-                            <div class="col-lg-3">
-								 <img src="{% static 'home/img/hod.jpg' %}" class="img-thumbnail" style="height: 250px">
+                            <div class="col-lg-3" id="cardHod">
+                                  <img src="{% static 'home/img/hod.jpg' %}" alt="HOD IMAGE" style="height: 301px; width: 248px;">
+                                  <div class="hod">
+                                    <p>Head Of The Department</p>
+                                  </div>
 							</div>
 							<div class="col-lg-9">
-								<blockquote class="generic-blockquote">
+								<blockquote class="generic-blockquote" id="cardHod" style="width: 100%; margin-top: 50px">
 									“Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. As a result of this law, most of the popular online casino networks such as Party Gaming and PlayTech left the United States. Overnight, online casino players found themselves being chased by the Federal government. But, after a fortnight, the online casino industry came up with a solution and new online casinos started taking root. These began to operate under a different business umbrella, and by doing that, rendered the transfer of money to and from them legal. A major part of this was enlisting electronic banking systems that would accept this new clarification and start doing business with me. Listed in this article are the electronic banking”
 								</blockquote>
 							</div>
 						</div>
-					</div>
+        </div>
 
         <!-- End message from HOD-->
 
@@ -113,29 +247,39 @@
 
 
 			<!-- Start home-aboutus Area -->
-			<!-- <section class="home-aboutus-area">
+			<section class="home-aboutus-area">
 				<div class="container-fluid">
 					<div class="row justify-content-center align-items-center">
 						<div class="col-lg-8 no-padding about-left">
-							<img class="img-fluid" src="img/about-bg.jpg" alt="">
-						</div>
+                            <marquee height="200" onmouseout="this.start();" onmouseover="this.stop();" behavior="scroll" scrollamount="22" direction="right" class="newseventmq">
+                                <img src="{% static 'home/img/reach_us.jpg' %}">
+                            </marquee>
+							</div>
 						<div class="col-lg-4 no-padding about-right">
-							<p class="top-title">24/7 Support system</p>
-							<h1 class="text-white">A Handy support <br>
-							System for the Software</h1>
-							<p><span>We are here to listen from you deliver exellence</span></p>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. magna aliqua. Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. magna aliqua. Ut enim ad minim.
-							</p>
+							<h1 class="top-title">In the NEWS</h1>
+							<p style="padding-right: 50px">
+								<marquee height="200" onmouseout="this.start();" onmouseover="this.stop();" behavior="scroll" scrollamount="4" direction="up" class="newseventmq">
+
+                                                    <ul id="cardHod">
+                                                        <li style="border: solid 1px #e4d6da; text-align: center; padding: 10px;">
+                                                            <h1 class="text-white">3 Students selected for Silicon Valley <br>
+                                                                2 from CSE department</h1>
+                                                            <p style="color: whitesmoke">alkgjak jakgjla klgkl;fgflgkflgk</p>
+                                                            <span><span class="">&nbsp;&nbsp;&nbsp;<span style="color:red">Posted on &nbsp;</span></span>
+                                                                <span style="color:red"><br> --</span></span>
+                                                        </li>
+                                                    </ul>
+                                </marquee>
+						    </p>
 						</div>
 					</div>
 				</div>
-			</section> -->
+			</section>
 			<!-- End home-aboutus Area -->
 
 
-			<!-- Start protfolio Area -->
-			<!-- <section class="protfolio-area section-gap" id="project">
+			<!-- Start protfolio Area
+            <section class="protfolio-area section-gap" id="project">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-60 col-lg-10">
@@ -196,27 +340,74 @@
 						</div>
 					</div>
 				</div>
-			</section> -->
+			</section>
 			<!-- End protfolio Area -->
 
-			<!-- Start callto-action Area -->
-			<section class="callto-action-area relative section-gap">
-				<div class="overlay overlay-bg"></div>
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-						<div class="menu-content col-lg-9">
-							<div class="title text-center">
-								<h1 class="mb-10 text-white">Got Impressed to our features</h1>
-								<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-								<a class="primary-btn" href="#">Request Free Demo</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- End calto-action Area -->
+        <!-- Our companies  -->
+        <div class="row section-gap" style="margin: 0px 50px ;" >
 
-			<!-- Start home-video Area -->
+	 <div class="col-md-6">
+		 <div id="companies" class="carousel slide" data-ride="carousel">
+
+         <ol class="carousel-indicators col-md-2" >
+             <li data-target="#companies" data-slide-to="0" class="active"></li>
+             <li data-target="#companies" data-slide-to="1"></li>
+             <li data-target="#companies" data-slide-to="2"></li>
+         </ol>
+
+
+         <div class="carousel-inner">
+             <div class="carousel-item active">
+                 <div class="partner">
+                     <a href="https://previewtheme.com/prometium/partner_post_type/business-analytics/">
+                         <img src="https://previewtheme.com/prometium/wp-content/uploads/2018/01/partner3.png" alt="Partner"></a>
+                         <h6>Business Analytics</h6>
+                         <p>Congue nihil imperdiet doming option congue nihil.</p>
+                 </div>
+
+             </div>
+	 <div class="carousel-item">
+		 <div class="partner">
+			 <a href="https://previewtheme.com/prometium/partner_post_type/business-analytics/">
+				 <img src="https://previewtheme.com/prometium/wp-content/uploads/2018/01/partner3.png" alt="Partner"></a>
+				 <h6>Business Analytics</h6>
+				 <p>Congue nihil imperdiet doming option congue nihil.</p>
+         </div>
+
+     </div>
+	 <div class="carousel-item">
+		 <div class="partner">
+			 <a href="https://previewtheme.com/prometium/partner_post_type/business-analytics/">
+				 <img src="https://previewtheme.com/prometium/wp-content/uploads/2018/01/partner3.png" alt="Partner"></a>
+				 <h6></h6>
+				 <p> </p>
+         </div>
+
+     </div>
+         </div>
+         <a class="carousel-control-prev" href="#companies" role="button" data-slide="prev">
+             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+             <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#companies" role="button" data-slide="next">
+             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+             <span class="sr-only">Next</span>
+         </a>
+</div>
+     </div>
+
+	 <div class="col-md-6">
+		 <p class="pretitle">VISITING COMPANIES</p>
+		 <h3>We collaborate with others</h3>
+		 <a class="btn btn-info mt-5" href="#">See all our companies</a>
+	 </div>
+
+ </div>
+
+        <!-- end companies -->
+
+
+			<!-- Start home-video Area --
 			<section class="home-video-area" id="about">
 				<div class="container-fluid">
 					<div class="row justify-content-end align-items-center">
@@ -243,7 +434,7 @@
 			<!-- End home-aboutus Area -->
 
 			<!-- Start price Area -->
-			<section class="price-area section-gap" id="price">
+			<section class="price-area" id="price">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-60 col-lg-8">
@@ -262,25 +453,17 @@
 										<p>Every Year</p>
 									</div>
 									<div class="top-right">
-										<h1>60</h1>
+                                        <h1>25+</h1>
 									</div>
 								</div>
-								<div class="bottom-sec">
+								<div class="bottom-sec text-center">
 									<h5>
 										“Companies Visited So Far
 										 <em>516</em> and counting
 									</h5>
 								</div>
-								<div class="end-sec">
-									<ul>
-										<li>Cse</li>
-										<li>Secure Online Transfer Indeed</li>
-										<li>Unlimited Styles for interface</li>
-										<li>Reliable Customer Service</li>
-										<li>Manual Backup Provided</li>
-									</ul>
-									<button class="primary-btn price-btn mt-20">Purchase Plan</button>
-								</div>
+
+
 							</div>
 						</div>
 						<div class="col-lg-4">
@@ -291,24 +474,15 @@
 										<p>So Far</p>
 									</div>
 									<div class="top-right">
-										<h1>1 Lakh</h1>
+										<h1>1 Lakh + </h1>
 									</div>
 								</div>
-								<div class="bottom-sec">
-									<p>
-										“Few would argue that, despite the advancements
-									</p>
+								<div class="bottom-sec text-center">
+									<h5>
+										“YES!! we are Proud of our Alumni"
+									</h5>
 								</div>
-								<div class="end-sec">
-									<ul>
-										<li>2.5 GB Free Photos</li>
-										<li>Secure Online Transfer Indeed</li>
-										<li>Unlimited Styles for interface</li>
-										<li>Reliable Customer Service</li>
-										<li>Manual Backup Provided</li>
-									</ul>
-									<button class="primary-btn price-btn mt-20">Purchase Plan</button>
-								</div>
+
 							</div>
 						</div>
 						<div class="col-lg-4">
@@ -322,22 +496,13 @@
 										<h1>100 Plus</h1>
 									</div>
 								</div>
-								<div class="bottom-sec">
-									<p>
-										“Few would argue that, despite the advancements
-									</p>
+								<div class="bottom-sec text-center">
+									<h5>
+										“Yes you are gonna like it !!<br>
+                                        We assure that .
+									</h5>
 								</div>
-								<div class="end-sec">
-									<ul>
-										<li>2.5 GB Free Photos</li>
-										<li>Secure Online Transfer Indeed</li>
-										<li>Unlimited Styles for interface</li>
-										<li>Reliable Customer Service</li>
-										<li>Manual Backup Provided</li>
-									</ul>
-									<button class="primary-btn price-btn mt-20">Purchase Plan</button>
-								</div>
-							</div>
+
 						</div>
 
 					</div>
@@ -345,7 +510,7 @@
 			</section>
 			<!-- End price Area -->
 
-			<!-- Start testomial Area -->
+			<!-- Start testomial Area
 			<section class="testomial-area section-gap">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
@@ -454,7 +619,7 @@
 			</section>
 			<!-- End testomial Area -->
 
-			<!-- Start latest-blog Area -->
+			<!-- Start latest-blog Area
 			<section class="latest-blog-area section-gap" id="blog">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
@@ -495,6 +660,14 @@
 			</section>
 			<!-- End latest-blog Area -->
 
+        <div class="section-gap"></div>
 
+        <script type="text/javascript" src="{% static 'home/js/welcome_tag.js' %}"></script>
+
+</div>
 
     {% endblock %}
+
+{% block script %}
+
+{% endblock %}
