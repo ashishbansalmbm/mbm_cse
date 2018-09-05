@@ -38,6 +38,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
+    'assessment.apps.AssessmentConfig',
+    'course.apps.CourseConfig',
+    'department.apps.DepartmentConfig',
+    'faculty.apps.FacultyConfig',
+    'feedback.apps.FeedbackConfig',
+    'forum.apps.ForumConfig',
+    'program.apps.ProgramConfig',
+    'publications',
+    'student.apps.StudentConfig',
+    'widget_tweaks',
+    'communication',
+    'mathfilters',
+    'resources',
+    'project',
+    'django_filters',
     ]
 
 MIDDLEWARE = [
@@ -113,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -126,23 +141,30 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-LOGIN_REDIRECT_URL = '/user/home/'
+LOGIN_REDIRECT_URL = '/user/dashboard/'
 
 LOGIN_URL = '/accounts/login'
 
 LOGIN_EXEMPT_URLS = (
+    '',
     'accounts/logout/',
     'user/register/',
+    'user/home',
     'accounts/password_reset/',
     'accounts/password_reset/done/'
     'accounts/password/reset/<uidb64>/<token>/',
     'accounts/reset/done/',
     'accounts/reset/<uidb64>/set-password/',
+    'faculty/list',
+
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
