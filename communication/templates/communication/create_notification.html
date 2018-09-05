@@ -1,0 +1,37 @@
+
+{% extends 'user/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div style="padding-top: 100px">
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+    {% for field in form %}
+    <div>
+        {{ field.errors }}
+        {{ field.label_tag }} {% render_field field class="single-input" %}
+    </div>
+    {% endfor %}
+    <input type="submit" class="btn btn-primary mt-3">
+
+    </form>
+</div>
+<style>
+    #id_information {
+    display: block;
+    width: 100%;
+    line-height: 40px;
+    border: none;
+    background: #f9f9ff;
+    padding: 0 20px;
+    height: 100px;
+    resize: none;
+
+    }
+    #id_attachment{
+    padding: 0px
+    ;
+    }
+</style>
+{% endblock %}
+

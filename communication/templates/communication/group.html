@@ -1,0 +1,66 @@
+{% extends 'user/base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+{% block head %}
+
+<title>Create Group</title>
+
+    <style>
+      .ui-autocomplete-loading {
+        background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+      }
+
+        table {
+            font-size: 1em;
+        }
+        .ui-draggable, .ui-droppable {
+            background-position: top;
+        }
+    </style>
+
+    <!--Autocomplete Receiver -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'communication/css/tags.css' %}">
+
+
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container" style="padding-top: 150px; padding-bottom: 150px">
+        <h1 style="margin-bottom: 20px">Create Group</h1>
+
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="ui-widget col-lg-5">
+        <label for="group_name">Group Name</label>
+       {% render_field form.group_name class="single-input" %}
+    <label for="gruop_list">Group List:</label>
+    <input class="ui-autocomplete-loading input-tags single-input" type="text" name="group_list" id="id_receiver">
+                 <input type="hidden" name="receiver_id" id="receiver_id" value=""/>
+    <div id="tag_holder" class="clearfix col-lg-12 mt-3 "><i class="fa fa-group float-left" style="padding-right: 5px ; padding-top: 2px"></i></div>
+
+        <input type="submit" class="mt-3 btn btn-success">
+    </div>
+
+
+
+    </form>
+    </div>
+
+
+
+
+    {% block script %}
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="{% static 'communication/js/send.js' %}"></script>
+
+
+    {% endblock %}
+
+{% endblock %}

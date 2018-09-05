@@ -2,14 +2,39 @@
 
 {% block head %}
 <title>Read</title>
-<style media="screen">
+
+{% endblock %}
+
+{% block body %}
+
+    <style media="screen">
 /* Chat containers */
-.container {
+
+.custom_class1, .custom_class2{
+    border: 1px solid #d0c6c6;
+    height: 350px;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
+    padding: 0px;
+}
+
+.container1, .container2
+{
+    border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  padding: 18px;
+}
+.container   {
   border: 2px solid #dedede;
   background-color: #f1f1f1;
   border-radius: 5px;
-  padding: 10px;
+  padding: 18px;
   margin: 10px 0;
+}
+
+.container1 a {
+    color: #0b0b0b;
 }
 
 /* Darker chat container */
@@ -26,7 +51,7 @@
 }
 
 /* Style images */
-.container img {
+.container img  {
   float: left;
   max-width: 60px;
   width: 100%;
@@ -52,29 +77,66 @@
   float: left;
   color: #999;
 }
+    .row{
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -5px;
+        margin-left: 13px;
+        margin-top: 42px;
+    }
+
+    #img {
+      float: left;
+    /* max-width: 60px; */
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    border-radius: 50%;
+    margin-top: -14px;
+    }
 </style>
-{% endblock %}
 
-{% block body %}
+    <div class="row">
+        <div class="custom_class1 col-md-3">
+        <div class="">
 
 
-     <p>Read</p>
-    <a href="{% url 'communication:block' sender %}">Block</a>
-    <a href="{% url 'communication:unblock' sender %}">Unblock</a></a>
-    <!-- <img src="/w3images/bandmember.jpg" alt="Avatar"> -->
-    {% for i in form %}
-    <div class="container col-md-3 ">
-        <hr>
-        <p>{{ i.message }} </p>
-        <span class="time-right">{{ i.date }}</span>
-        {% if i.attachment %}
-        <p><a href="{{ i.attachment.url }}">Attachment</a></p>
-        {% endif %}
-    </div>
+        {% for i in form1 %}
+
+            {% if i.sender_id == sender %}
+            <div class="container1" style="background-color: #f1d7dc">
+
+            {% else %}
+        <div class="container2 ">
+
+            {% endif %}
+            <a href="{% url 'communication:read_view' i.sender_id %}">{{ i.sender.first_name }} {{ i.sender.last_name }} </a>
+           <img id="img" src="{{ i.sender.profile.photo.url  }}">
+
+        </div>
+        {% endfor %}
+
+        </div>
+        </div>
+        <div class="custom_class2 col-md-8 ml-3">
+            {% if blockstatus is 1 %}
+            <a href="{% url 'communication:unblock' sender %}" style="margin-left: 80%;" class="genric-btn success medium mt-3">Unblock</a></a>
+            {% else %}
+            <a href="{% url 'communication:block' sender %}" style="margin-left: 80%;" class="genric-btn success medium mt-3">Block</a>
+            {% endif %}
+            <!-- <img src="/w3images/bandmember.jpg" alt="Avatar"> -->
+            {% for i in form %}
+            <div class="container ">
+                <p>{{ i.message }} </p>
+                <span class="time-right">{{ i.date }}</span>
+                {% if i.attachment %}
+                <p><a href="{{ i.attachment.url }}">Attachment</a></p>
+                {% endif %}
+            </div>
     {% endfor %}
 
+</div>
 
-
-
+</div>
 
 {% endblock %}

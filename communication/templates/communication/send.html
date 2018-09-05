@@ -1,21 +1,21 @@
 {% extends 'user/base.html' %}
 
 {% load static %}
+{% load widget_tweaks %}
 {% block head %}
 
 <title>Send</title>
 
     <style>
-      .ui-autocomplete-loading {
-        background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
-      }
+    .ui-widget.ui-widget-content {
+        border: 1px solid #c5c5c5;
+        z-index: 1080;
+    }
 
-        table {
-            font-size: 1em;
-        }
-        .ui-draggable, .ui-droppable {
-            background-position: top;
-        }
+    #id_message{
+        height: auto;
+    }
+
     </style>
 
     <!--Autocomplete Receiver -->
@@ -28,31 +28,60 @@
 
 {% block content %}
 
-    <div class="container" style="padding-top: 150px; padding-bottom: 150px">
-        <h1 style="margin-bottom: 20px">Send</h1>
+    <button id="send" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" >Send More Messages</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div>
+        <div class="row" >
+
+             <input type='button'value='Create Group' class="btn btn-primary col-lg-6 " onclick="document.location.href='{% url 'communication:create_group' %}';" style="margin-left: 40%"/>
+
+        </div>
 
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" style="margin-left: 10px;">
         {% csrf_token %}
     <div class="ui-widget">
     <label for="receiver">Receiver:</label>
-    <input class="ui-autocomplete-loading input-tags" type="text" name="receiver" id="id_receiver">
-                 <input type="hidden" name="receiver_id" id="receiver_id" value=""/>
-    <div id="tag_holder" class="clearfix "><i class="fa fa-group float-left" style="padding-right: 5px ; padding-top: 2px"></i></div>
-
+        <div class="row">
+    <input class="input-tags single-input col-lg-4 empty" type="text" name="receiver" id="id_receiver" style=" margin-left: 32px;">
+                 <input type="hidden" name="receiver_id" id="receiver_id" value="" />
+    <div id="tag_holder" class="clearfix col-lg-7"><i class="fa fa-group float-left" style="padding-right: 5px ; padding-top: 2px"></i></div>
+        </div>
 
     </div>
     {% for field in form %}
-    <div>
+    <div class="row col-md-12 col-lg-12 mt-3" style="margin-left: 3px">
         {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
+        {{ field.label_tag }}
+        {% if field.label == "Message" %}
+            <textarea type="text" name="message" maxlength="250" class="single-input" required="" id="id_message"></textarea>
+
+        {% else %}
+    {% render_field field class="single-input" %}
+    {% endif %}
     </div>
     {% endfor %}
-    <input type="submit">
+    <input type="submit" class="btn btn-primary mt-5 " >
 
     </form>
     </div>
-
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -61,8 +90,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="{% static 'communication/js/send.js' %}"></script>
-
-
+    <script>window.onload=document.getElementById('send').click();</script>
     {% endblock %}
 
 {% endblock %}

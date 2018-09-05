@@ -10,6 +10,8 @@ urlpatterns = [
     path('block/<int:pk>/', views.block, name='block'),
     path('unblock/<int:pk>/', views.unblock, name='unblock'),
     path('receive/', views.receive, name='receive'),
+    path('create/group/',  views.create_group, name='create_group'),
+    path('create/notification/',views.notificationCreate,name='create_notification')
 
 
 ]
