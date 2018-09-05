@@ -2,10 +2,18 @@
 
 {% block head %}
 <title>Profile</title>
+    <style>
+    p {
+        font-family: 'Montserrat', monospace;
+        font-size: 15px;
+    }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <div class="container" style="padding-top: 150px; padding-bottom: 150px">
+    <div class="container" style="padding-top: 40px; padding-bottom: 150px">
     <ul>
     <div class="container">
          <h1 class="float-left">Profile</h1>
@@ -18,7 +26,7 @@
 
         {% if profile.photo %}
 
-            <div class="col-md-4">
+            <div class="col-md-4 float-right">
                 <a href="{{ profile.photo.url }}" class="img-pop-up">
                     <div class="single-gallery-image" style="background: url({{ profile.photo.url }});"></div></a>
             </div>

@@ -1,9 +1,37 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm,  UpdateUserForm, UpdateProfileFormNotVerified, UpdateProfileFormVerified
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import user_passes_test
-from django.core.exceptions import PermissionDenied
+from django.contrib.auth.decorators import user_passes_test, permission_required
+from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.utils import six
+from communication.models import Notification
+from django.contrib.auth.models import Group
+from . models import NewsLetterSubscription
+from django.http import HttpResponse
+from django.contrib import messages
+
+
+def group_required(group, login_url=None, raise_exception=False):
+    """
+    Decorator for views that checks whether a user has a group permission,
+    redirecting to the log-in page if necessary.
+    If the raise_exception parameter is given the PermissionDenied exception
+    is raised.
+    """
+    def check_perms(user):
+        if isinstance(group, six.string_types):
+            groups = (group, )
+        else:
+            groups = group
+        # First check if the user has the permission (even anon users)
+
+        if user.groups.filter(name__in=groups).exists():
+            return True
+        # In case the 403 handler should be called raise the exception
+        if raise_exception:
+            raise PermissionDenied
+        # As the last resort, show the login form
+        return False
+    return user_passes_test(check_perms, login_url=login_url)
 
 
 def register(request):
@@ -11,28 +39,48 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            display = 1
+            title = 'Thank You!!'
+            message = 'Your registration was Successful Please Login to continue!!'
+            context = {'display': display, 'message': message, 'title': title}
+            return render(request, 'home/homepage.html', context)
+        display = 1
+        title = 'OOPS!!'
+        message = 'THERE WAS AN ERROR!!'
+        context = {'display': display, 'message': message, 'title': title}
+        return render(request, 'home/homepage.html', context)
 
     else:
         form = RegistrationForm()
-        for i in form:
-            print(i)
     return render(request, 'registration/registration_form.html', {'form': form})
 
 
+
 def home(request):
-        return render(request, 'home/homepage.html')
+        notice = Notification.objects.raw('select * from communication_notification order by created_on desc ')
+        return render(request, 'home/homepage.html', {'notice': notice})
 
 
 def dashboard(request):
+    user_group = Group.objects.get(name='User')
+    user_group.user_set.add(request.user)
+    if request.user.profile.verified is True:
+        if request.user.profile.type is 'F':
+            my_group = Group.objects.get(name='Faculty')
+            my_group.user_set.add(request.user)
+        elif request.user.profile.type is 'S':
+            my_group = Group.objects.get(name='Student')
+            my_group.user_set.add(request.user)
     return render(request, 'user/base.html')
 
 
+@permission_required('user.can_view_profile', login_url='user:register')
 def view_profile(request):
     context = {'user': request.user, 'profile': request.user.profile}
     return render(request, 'user/profile.html', context)
 
 
+@permission_required('user.can_update_profile', login_url="user:register")
 def update_profile(request):
     if request.method == "POST":
         user_form = UpdateUserForm(request.POST, instance=request.user)
@@ -60,35 +108,35 @@ def update_profile(request):
     return render(request, 'user/update_profile.html', context)
 
 
-
-def group_required(group, login_url=None, raise_exception=False):
-    """
-    Decorator for views that checks whether a user has a group permission,
-    redirecting to the log-in page if necessary.
-    If the raise_exception parameter is given the PermissionDenied exception
-    is raised.
-    """
-    def check_perms(user):
-        if isinstance(group, six.string_types):
-            groups = (group, )
-        else:
-            groups = group
-        # First check if the user has the permission (even anon users)
-
-        if user.groups.filter(name__in=groups).exists():
-            return True
-        # In case the 403 handler should be called raise the exception
-        if raise_exception:
-            raise PermissionDenied
-        # As the last resort, show the login form
-        return False
-    return user_passes_test(check_perms, login_url=login_url)
+def subscribe_newsletter(request):
+    if request.method == "POST":
+        email = request.POST['EMAIL']
+        entry = NewsLetterSubscription()
+        try:
+            entry.email = email
+            entry.save()
+            display = 1
+            title = 'Thank You!!'
+            message = 'Your Subscription Was Successful!!'
+            context = {'display': display, 'message': message, 'title': title}
+            return render(request, 'home/homepage.html', context)
+        except:
+            display = 1
+            title = 'Thank You For Your Keen Interest!!'
+            message = 'You have already been subscribed!!'
+            context = {'display':display, 'message':message, 'title':title}
+            return render(request, 'home/homepage.html', context)
 
 
-@group_required('Faculty')
-def index_view(request):
-        users = User.objects.raw(' select * from auth_user where id in (select user_id from user_profile where type="s")')
-        return render(request, 'user/index.html', {'all_users': users})
+
+
+
+
+
+
+
+
+
 
 
 
