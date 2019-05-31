@@ -3,68 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7f29cb8a-d48a-45e2-b9d7-dbe72dd5390f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Department_Website/middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/Department_Website/middleware.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Department_Website/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Department_Website/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Department_Website/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assessment/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/assessment/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assessment/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assessment/migrations/0002_assessment_faculty_id.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assessment/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/assessment/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assessment/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/assessment/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/department/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/department/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/department/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/department/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/department/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enumerations/enum.py" beforeDir="false" afterPath="$PROJECT_DIR$/enumerations/enum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/faculty/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/faculty/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/faculty/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/faculty/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/faculty/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/faculty/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/faculty/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/program/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/program/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/program/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publications/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/publications/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publications/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/publications/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/publications/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publications/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/publications/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/student/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/student/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/student/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/student/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/logged_out.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/password_change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/password_change_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/registration_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/registration_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/User/User_details.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/User/User_form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/User/User_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/User/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user/form_template.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user/update_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user/update_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user/user_confirm_delete.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/home/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/home/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/about_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/about_department.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/homepage.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -96,20 +38,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+            <state relative-caret-position="163">
+              <caret line="230" column="38" lean-forward="true" selection-start-line="230" selection-start-column="38" selection-end-line="230" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="showfacultylist.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="about_department.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/home/about_department.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="showfacultylist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/faculty/templates/faculty/showfacultylist.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="969">
               <caret line="57" column="75" selection-start-line="57" selection-start-column="75" selection-end-line="57" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Department_Website/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-171">
+              <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="homepage.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/home/homepage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1819">
+              <caret line="107" column="26" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -145,7 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>can_view_news</find>
       <find>Semester</find>
       <find>facul</find>
       <find>id_pro</find>
@@ -175,6 +143,7 @@
       <find>.table</find>
       <find>table</find>
       <find>select</find>
+      <find>header</find>
     </findStrings>
     <replaceStrings>
       <replace>#receiver_id</replace>
@@ -227,8 +196,6 @@
         <option value="$PROJECT_DIR$/user/templates/user/base.html" />
         <option value="$PROJECT_DIR$/templates/home/club.html" />
         <option value="$PROJECT_DIR$/static/home/css/animate.min.css" />
-        <option value="$PROJECT_DIR$/static/home/css/main.css" />
-        <option value="$PROJECT_DIR$/templates/home/homepage.html" />
         <option value="$PROJECT_DIR$/templates/home/programs.html" />
         <option value="$PROJECT_DIR$/templates/home/team.html" />
         <option value="$PROJECT_DIR$/templates/home/reach_us.html" />
@@ -236,15 +203,17 @@
         <option value="$PROJECT_DIR$/templates/home/denied.html" />
         <option value="$PROJECT_DIR$/templates/home/clubs.html" />
         <option value="$PROJECT_DIR$/templates/home/calender.html" />
-        <option value="$PROJECT_DIR$/templates/home/about_department.html" />
         <option value="$PROJECT_DIR$/templates/home/elements.html" />
         <option value="$PROJECT_DIR$/templates/home/generic.html" />
         <option value="$PROJECT_DIR$/Department_Website/urls.py" />
         <option value="$PROJECT_DIR$/faculty/urls.py" />
         <option value="$PROJECT_DIR$/templates/home/programs_offered.html" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/student/templates/student/show_student_list.html" />
         <option value="$PROJECT_DIR$/faculty/templates/faculty/showfacultylist.html" />
+        <option value="$PROJECT_DIR$/static/home/css/main.css" />
+        <option value="$PROJECT_DIR$/templates/home/homepage.html" />
+        <option value="$PROJECT_DIR$/templates/home/about_department.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
       </list>
     </option>
   </component>
@@ -277,6 +246,17 @@
               <item name="mbm_cse" type="b2602c69:ProjectViewProjectNode" />
               <item name="mbm_cse" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="mbm_cse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mbm_cse" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mbm_cse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mbm_cse" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -288,7 +268,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="CourseOutcome&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/cse" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -586,13 +566,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Department_Website/wsgi_windows.py" />
-    <entry file="file://$PROJECT_DIR$/Department_Website/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -636,13 +609,6 @@
         <state relative-caret-position="-51" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/home/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="3028" column="19" selection-start-line="3028" selection-start-column="19" selection-end-line="3028" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/home/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
@@ -678,13 +644,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="107" selection-start-line="23" selection-start-column="107" selection-end-line="23" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home/homepage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4573">
-          <caret line="269" column="70" selection-start-line="269" selection-start-column="64" selection-end-line="269" selection-end-column="70" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -716,9 +678,6 @@
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home/about_department.html">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/home/elements.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -761,13 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/student/templates/student/show_student_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
@@ -779,6 +731,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
           <caret line="57" column="75" selection-start-line="57" selection-start-column="75" selection-end-line="57" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/home/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="1882" column="23" selection-start-line="1882" selection-start-column="23" selection-end-line="1882" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Department_Website/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-171">
+          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home/homepage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1819">
+          <caret line="107" column="26" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home/about_department.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="230" column="38" lean-forward="true" selection-start-line="230" selection-start-column="38" selection-end-line="230" selection-end-column="38" />
         </state>
       </provider>
     </entry>
