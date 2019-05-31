@@ -1,5 +1,3 @@
-//[![Encarta Logo](http://encartambm.in/static/img/logo_small.png)](http://encartambm.in\)
-
 # MBM ENGINEERING COLLEGE CSE 2018 Website
 
 Website for MBM ENGINEERING COLLEGE 2018
