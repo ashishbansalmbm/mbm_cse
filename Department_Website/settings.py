@@ -26,7 +26,6 @@ SECRET_KEY = 'wg41-z%b647n-&rnun^_y2^4jxev$*96efj80oskw+y@h5v+zo'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'mbmcse.serveo.net',
     '127.0.0.1'
 ]
 
