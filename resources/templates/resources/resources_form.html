@@ -1,0 +1,41 @@
+{% extends 'user/base.html' %}
+{% block title %} Add Resources {% endblock %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+
+ {% block body %}
+     <style>
+      #id_attachment {
+         padding-left: 0;
+     }
+
+     </style>
+<img src="http://riverstonetogether.com/wp-content/uploads/2017/09/Resources-page-photo_0.jpg" alt="Cinque Terre" width="1100px" height="200px">
+                <div style="margin:60px;">
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form %}
+                            <div class="row">
+                                {{ field.errors }}
+
+                                <div class="col-lg-3 mt-3">
+                                    {{ field.label_tag }}
+                                </div>
+                                 <div class="col-lg-7 mt-3">
+                                    {% render_field field class="single-input" %}
+                                 </div>
+                            </div>
+
+                            {% endfor %}
+                     <div>
+                            <button type="submit" class="btn btn-success btn-lg" style="margin-left: 330px; margin-top: 20px;">Submit</button>
+                        </div>
+
+
+                        </form>
+                </div>
+
+
+{% endblock %}

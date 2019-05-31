@@ -1,0 +1,45 @@
+{% extends 'user/base.html' %}
+ {% load widget_tweaks %}
+
+{% block head %}
+    <title>Update Faculty Profile </title>
+{% endblock %}
+{% block body %}
+    <style>
+        #id_description {
+            display: block;
+            width: 100%;
+            line-height: 40px;
+            border: none;
+            background: #f9f9ff;
+            padding: 0 20px;
+            height: 100px;
+            resize: none;
+        }
+    </style>
+    <div class="col-md-6 col-lg-6 container" style="padding: 130px 0px">
+    {% if request.user.faculty.submit is True %}
+        <p> Department: {{ request.user.faculty.department }} </p>
+        <p> Date of Join: {{ request.user.faculty.date_of_join }} </p>
+        <p> Qualification: {{ request.user.faculty.qualification }} </p>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+
+
+      {% for field in form %}
+          <div class="row">
+          <div class="col-lg-3 mt-3">
+        {{ field.label_tag }}
+          </div>
+              <div class="col-lg-6 mt-3">
+          {% render_field field class="single-input" %}
+              </div>
+          </div>
+        {% endfor %}
+      <button type="submit" class="btn btn-primary mt-3" name="Save">Save</button>
+        <button type="submit" class="btn btn-primary mt-3" name="Submit">Submit</button>
+    </form>
+    </div>
+{% endblock %}

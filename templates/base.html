@@ -1,84 +1,340 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+
+    {% load static %}
+
+    <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/static/home/img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    {% block head %}
+        <title>Docs</title>
+    {% endblock %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-  {% block head %}
-    <title>Base</title>
-  {% endblock %}
-  </head>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="{% static 'home/css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/main.css' %}">
 
-  <body>
-  {% load staticfiles %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-<div class="container-fluid">
-    <!-- LOGO -->
-      <a class="navbar-brand" href="{% url 'user:home' %}">
-            <img src="{% static 'Logo.png' %}" width="30" height="30" alt="">
-            CSE
-      </a>
+    <style>
+        #logo_mbm {
+            float: left;
+            width: 100px;
+            padding: 6px 0 0 0;
 
-    <!-- Window Resize Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
+        }
 
-         <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mr-auto">
+        .gap {
+            padding-top: 200px;
+            padding-bottom: 120px;
+        }
 
-              <!-- Drop down
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
-                </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
+        @media screen and (max-width: 800px) {
+            .gap {
+                padding-top: 200px;
+                padding-bottom: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #f9f9ff !important;">
+
+<header id="header" id="home">
+
+    <div class="text-right container" style="padding-right: 50px">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">
+                <i class="fa fa-power-off"></i>
+                Logout</a>
+            <a href="{% url 'password_reset' %}">
+                <i class="fa fa-group"></i>
+                Reset Password</a>
+            <a href="{% url 'user:dashboard' %}">
+                <i class="fa fa-male"></i>
+                My Profile</a>
+        {% else %}
+            <a href="{% url 'user:register' %}">
+                <i class="fa fa-power-off"></i>
+                Register</a>
+            <a href="{% url 'login' %}">
+                <i class="fa fa-male"></i>
+                Login</a>
+        {% endif %}
+
+    </div>
+
+
+    <div class="container">
+        <div class="row align-items-center justify-content-between d-flex" style="width: 100%;">
+
+            <div id="logo">
+                <a href="{% url 'user:home' %}"><img src="{% static 'home/img/cse_logo.png' %}" alt="" title=""
+                                                     height=60/></a>
+            </div>
+            <nav id="nav-menu-container align-items-right">
+                <ul class="nav-menu">
+
+                    <!-- Home -->
+                    <li>
+                        <a href="{% url 'user:home' %}">Home</a>
+                    </li>
+
+                    <!-- People -->
+                    <li class="menu-has-children"><a href="">People</a>
+                        <ul>
+                            <li><a href="{% url 'faculty:faculty_list' %}">Faculty</a></li>
+                            <li><a href="{% url 'student:student_list' %}">Students <i class="fa fa-lock"></i></a></li>
+                            <!--li><a href="#">Alumni</a></li-->
+                            <li><a href="#">Staff</a></li>
+                            <li><a href="{% url 'clubs' %}">Clubs</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- About -->
+                    <li class="menu-has-children"><a href="">About</a>
+                        <ul>
+                            <li><a href="{% url 'about_department' %}">Department</a></li>
+                            <!--li><a href="#">Committee</a></li-->
+                            <li><a href="{% url 'reach_us' %}">Reach Us</a></li>
+                            <li><a href="{% url 'developers' %}">Developers</a></li>
+
+                        </ul>
+                    </li>
+
+                    <!-- Academics -->
+                    <li class="menu-has-children"><a href="">Academics</a>
+                        <ul>
+                            <li><a href="{% url 'programs_offered' %}">Program Offered </a></li>
+                            <li><a href="{% url 'course:index' %}">Courses <i class="fa fa-lock"></i></a></li>
+                            <li><a href="{% url 'calender' %}">Academic Calender</a></li>
+                            <li><a href="{% url 'examination_scheme' %}">Examination Scheme</a></li>
+                            <li><a target="_blank" href="https://mymoodle.fossee.in/login/">Moodle</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Research >
+									<li class="menu-has-children"><a href="">Research</a>
+				            <ul>
+											<li><a href="#">Research Areas <i class="fa fa-lock"></i></a></li>
+											<li><a href="{% url 'publications:index' %}">Publications </a></li>
+											<li><a href="#">Facilities</a></li>
+											<li><a href="{% url 'project:Home' %}">Projects <i class="fa fa-lock"></i></a></li>
+				            </ul>
+				          </li>
+
+									<!-- Events >
+									<li class="menu-has-children"><a href="">Events</a>
+				            <ul>
+											<li><a href="#">Seminars</a></li>
+											<li><a href="#">Courses</a></li>
+				            </ul>
+				          </li>
+
+									<!-- Industry and Placements -->
+                    <li class="menu-has-children"><a href="">Industry and Placements</a>
+                        <ul>
+                            <li><a href="{% url 'examination_scheme' %}">Statistics</a></li>
+                            <li><a href="{% url 'examination_scheme' %}">Achivements</a></li>
+                            <li><a href="{% url 'examination_scheme' %}">Industry Partnership Cell</a></li>
+                            <li><a href="{% url 'examination_scheme' %}">Industry Registration</a></li>
+                            <li><a href="{% url 'examination_scheme' %}">Projects</a></li>
+                            <li><a href="{% url 'examination_scheme' %}">Courses</a></li>
+                            <li><a href="{% url 'examination_scheme' %}">Contact Us</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Useful links >
+                    <li class="menu-has-children"><a href="">Useful Links</a>
+            <ul>
+                            <li><a href="#">Notice Board</a></li>
+                            <li><a href="#">Course Registration</a></li>
+                            <li><a href="#">Alumni Registration</a></li>
+                            <li><a href="#">Complaints and Feedback</a></li>
+
+            </ul>
+          </li>
+
+                    <!-- Resources -->
+                    <li class="menu-has-children"><a href="">Resources</a>
+                        <ul>
+                            <li><a target="_blank"
+                                   href="http://52.172.14.165/jnvuiums/(S(pmykh3wu0iyj4iqxejdtz2wk))/main.aspx">University
+                                Website</a></li>
+                            <li><a target="_blank" href="https://www.mbm.ac.in/"> TPO websites</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav><!-- #nav-menu-container -->
+
+        </div>
+    </div>
+</header><!-- #header -->
+
+<!--Content-->
+
+
+{% block body %}
+
+{% endblock %}
+
+<!--End Content-->
+
+
+<!-- start footer Area -->
+<footer class="footer-area section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3  col-md-12">
+                <!--div class="single-footer-widget">
+                    <h6>Top Products</h6>
+                    <ul class="footer-nav">
+                        <li><a href="#">Managed Website</a></li>
+                        <li><a href="#">Manage Reputation</a></li>
+                        <li><a href="#">Power Tools</a></li>
+                        <li><a href="#">Marketing Service</a></li>
+                    </ul>
+                </div-->
+            </div>
+            <div class="col-lg-6  col-md-12">
+                <div class="single-footer-widget newsletter">
+                    <h6>Newsletter</h6>
+                    <p>You can trust us. we only send relevant information, not a single spam.</p>
+                    <div id="">
+
+                        <form action="{% url 'user:subscribe_newsletter' %}" method="post" class="form-inline">
+                            {% csrf_token %}
+
+                            <div class="form-group row" style="width: 100%">
+                                <div class="col-lg-8 col-md-12">
+                                    <input name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Enter Email '" required="" type="email">
+                                </div>
+
+                                <div class="col-lg-4 col-md-12">
+                                    <button class="nw-btn primary-btn">Subscribe<span
+                                            class="lnr lnr-arrow-right"></span></button>
+                                </div>
+                            </div>
+                            <div class="info"></div>
+                        </form>
+                    </div>
                 </div>
-              </li>
-               -->
-            </ul>
+            </div>
+            <div class="col-lg-3  col-md-12">
+                <!--div class="single-footer-widget mail-chimp">
+                    <h6 class="mb-20">Instragram Feed</h6>
+                    <ul class="instafeed d-flex flex-wrap">
+                        <li><img src="/static/home/img/i1.jpg" alt=""></li>
+                        <li><img src="/static/home/img/i2.jpg" alt=""></li>
+                        <li><img src="/static/home/img/i3.jpg" alt=""></li>
+                        <li><img src="/static/home/img/i4.jpg" alt=""></li>
+                        <li><img src="/static/home/img/i5.jpg" alt=""></li>
+                        <li><img src="/static/home/img/i6.jpg" alt=""></li>
+                        <li><img src="/static/home/img/i7.jpg" alt=""></li>
+                        <li><img src="/static/home/img/i8.jpg" alt=""></li>
+                    </ul>
+                </div-->
+            </div>
+        </div>
 
-             {% if user.is_authenticated %}
-            <ul class="nav navbar-nav" >
-                <li><a href="{% url 'user:update_profile' %}" >Update Profile</a></li>
-                <li><a href="{% url 'user:view_profile' %}" >Profile</a></li>
-                <li><a href="{% url 'password_change' %}" >Password Change</a></li>
-                <li><a href="{% url 'logout' %}" > Logout </a></li>
-            </ul>
-            {% else %}
-                 <ul class="nav nabar-nav">
-                 <li><a href="{% url 'password_reset' %}" >Password Reset</a></li>
-                 </ul>
-             <ul id="navbar" class="nav navbar-nav ">
-                <li><a href="{% url 'login' %}" >Login</a></li>
-                <li><a href="{% url 'user:register' %}" >Register</a></li>
 
-            </ul>
-            {% endif %}
+        <div class="row footer-bottom d-flex text-center">
+            <p class="col-lg-12 col-sm-12 footer-text m-0 text-white">
+                Copyright &copy
+                <script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This website is developed with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                <a href="#" target="_blank">Students</a>
+                of the department
+            </p>
+            <div class="col-lg-4 col-sm-12 footer-social">
+                <!--a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-behance"></i></a-->
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End footer Area -->
 
-         </div>
+<!-- POP UP WINDOW -->
+<!-- Button trigger modal -->
+<button hidden id="pop_up" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">{{ title }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ message }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
-</nav>
+<!-- END POPUP WINDOW-->
 
-            {% block body %}
+<script src="{% static 'home/js/vendor/jquery-2.2.4.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="{% static 'home/js/vendor/bootstrap.min.js' %}"></script>
+<script src="{% static 'home/js/easing.min.js' %}"></script>
+<script src="{% static 'home/js/hoverIntent.js' %}"></script>
+<script src="{% static 'home/js/superfish.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.ajaxchimp.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'home/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.sticky.js' %}"></script>
+<script src="{% static 'home/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'home/js/parallax.min.js' %}"></script>
+<script src="{% static 'home/js/mail-script.js' %}"></script>
+<script src="{% static 'home/js/main.js' %}"></script>
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
+<!-- To display pop up messages -->
+{% if display == 1 %}
+    <script>
+        document.getElementById("pop_up").click();
+    </script>
+{% endif %}
 
-            {% endblock %}
+{% block script %}
 
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-  </body>
+{% endblock %}
+</body>
 </html>

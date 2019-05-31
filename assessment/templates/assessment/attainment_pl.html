@@ -1,0 +1,81 @@
+{% extends "user/base.html" %}
+{% load mathfilters %}
+{%  block body %}
+<style >
+
+.table {
+    background: #f9f9ff;
+    padding: 15px 0px 30px 0px;
+    min-width: 800px;
+}
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-bottom: 1px solid #dee2e6;
+    border-top: 1px solid #dee2e6;
+    border-top: 1px solid #dee2e6;
+}
+
+
+</style>
+<div style="margin-top: 80px ; padding: 0px 50px;">
+    <h1 class="mb-30" align="center">Program Level</h1>
+    <div class="table-responsive">"
+
+    <input class="mb-5" type="text" id="myInput" onkeyup="myfunction()" placeholder="Search for program.." >
+    <table class="table" id="Program">
+        <tr>
+            <th>Program</th>
+            <th>Year</th>
+            <th>Average (in %)</th>
+            {% for oc in count %}
+                {% if oc < 13 %}
+                    <th>P.O.- {{ oc }}</th>
+                    {% else %}
+                    <th>P.S.O.- {{ oc|sub:12 }}</th>
+                {% endif %}
+
+
+            {% endfor %}
+        </tr>
+        {% for value in details %}
+            <tr>
+                {% for c in value %}
+                    <td>{{ c }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% block script %}
+    <script>
+        function myfunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("Program");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+        {% endblock %}
+{% endblock %}

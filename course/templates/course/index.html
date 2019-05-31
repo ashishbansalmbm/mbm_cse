@@ -1,0 +1,82 @@
+
+{% extends 'user/base.html'%}
+{%  load staticfiles %}
+{% load widget_tweaks    %}
+{% block title %} Course Index {% endblock %}
+{% block body %}
+
+<div class="container mt-3">
+
+    <div class="row">
+        <h1 style="margin-left:30px;"> COURSES </h1>
+
+
+    </div>
+
+
+<div class="row">
+
+    <div class="col-lg-9 mt-4" >
+        <form class="form-row" action="" method="get">
+            {% for field in filter.form %}
+            <div class="mt-10 ml-4">
+                {% if field.label == 'semester' %}
+
+                {% else %}
+                {% render_field field class="single-input" placeholder=field.label %}
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="search" class="btn btn-success ml-3 mt-2"><i class="fa fa-search"></i> Search</button>
+        </form>
+    </div>
+
+    <div class=" mt-4">
+        {% if request.user.profile.type == "S" %}
+           <a href="{% url 'course:mycourse-student'%}" class="btn btn-info"><span class="fa fa-envelope"></span> MY COURSE</a>
+        {% endif %}
+    </div>
+ {% if request.user.profile.type == "F" %}
+    <div class="col-lg-3 mt-4" style="">
+        <a href="{% url 'course:course-add' %}" class="btn btn-info"> <i class="fa fa-plus"></i> ADD</a>
+        <a href="{% url 'course:course-offer'%}" class="btn btn-info ml-1 "><span class="fa fa-envelope"></span> OFFER</a>
+    </div>
+  {% endif %}
+
+</div>
+
+        <div class="container mt-3">
+
+                  <table class="table table-striped">
+
+                  <tr>
+                       <th>Course Code</th>
+                      <th>Name</th>
+                      <th>Program</th>
+                      <th>Semester</th>
+                  </tr>
+
+
+                      {% for course in filter.qs %}
+                          <tr>
+                              <td> {{course.course.course_code }}</td>
+                              <td><a href ="{% url 'course:detail' course.course.id %}">{{ course.course.name }}</a></td>
+                              <td>{{ course.program.name }}</td>
+                              <td>{{ course.course.get_semester_display }}</td>
+                          </tr>
+                      {% endfor %}
+                  </table>
+        </div>
+
+
+
+
+
+
+{% if request.user.profile.type == "F" %}
+
+
+
+    {% endif %}
+</div>
+{% endblock %}

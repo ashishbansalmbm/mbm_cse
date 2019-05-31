@@ -1,0 +1,81 @@
+{% extends "user/base.html" %}
+{% block head %}
+    <title>Search Result</title>
+{% endblock %}
+{% block body %}
+<div style="margin-top: 200px ; margin-left: 80px; padding: 0px 50px;" class="default-select">
+<form method="post" class="form-inline" novalidate enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="id_program">Program:</label>
+        <select name="program" id="id_program" class="nice-select">
+            <option value="0" selected="selected">Select Program</option>
+            {% for p in programs%}
+            <option value="{{p.id}}" data-duration="{{p.duration}}">{{p.name}}</option>
+            {% endfor %}
+        </select>
+    <label for="id_semester">Semester:</label>
+        <select name="semester" id="id_semester" class="nice-select default-select">
+            <option value="0" selected="selected">Select Semester</option>
+        {% for s,a in sems.items %}
+            <option value="{{ s }}">{{ a }}</option>
+        {% endfor %}
+        </select>
+        <label for="id_year" >Year:</label>
+        <select name="year" required="required" id="id_year" class="nice-select default-select">
+            <option value = "0">Select Program and Semester</option>
+        </select>
+    <div style="margin-top: 40px;
+    margin-left: 78%;">
+
+        <button value="Submit" type="submit" class="genric-btn success circle arrow ml-3"> Submit <i class="lnr lnr-arrow-right"></i></button>
+
+    </div>
+</form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="application/javascript">
+    $(document).ready(function(){
+        $("#id_program").change(function(){
+            sem=$(this).children("option:selected").data("duration");
+            //alert(sem);
+            refreshSemester(sem);
+        });
+        $("#id_semester").change(function(){
+            program = $("#id_program").val();
+            sem=$(this).val();
+            if(program !=0)
+                refreshYears(program,sem);
+        });
+    });
+    function refreshSemester(sems){
+        $("#id_semester").find("option:not(:first)").remove();
+        $("#id_year").find("option:not(:first)").remove();
+        for (i=1;i<=sems;i++) {
+            $("#id_semester").append("<option value=\"SEM_"+i+"\">"+i+"th Semester</option>");
+        }
+    }
+    function refreshYears(program,sem){
+        $.ajax({
+            url: "{% url 'assessment:get_year' %}",
+            dataType:"json",
+            data: {
+              'p': program,
+              's': sem
+            },
+            success: function (data) {
+
+                if(data[0]!="error"){
+                  $("#id_year").find("option:not(:first)").remove();
+                  $.each(data,function(i,value){
+                    $("#id_year").append("<option value=\""+value+"\">"+value+"</option>");
+                  });
+
+                }
+                else{alert("No record found for this program and semester combination. Try again!");}
+            }
+      });
+    }
+</script>
+{% endblock %}

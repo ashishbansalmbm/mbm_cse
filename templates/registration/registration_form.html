@@ -4,18 +4,100 @@
     <title>Register</title>
 {% endblock %}
 
+{% load widget_tweaks %}
+
 {% block body %}
 
-    <div class="container">
-        <h1>Register</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">
-                Regiter
-            </button>
-         </form>
 
-    </div>
+
+                        <div class="section-top-border" style="margin-left: 150px ; padding-top: 150px" >
+						<div class="row">
+							<div class="col-lg-8 col-md-8">
+								<h3 class="mb-30">Register</h3>
+
+                                <form action="" method="post">
+                                    {% csrf_token %}
+
+                                    {% if form.errors  %}
+									<div class="mt-10">
+										<input type="text" name="username" value="{{ form.username.value }}" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'" required class="single-input">
+                                        <p>{{ form.username.errors }}</p>
+                                    </div>
+									<div class="row">
+									<div class="mt-10 col-lg-6 ">
+										<input type="text" name="first_name" value="{{ form.first_name.value }}" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
+									    <p>{{ form.first_name.errors }}</p>
+                                    </div>
+									<div class="mt-10 col-lg-6">
+										<input type="text" name="last_name" value="{{ form.last_name.value }}" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
+									    <p>{{ form.last_name.errors }}</p>
+                                    </div>
+                                    </div>
+									<div class="mt-10">
+										<input type="email" name="email" value="{{ form.email.value }}" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
+									    <p>{{ form.email.errors }}</p>
+                                    </div>
+                                    <div class="mt-10">
+										<input type="password" name="password1" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
+									    <p>{{ form.password1.errors }}</p>
+                                    </div>
+                                    <div class="mt-10">
+										<input type="password" name="password2" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" required class="single-input">
+									    <p>{{ form.password2.errors }}</p>
+                                    </div>
+
+                                    <div class="mt-10">
+										 <button type="submit" class="genric-btn success-border radius" >Register</button>
+									</div>
+
+									</div>
+
+
+									</div>
+                                     {% else %}
+
+                                        <div class="mt-10">
+										<input type="text" name="username" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'" required class="single-input">
+                                        <p>{{ form.username.errors }}</p>
+                                    </div>
+									<div class="row">
+									<div class="mt-10 col-lg-6 ">
+										<input type="text" name="first_name"  placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
+									    <p>{{ form.first_name.errors }}</p>
+                                    </div>
+									<div class="mt-10 col-lg-6">
+										<input type="text" name="last_name"  placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
+									    <p>{{ form.last_name.errors }}</p>
+                                    </div>
+                                    </div>
+									<div class="mt-10">
+										<input type="email" name="email"  placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
+									    <p>{{ form.email.errors }}</p>
+                                    </div>
+                                    <div class="mt-10">
+										<input type="password" name="password1" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
+									    <p>{{ form.password1.errors }}</p>
+                                    </div>
+                                    <div class="mt-10">
+										<input type="password" name="password2" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" required class="single-input">
+									    <p>{{ form.password2.errors }}</p>
+                                    </div>
+
+                                    <div class="mt-10">
+										 <button type="submit" class="genric-btn success-border radius" >Register</button>
+									</div>
+
+									</div>
+
+
+									</div>
+
+
+                                    {% endif %}
+
+
+
+								</form>
+							</div>
 
 {% endblock %}

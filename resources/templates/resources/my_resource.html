@@ -1,0 +1,39 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+        <title>My Submissions</title>
+{% endblock %}
+
+
+{% block body %}
+    <img src="http://riverstonetogether.com/wp-content/uploads/2017/09/Resources-page-photo_0.jpg" alt="Cinque Terre" width="1100px" height="200px">
+
+
+
+    <div class="container">
+         <div class="table" style="margin:60px">
+          <ul>
+            {% for resource in object_list %}
+                <li>
+                <h5><span class="fa fa-calendar"></span> {{ resource.date}}, {{resource.type.upper}}</h5>
+                <div class="row ml-10 mt-3">
+
+
+                 <form action="{% url 'resources:resources-delete' resource.id %}" method="post">
+                   {% csrf_token %}
+                    <input class="btn btn-sm btn-danger ml-2" type="submit" value="Delete"  onclick="return confirm('Are you sure you want to delete this?')">
+
+                </form>
+                </div>
+                <hr>
+
+              </li>
+              {% endfor %}
+          </ul>
+        </div>
+
+
+    </div>
+
+{% endblock %}

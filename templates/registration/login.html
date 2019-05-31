@@ -2,19 +2,52 @@
 
 {% block head %}
 <title>Login</title>
+
+    <style>
+    .margin{
+        padding: 150px 20px;
+    }
+
+    @media screen and (max-width: 800px){
+
+        .margin{
+
+            padding-top: 172px;
+            padding-left: 15px;
+            padding-bottom: 42px;
+    }
+        .mobCenter{
+            text-align: center;
+        }
+
+    }
+    </style>
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Welcome</h1>
-        <p>
+    <div class="container margin" >
+        <h1 class="mobCenter">Welcome</h1>
+        {% if form.errors %}
+        <h5>Please Check Your Username And Password</h5>
+        {% endif %}
+        <h5 class="mobCenter" style="color: rgba(0,0,0,0.5)">
             You Can Login Here
-        </p>
-        <h2>Login</h2>
+        </h5>
+        <h2 class="mobCenter">Login</h2>
         <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Login">
+            <div class="mt-10">
+                <input type="text" name="username" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'" required class="single-input col-md-5">
+            </div>
+            <div class="mt-10">
+                <input type="password" name="password" placeholder="Pass Word" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input col-md-5">
+            </div>
+            <div class="mt-10 mobCenter ">
+                <button type="submit" class="genric-btn success-border radius" >Login</button>
+            </div>
+
+
+
         </form>
     </div>
 {% endblock %}

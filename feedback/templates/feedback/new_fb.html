@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <title>Form</title>
+</head>
+<body>
+ <form action="{% url 'feedback:fb-new' %}"  method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+     <div>
+         {{ course_form.as_p }}
+    </div>
+    <input type="submit" name="Add" value="Add Ques">  </input>
+   <!-- <input type="submit" name="Sub" value="Submit fb">  </input> -->
+ </form>
+
+<script type="application/javascript">
+</script>
+
+</body>
+</html>

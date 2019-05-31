@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Page Not Found</title>
+
+
+{% endblock %}
+
+{% block body %}
+
+    <style>
+
+        #header {
+
+            background-color: #df003a;
+
+        }
+
+        .nav-menu a {
+
+            color: #fff;
+
+        }
+    </style>
+    <!-- Start banner Area -->
+    <section class="generic-banner relative">
+        <div class="container">
+            <div class="row height align-items-center justify-content-center">
+                <div class="col-lg-10">
+                    <div class="generic-banner-content">
+                        <h2 class="text-white">Permission Denied</h2>
+                        <p class="text-white">Either you are not logged in or<br> You don't have permission to view this
+                            page.</p>
+                    </div>
+                    <div>
+                        <a href="{% url 'user:home' %}" class="genric-btn default circle arrow">Go Back To Home
+                            Page<span class="lnr lnr-arrow-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+{% endblock %}

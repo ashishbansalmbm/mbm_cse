@@ -1,0 +1,30 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+{% block title %} See CoPO Links  {% endblock %}
+{% load widget_tweaks %}
+
+
+{% block body %}
+
+    <div style="margin-top: 80px ; padding: 0px 50px; margin-bottom: 80px;">
+    <h2> See PO Links </h2>
+    <br>
+    <br>
+        <h3>{{ outcome.text }} </h3>
+               {% for link in  po_links %}
+                 {% if link.level != 'N' %}
+                  {{ link.program_outcome }} - {% if link.level == 'H' %} High {% endif %}
+                                               {% if link.level == 'S' %} Slight {% endif %}
+                                               {% if link.level == 'M' %} Minimum {% endif %}
+                 {% endif %}
+                  <br>
+               {% endfor %}
+
+    </div>
+
+<script type="application/javascript">
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'user/base.html' %}
+{% block body %}
+
+
+<div class="container mt-5">
+    <div style="margin-left:930px;">
+           <a href="javascript:history.go(-1)"><img src="https://png.icons8.com/ios/150/3584fc/left-filled.png" height="50px" width="50px"></a>
+    </div>
+
+    <form action="" method="Post">
+    {% csrf_token %}
+      {% if not senrolled %}  No Student has been enrolled yet. {% endif %}
+      {% if not students %}   All Students have been enrolled.  {% endif %}
+
+    <table class="table">
+     {% if senrolled %}
+        <tr>
+            <th>#Students already enrolled- </th>
+        </tr>
+
+        {% for st in senrolled %}
+                <tr>
+                    <td>{{st.student}}</td>
+                </tr>
+
+
+        {% endfor %}
+     {% endif %}
+
+     {% if students %}
+               <tr>
+                    <th>#Students</th>
+                    <th>#Enroll</th>
+        </tr>
+
+    {% for st in students %}
+                <tr>
+                    <td>{{st}}</td>
+                    <td><input type="checkbox" name="student" value="{{st.user.id}}"></td>
+                </tr>
+     {% endfor %}
+     {% endif %}
+
+
+
+
+    </table>
+
+
+
+    <div class="" style="margin-left: 920px;">
+        <button type="submit" onclick="return confirm('Are you Sure');"  class="btn btn-info">Submit</button>
+    </div>
+
+
+
+
+
+</form>
+</div>
+
+{% endblock %}

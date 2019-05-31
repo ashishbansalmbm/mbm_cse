@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block head %}
+    <title>Student List</title>
+
+
+{% endblock %}
+
+{% block body %}
+
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .card img {
+            height: auto;
+            max-height: 250px;
+        }
+
+        .card:hover {
+            position: relative;
+            top: -10px;
+            box-shadow: 15px 10px 35px 2px #5baea3;
+        }
+
+        @media screen and (max-width: 800px) {
+
+            .card img {
+                height: auto;
+                max-height: 200px;
+            }
+
+            .form-inline{
+                display: flex;
+                flex-flow: column wrap;
+            }
+        }
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+    </style>
+    <div class="gap container">
+        <div >
+            <form class="form-inline" action="" method="get">
+                {% for field in filter.form %}
+                    <div class="form-group mt-10 ml-3">
+                        {% if field.label == 'Semester' or field.label == 'Program' %}
+                            {% render_field field class="nice-select" placeholder=field.label style="background-color: #f9f9ff;border-radius: 0px;margin-top: -1px;" %}
+                        {% else %}
+                            {% render_field field class="single-input" placeholder=field.label %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="search" class="btn btn-success ml-3 mt-2"><i class="fa fa-search"></i> Search</button>
+            </form>
+        </div>
+
+        <div class="row mt-5 animated fadeInRight">
+            {% for f in filter.qs %}
+                <div class="col-lg-4 col-md-4">
+                    <div class="card animated fadeInUpBig border-secondary mb-5">
+                        {% if f.user.profile.photo %}
+                            <img src="{{ f.user.profile.photo.url }}" alt="{{ f.user.get_full_name }}"
+                                 class="card-img-top">
+                        {% else %}
+                            <img src="{% static 'user/img/dummy_profile.png' %}" alt="{{ f.user.get_full_name }}"
+                                 class="card-img-top">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="text-capitalize card-title">{{ f.user.first_name }} {{ f.user.last_name }}</h5>
+                        </div>
+
+                        <div class="card-footer">
+                            <p class="title">
+                                Department of CSE
+                                <br>{{ f.get_semester_display }}
+                                <br>{{ f.program }}
+                                <br>
+                            </p>
+                            <a href="#" class="btn btn-primary">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+{% block head %}<title> Offer  Course</title>
+{% endblock %}
+{% load widget_tweaks %}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+{% block body %}
+
+<div class="container mt-5">
+
+<div class="row">
+        <h1 style="margin-left:50px;">OFFER COURSE </h1>
+<div style="margin-left:720px;">
+    <a href="javascript:history.go(-1)"><img src="https://png.icons8.com/ios/150/3584fc/left-filled.png" height="50px" width="50px"></a>
+</div>
+</div>
+        <div class="row" style="margin-left: 30%" >
+        <form action=""  method="post" enctype="multipart/form-data">
+            <select name="Program" id="pros-select">
+                <option value="AllP">All Programs</option>
+                {% for p in progs %}
+                <option value="{{ p.id }}"> {{ p.name }} </option>
+                {% endfor %}
+            </select>
+
+            <div class="row" >
+                <select name="Semester" id="sems-select" style="margin-left:10px;">
+                    <option value="AllS">All Semesters</option>
+                    {% for s,v in sems.items %}
+                    <option value="{{s}}"> {{ v.value }}  </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div style="margin-top: 5px ; padding: 0px 50px ; margin-bottom:80px;">
+
+    <form action="{% url 'course:course-offer' %}"  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+              <div class="">
+                  {% for id,course in all_courses.items %}
+                  <table class="table">
+                      <tr class="course-row" data-sem="{{ course.semester }}" data-program="{{course.programdetails}}">
+                          <td><input type="radio" name="course" id="course_{{id}}" value="{{ id }}" ></td>
+                          <td><label for="course_{{id}}">{{course.code}} {{ course.name }}-{{ course.semester }}</label></td>
+                      </tr>
+                  </table>
+                  {% endfor %}
+              </div>
+
+        <div class="container">
+            <div class="row">
+            <p style="margin-top:7px;"> Year: </p>
+            <input type="number" class="single-input col-lg-2" style="margin-left: 45px; height: 31px;" name="year">
+            </div>
+        </div>
+
+        <div class="mt-3" style="margin-left: 200px;">
+            <button type="submit" class="btn btn-info">Offer</button>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-3 mt-1" style="margin-left:100px">
+                <a href="{% url 'course:course-offeredlist' %}">
+                    <button type="submit" class="btn btn-info">See Offered Courses</button>
+                </a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+{% block script %}
+
+<script>
+$(document).ready(function(){
+    $('#pros-select,#sems-select').on('change', function(){
+        pro= $('#pros-select').val();
+        sem= $('#sems-select').val();
+        updateCourseList(pro,sem);
+    });
+  })
+
+  function updateCourseList(pro,sem){
+    $('#pros-select,#sems-select').attr("disabled","disabled").css("pointer","progress");
+    $('.course-row').each(function(){
+            myprog = $(this).data("program");
+            mysem = $(this).data("sem");
+
+            if(pro =="AllP" && sem == "AllS")
+                $(this).show();
+            else if(sem=="AllS" && (myprog.indexOf(pro)>=0))
+                $(this).show();
+            else if(pro=="AllP" && sem==mysem)
+                $(this).show();
+            else if(sem==mysem && (myprog.indexOf(pro)>=0)){
+                $(this).show();
+            }
+            else $(this).fadeOut(200);
+
+        });
+    $('#pros-select,#sems-select').removeAttr("disabled").css("pointer","default");
+  }
+</script>
+{% endblock %}
+
+
+
+</div>
+
+
+
+
+{% endblock %}

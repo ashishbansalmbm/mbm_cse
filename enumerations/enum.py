@@ -3,8 +3,12 @@ from enum import Enum
 
 
 class QuestionType(Enum):
-    T = "Theory"
-    P = "Practical"
+    Remember = "Remember"
+    Understand = "Understand"
+    Apply = "Apply"
+    Analyze = "Analyze"
+    Evaluate = "Evaluate"
+    CD = "Create/Design"
 
 
 class AssessmentType(Enum):
@@ -70,10 +74,10 @@ class Category(Enum):
 
 
 class CourseType(Enum):
-    M_TH  = "Mandatory Theory"
-    M_LAB = "Mandatory Lab"
-    ELEC_TH = "Elective Theory"
-    ELEC_LAB = "Elective lab"
+    MTH  = "Mandatory Theory"
+    MLAB = "Mandatory Lab"
+    ELECTH = "Elective Theory"
+    ELECLAB = "Elective lab"
     VOL = "Voluntary"
 
 
@@ -83,3 +87,33 @@ class FeedbackType(Enum):
     PLACE = 'Placement'
     EVNT = 'Event'
     OT = 'Other'
+
+
+class MessageType(Enum):
+    M = 'Message'
+    N = 'Notice'
+    B = 'Broadcast'
+
+
+class CoPoLink(Enum):
+    N = 'None'
+    H = 'High'
+    S = 'Slight'
+    M = 'Minimum'
+
+
+class LanguageChoice(Enum):
+    HINDI = "Hindi"
+    ENGLISH = "English"
+    GERMAN = "German"
+
+
+class TypeChoice(Enum):
+    JOURNAL = "Journal"
+    BOOK = "Book"
+    THESIS = "Thesis"
+    ResearchPaper = "Research Paper"
+    ConferencePaper = "Conference Paper"
+    EducationalMaterials = "Educational Materials"
+    Talks = "Talks"
+    OTHERS = "Others"

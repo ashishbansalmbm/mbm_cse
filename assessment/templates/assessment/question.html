@@ -1,0 +1,73 @@
+{% extends 'user/base.html' %}
+{% block head %}
+    <title>Questions</title>
+{% endblock %}
+{% block body %}
+
+
+    <div style="margin-top: 80px ; padding: 0px 50px;">
+
+<h1 class="text-center">Questions</h1>
+    <br>
+    <br>
+<div style="overflow-x:auto;">
+<table class="table">
+  <tr>
+
+    <th>Question_order</th>
+    <th>Type</th>
+    <th>Text</th>
+    <th>Max_marks</th>
+    <th>Scheme</th>
+    <th>Update</th>
+
+  </tr>
+
+
+<tr>
+{% for question in assessment.assessmentquestion_set.all %}
+    <td>{{ question.question_order }}</td>
+    <td>{{ question.question_type}}</td>
+    <td>{{ question.text }}</td>
+    <td>{{ question.max_marks }}</td>
+    <td>{{ question.marking_scheme}}</td>
+
+         <form action="{% url 'assessment:questionupdate' question.id  %}" method="get" style="display: inline;">
+            {% csrf_token %}
+           {% if assessment.assessment_completed %}
+       <td><i class="fa fa-check" aria-hidden="true" style="color:#41B125;"></i></td>
+          {% else %}
+      <td><button type="submit" class="genric-btn info-border circle small mt-1" >Update</button>
+
+
+
+      </td>
+          {% endif %}
+    </form>
+
+</tr>
+
+{% endfor %}
+</table>
+</div>
+<form action="{% url 'assessment:assessmentquestion-entry'  assessment.id%}" method="post" style="display: inline;">
+            {% csrf_token %}
+           {% if assessment.assessment_completed %}
+          <td><button   type="submit" class="btn btn-default btn-sm" style="display:none;">Make a question entry here</button></td>
+         {% else %}
+          <td><button   type="submit" class="btn btn-default btn-sm" id="second">Make a question entry here</button></td>
+          {% endif %}
+
+        </form>
+        <div class="float-right">
+<button class="btn btn-default btn-sm"><a href="/assessment/" style="color: #0b0b0b" >Back</a></button>
+    </div>
+         {% if assessment.id %}
+        <form action="{% url 'assessment:detail' assessment.id %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Are you Sure?');" class="btn btn-default btn-sm" name="submit_assessment" >Submit</button>
+</form>
+        {% else %}
+        {% endif %}
+    </div>
+{% endblock %}

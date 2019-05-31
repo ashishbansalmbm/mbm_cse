@@ -1,0 +1,84 @@
+{% extends "user/base.html" %}
+{% block head %}
+    <title>Calculate Attainment</title>
+{% endblock %}
+{% load mathfilters %}
+{%  block body %}
+<style >
+
+.table {
+    background: #f9f9ff;
+    padding: 15px 0px 30px 0px;
+    min-width: 800px;
+}
+
+ .table th, .table td {
+     padding: 0.75rem;
+     vertical-align: top;
+     border-bottom: 1px solid #dee2e6;
+     border-top: 1px solid #dee2e6;
+ }
+
+</style>
+<div style="margin-top: 80px ; padding: 0px 50px;">
+    <h1 class="mb-30" align="center">Course Level</h1>
+
+    <input type="text" id="myInput" onkeyup="myfunction()" placeholder="Search for course.." >
+    <br><br>
+    <a class="float-right mb-20" href="{% url 'assessment:search_or_calculate' %}"><button class="btn btn-success">Calculate</button></a>
+    <p class="float-right">If Attainment not yet calculated or To Recalculate Press Here <i class="fa fa-arrow-right"></i> </p>
+    <div class="table-responsive">
+    <table id="MyTable" class="table">
+        <tr class="header">
+            <th>Course</th>
+            <th>Year</th>
+            <th>Avg (in %)</th>
+            {% for oc in count %}
+                <th>C.O. {{ oc }} (in %)</th>
+            {% endfor %}
+        </tr>
+
+        {% for value in details %}
+            <tr>
+                {% for c in value %}
+                    <td>{{ c }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    </div>
+</div>
+
+    {% block script %}
+    <script>
+        function myfunction() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("MyTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+        {% endblock %}
+{% endblock %}

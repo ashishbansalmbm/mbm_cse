@@ -1,0 +1,38 @@
+{% extends 'user/base.html' %}
+{% block title %}<title>Featured</title>{% endblock %}
+{% block body %}
+
+{% if obj %}
+    {% for project in obj %}
+       <div style="margin-left:50px;">
+           <h1> Featured Projects</h1>
+<h1 align="center">{{obj.title}}</h1>
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Added By</th>
+            <th>Type</th>
+            <th>Supervisor</th>
+            <th>Funding agency</th>
+            <th>Amount</th>
+            <th>Duration</th>
+            <th>Date Of Start</th>
+        </tr>
+        <tr>
+            <td><a href="{% url 'project:description' project.id %}">{{ project.title }}</a><br></td>
+            <td>{{ obj.added_by }}</td>
+            <td>{{obj.type}}</td>
+            <td>{{obj.supervisor}}</td>
+            <td>{{obj.funding_agency}}</td>
+            <td>{{obj.amount}}</td>
+            <td>{{obj.duration}}</td>
+            <td>{{obj.date_of_start}}</td>
+
+        </tr>
+    </table>
+    {% endfor %}
+{% else %}
+    <h1>No project entries found on the database.</h1>
+{% endif %}
+</div>
+{% endblock %}

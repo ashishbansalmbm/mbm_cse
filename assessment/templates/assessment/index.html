@@ -1,0 +1,116 @@
+{% extends 'user/base.html' %}
+{% load widget_tweaks %}
+{% block head %}
+    <title>Assessment</title>
+{% endblock %}
+{% block body %}
+    <style >
+
+
+ #id_course , #id_year {
+    display: block;
+    line-height: 24px;
+    border: none;
+    background: #f9f9ff;
+    padding: 3px 24px;
+    outline-color: #d0e4d0;
+    outline-style: solid;
+    outline-width: 1px;
+ }
+
+</style>
+        <div style="margin-top: 80px ; padding: 0px 50px;">
+
+        <div class="text-center" >
+        <h1>Assessments</h1>
+
+            <div class="row">
+        <div class="container mt-3 col-lg-9">
+            <div class="form-group">
+        <form class="form-inline"  method="get" >
+                {{ filter.form }}
+            <button class="btn btn-success ml-2" type="submit"> <i class="fa fa-search"></i> </button>
+          </form>
+                </div>
+        </div>
+
+        <div class="col-lg-3" style="padding: 10px">
+        <form action="{% url 'assessment:assessment-entry'  %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button  type="submit" class="btn btn-success"><i class="fa fa-pencil"></i> Add Assessment</button>
+        </form>
+        </div>
+        </div>
+            <p align="left">(NOTE: to view assessment details click on assessment id)</p>
+        <div class="table-responsive">
+        <table class="table">
+
+          <tr>
+            <th>Assessment ID</th>
+            <th>Course</th>
+            <th>Type</th>
+            <th>Year</th>
+            <th>Start Date</th>
+            <th>Duration</th>
+            <th>Faculty</th>
+            <th>Assessment Status</th>
+
+            <th>Result</th>
+          </tr>
+
+        {% for list in filter.qs %}
+          <tr class="assrow" data-id="{{list.id}}">
+              <td><a href="{% url 'assessment:assess_detail' list.id %}" >{{list.id}}</a></td>
+             <td>{{ list.course }} </td>
+             <td>{{ list.get_assessment_type_display }}</td>
+             <td>{{ list.year }}</td>
+             <td>{{ list.start_date}}</td>
+             <td>{{ list.duration }}</td>
+             <td>{{ list.faculty }}</td>
+
+
+              <form action="{% url 'assessment:update' list.id  %}" method="get" style="display: inline;">
+                    {% csrf_token %}
+                   {% if list.assessment_completed %}
+               <td><i class="fa fa-check" aria-hidden="true" style="color:#41B125;"></i></td>
+                  {% else %}
+
+                  {% if request.user.id ==  list.faculty.user.id  %}
+                  <td><button type="submit" class="genric-btn info-border circle small mt-1" >Update</button></td>
+
+                  {% else %}
+              <td><button type="submit" class="genric-btn info-border circle small mt-1" disabled="disabled">Update</button>
+                  {% endif %}
+
+
+
+                  {% endif %}
+              </form>
+
+
+
+               {% if list.result_completed%}
+              <td><i class="fa fa-check" aria-hidden="true" style="color:#41B125;"></i></td>
+              {% else %}
+              <td>
+              <form action="{% url 'assessment:resultupdate' list.id  %}" method="get" style="display: inline;">
+                    {% csrf_token %}
+                  {% if list.assessment_completed and request.user.id == list.faculty.user.id %}
+                    <button type="submit" class="genric-btn info-border circle small mt-1">Update</button>
+                  {% else %}
+                    <button type="submit" class="genric-btn info-border circle small mt-1" disabled="disabled">Update</button>
+                  {% endif %}
+
+                </form>
+
+                  </td>
+              {% endif %}
+          </tr>
+
+
+        {% endfor %}
+        </table>
+        </div>
+        </div>
+{% endblock %}
+        </div>

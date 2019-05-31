@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <title>Form</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
+  </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+<body>
+<h2>
+{{ coursefeedback.course }}  &nbsp &nbsp &nbsp &nbsp
+{{ coursefeedback.year }}
+</h2>  <br>
+
+{% if update %}
+    <script> $console.log("update"); </script>
+{% endif %}
+
+<ul id="sortable">
+    {% for feedbackquestion in course_fbs %}
+            <li class="ui-state-default" data-position= {{ feedbackquestion.order }}, data-index= {{ feedbackquestion.id }}>
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                {{ feedbackquestion.order }} &nbsp &nbsp id:{{ feedbackquestion.id }}  &nbsp &nbsp {{ feedbackquestion.quesText }}
+                <a href="{% url 'feedback:ques-delete' feedbackquestion.id %}">
+                <input class="btn btn default btn-danger" type="submit" value="Delete">
+                </a>  &nbsp &nbsp
+                <a href="{% url 'feedback:ques-edit' feedbackquestion.id %}">
+                <input class="btn btn default btn-danger" type="submit" value="Edit" >
+                </a>
+            </li>
+    {% endfor %}
+</ul>
+
+<script type="application/javascript">
+    $("#delete{{ feedbackquestion.id }}").click(function(event) {
+        event.stopPropagation();
+        if(confirm("Do You want to Delete"))
+        {currentElem.remove()}
+        event.preventDefault();
+    });
+</script>
+
+<script>
+  $(document).ready (function() {
+    $( 'ul' ).sortable({
+        update: function (event,ui) {
+            $(this).children().each(function(index) {
+                if ($(this).attr('data-position') != (index+1)){
+                    $(this).attr('data-position', (index+1)).addClass('updated');
+                }
+            });
+            saveNewPosition();
+        }
+    });
+  });
+
+  function saveNewPosition(){
+      var position=[];
+      $('.updated').each(function() {
+          position.push([$(this).attr('data-index'), $(this).attr('data-position')]);
+          $(this).removeClass('updated');
+      });
+      $.ajax({
+          url:'',
+          data: {
+              update: 1,
+              position:position
+          } , success: function (position) {
+              console.log(position);
+          }
+      })
+  }
+</script>
+
+
+ <form action="{% url 'feedback:fb-add' coursefeedback.id %}"  method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+     <div> <br>
+         Ques no.: <input type="number" name="order" > <br>
+         Question Text: <input type="text" name="quesText" >  <br>
+         Type of ques: <input type="radio" name="ques_type" class="ques_type" id="mcq_select" checked="checked"
+                              value="MCQ">Multiple Choice
+                       <input type="radio" name="ques_type" class="ques_type" value="TF" >True/False
+                       <input type="radio" name="ques_type" class="ques_type" value="R">Ratings
+                       <br>
+         <p id="choice_field">Options: <input type="text" name="options" value="write option seprated by commas "> </p>
+    <br> <br>
+    </div>
+     <input type="submit" name="Add" value="Add Ques">
+ </form>
+
+<a href="{% url 'feedback:view-fb' coursefeedback.id %}">
+            <input class="btn bt n default btn-danger" type="submit" value="View Form" >
+            </a>
+
+
+<script>
+$(document).ready(function(){
+    $(".ques_type").change(function(){
+        //alert("event fired");
+        if($("#mcq_select").is(':checked'))
+            $("#choice_field").fadeIn(200);
+        else
+            $("#choice_field").fadeOut(200);
+    });
+});
+</script>
+
+</body>
+</html>

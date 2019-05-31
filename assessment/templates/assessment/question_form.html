@@ -1,0 +1,75 @@
+{% extends 'user/base.html' %}
+{% block head %}
+    <title>Add Question</title>
+{% endblock %}
+{% block body %}
+<script>
+    function disable(){
+
+      $("#rt).prop("disabled",true);
+}
+</script>
+<style>
+
+.btn
+{ color: #fff;
+  background-color: #125698;
+  border-color: #125874;
+  margin: 20px;
+  padding: 5px 24px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.btn:hover {
+    background-color: #41B125;
+    color: white;
+}
+
+
+
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+</style>
+
+<body>
+<script>
+    function disable(){
+     $("#rt").attr("disabled","disabled");
+}
+</script>
+
+<h3>Add a New Question</h3>
+
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for field in form %}
+
+    <div class="form-group">
+        <div >
+            <!--<span class="text-danger la">{{ field.errors }}</span>-->
+        </div>
+        <label  >{{ field.label_tag }}</label>
+        <div class="form-group">
+
+            {{ field }}
+
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+    <div class="">
+        <div class="">
+            <button type="submit" id="rt" class="btn btn-success">Save</button>
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}

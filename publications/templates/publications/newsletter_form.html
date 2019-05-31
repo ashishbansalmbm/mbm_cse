@@ -1,0 +1,58 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block head %}<title>Submit Newsletter</title>{% endblock %}
+
+{% block body %}
+    <style>
+
+        #id_description  {
+            display: block;
+            width: 100%;
+            line-height: 40px;
+            border: none;
+            background: #f9f9ff;
+            padding: 0 20px;
+            height: 100px;
+            resize: none;
+            outline-color: #d0e4d0;
+            outline-style: solid;
+            outline-width: 1px;
+        }
+     #id_attachment {
+         padding-left: 0;
+     }
+
+     </style>
+ <img src="{% static 'images/newsletter.jpg'%}" alt="Cinque Terre" width="1000px" height="200px">
+
+
+                               <div style="margin:60px;">
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            {% for field in form %}
+                            <div class="row">
+                                {{ field.errors }}
+
+                                <div class="col-lg-3 mt-3">
+                                    {{ field.label_tag }}
+                                </div>
+                                 <div class="col-lg-7 mt-3">
+                                    {% render_field field class="single-input" %}
+                                 </div>
+                                {% if field.help_text %}
+                                   <p style="margin-left: 627px;">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        <div>
+                            <button type="submit" class="btn btn-success btn-lg" style="margin-left: 260px; margin-top: 20px;">Submit</button>
+                        </div>
+
+
+                        </form>
+                </div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "user/base.html" %}
+{% block head %}
+    <title>Result</title>
+{% endblock %}
+{%  block body %}
+<style >
+
+.table {
+    background: #f9f9ff;
+    padding: 15px 0px 30px 0px;
+    min-width: 800px;
+}
+
+.td, .th {
+    color: #222222;
+    line-height: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+ #id_course , #id_year {
+    display: block;
+    line-height: 24px;
+    border: none;
+    background: #f9f9ff;
+    padding: 3px 24px;
+    outline-color: #d0e4d0;
+    outline-style: solid;
+    outline-width: 1px;
+ }
+
+</style>
+<div style="margin-top: 80px ; padding: 0px 50px;">
+    <h1 class="mb-30" align="center">Results</h1>
+    <div class="table-responsive">"
+
+    <a class="float-right" href="javascript:history.go(-1)"><img src="https://png.icons8.com/ios/150/3584fc/left-filled.png" height="50px" width="50px"></a>
+    <table class="table">
+
+      <tr>
+        <th>Students</th>
+        {% for assessment in l %}
+          <th><a href="{% url 'assessment:result_assessment' assessment.id %}">Assessment {{ assessment.id }} ({{ assessment.start_date }})</a></th>
+         {% endfor %}
+
+      </tr>
+
+    {% for list in students %}
+        <tr class="assrow" data-id="{{list.id}}">
+            <td><a href="{% url 'assessment:result_student' list.user.id %}">{{ list.user.get_full_name }}</a></td>
+        {% for list1 in l %}
+
+          <td>{{ p.pop }}/{{ marks.pop }}</td>
+
+    {% endfor %}
+      </tr>
+        {% endfor %}
+    </table>
+    </div>
+</div>
+{% endblock %}

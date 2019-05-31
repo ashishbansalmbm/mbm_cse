@@ -1,0 +1,55 @@
+{% extends 'user/base.html'%}
+{% block title %}Publication Details{% endblock %}
+
+
+{%  load staticfiles %}
+{% block head %}
+  <title>Title</title>
+{% endblock %}
+{% block body %}
+    <style>
+     #pub_li{
+             padding-left: 50px;
+     }
+    </style>
+<img src="{%static 'images/publications.jpg'%}" alt="this is the image" height="150px" width="1100px">
+           <div class="btn float-left mt-20">
+            <a href="{% url 'publications:publication-add' %}" class="btn btn-info"><i class="fa fa-plus"></i> ADD PUBLICATION</a>
+            <a href="{% url 'publications:publication-my'%}" class="btn btn-info"><i class="fa fa-envelope"></i> MY PUBLICATION</a>
+          </div>
+
+          <form class="float-right mt-30" method="post" action="{% url 'publications:publication-search' %}">
+                    {% csrf_token %}
+                    <div class="row" style="padding-right: 71px;">
+                       <div class="col-lg-9">
+                          <input type="text" name="srh" class="form-control" placeholder="Enter Year , Title, Type " style="padding-left: 40px;}">
+                       </div>
+                        <label class="col-lg-2">
+                            <button type="submit" class="genric-btn success-border radius" style="padding: 0px 15px; margin-top: -7px;"><i class="fa fa-search"></i> </button>
+                        </label>
+                    </div>
+                </form>
+
+
+
+<div class="container">
+        <div class="table" style="margin-top: 100px">
+          <ul >
+            {% if sr %}
+                {% for publication in sr %}
+            <li id="pub_li">
+              <a style="font-size: 23px;" href="{% url 'publications:detail' publication.id %}">
+                  {{ publication.title.upper}}
+              </a>
+                <br>
+                <br>
+                <h5 ><span class="fa fa-calendar"></span> {{ publication.date_of_addition}}, <span class="fa fa-user"></span> {{publication.author.get_full_name.upper }}</h5>
+              <hr>
+              </li>
+                 {% endfor %}
+          {% endif %}
+          </ul>
+        </div>
+</div>
+
+{% endblock %}

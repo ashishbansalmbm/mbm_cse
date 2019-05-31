@@ -1,0 +1,57 @@
+{% extends 'user/base.html' %}
+{% block head %} <title>Add Project</title>  {% endblock %}
+
+{% load widget_tweaks %}
+
+{% block body %}
+    <style>
+     #id_remarks{
+            display: block;
+            width: 100%;
+            line-height: 40px;
+            border: none;
+            background: #f9f9ff;
+            padding: 0 20px;
+            height: 100px;
+            resize: none;
+     }
+    </style>
+
+<div class="pro-main" style="margin-left:150px; margin-right: 150px">
+  <h3 style="text-align: center;">Add a New Project Idea</h3>
+
+<pre style="padding-top: 50px;">Students**
+For academic project allocation first create project of ACADEMIC VOLUNTEER.
+Faculty**
+For project allocation project type should be IDEA and status should be Not Completed.</pre>
+    <a class="float-right mb-15" href="javascript:history.go(-1)"><img src="https://png.icons8.com/ios/150/3584fc/left-filled.png" height="50px" width="50px"></a>
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form style="margin-top: 100px;" action="" method="post" enctype="multipart/form-data" class="center">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="row mt-3">
+        <div class="col-lg-3">
+            <label style="text-align: left">{{ field.label_tag }}</label>
+        </div>
+            <div class="col-lg-6">
+                {% render_field field class="single-input" %}
+            </div>
+            {% if field.name == "date_of_start" %}
+                <pre> Format: DD/MM/YYYY </pre>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <div class="form-group">
+          <!--  <button type="submit" class="btn btn-success"  onclick="return confirm('Are you sure you want to submit?');">Submit</button>-->
+        <form action="{% url 'project:index' %}" method="post"  style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-info mt-3"onclick="return confirm('Are you sure you want to submit?');">Submit</button>
+        </form>
+    </div>
+</form>
+
+
+</div>
+{% endblock %}

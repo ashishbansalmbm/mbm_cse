@@ -1,0 +1,67 @@
+{% extends "user/base.html" %}
+{% block head %}
+    <title>Result</title>
+{% endblock %}
+{%  block body %}
+<style >
+
+.table {
+    background: #f9f9ff;
+    padding: 15px 0px 30px 0px;
+    min-width: 800px;
+}
+
+.td, .th {
+    color: #222222;
+    line-height: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+ #id_course , #id_year {
+    display: block;
+    line-height: 24px;
+    border: none;
+    background: #f9f9ff;
+    padding: 3px 24px;
+    outline-color: #d0e4d0;
+    outline-style: solid;
+    outline-width: 1px;
+ }
+
+</style>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+<div style="margin-top: 80px ; padding: 0px 50px;">
+    <h1 class="mb-30" align="center">Questionwise Result</h1>
+   <button class="btn btn-default btn-sm" onclick="goBack()">Back</button>
+    <div class="table-responsive">"
+
+    <table class="table">
+  <tr>
+
+    <th>Question</th>
+    <th>Total Marks</th>
+     <th>Obtained Marks</th>
+
+  </tr>
+
+{% for list,list2 in pack %}
+  <tr class="assrow" data-id="{{list.id}}">
+      <td>{{ list.question_order }}</td>
+      <td>{{list.max_marks}}</td>
+      <td>{{ list2 }} </td>
+
+
+
+  </tr>
+
+
+{% endfor %}
+</table>
+
+    </div>
+</div>
+{% endblock %}

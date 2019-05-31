@@ -1,0 +1,66 @@
+{% extends 'user/base.html' %}
+{% block head %}
+    <title>Attainment</title>
+{% endblock %}
+{% load widget_tweaks %}
+{% block body %}
+      <style >
+
+
+
+ #id_course , #id_year {
+    display: block;
+    line-height: 24px;
+    border: none;
+    background: #f9f9ff;
+    padding: 3px 24px;
+    outline-color: #d0e4d0;
+    outline-style: solid;
+    outline-width: 1px;
+ }
+      .table {
+    background: #f9f9ff;
+    padding: 15px 0px 30px 0px;
+    min-width: 800px;
+}
+
+.td, .th {
+    color: #222222;
+    line-height: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+</style>
+        <div style="margin-top: 80px ; padding: 0px 50px;">
+
+
+
+
+ <div class="table-responsive">
+ <table class="table">
+
+    <tr>
+        <th> CourseOutcome</th>
+        {% for ass in count %}
+        <th> Assessment {{ ass  }}</th>
+        {% endfor %}
+
+    </tr>
+     {% for oc in outcomes %}
+         <tr>
+
+            <td>{{ oc }}</td>
+            {% for obj in assessment %}
+            <td>{{ att.pop }} </td>
+            {% endfor %}
+        </tr>
+     {% endfor %}
+</table>
+
+ {% for marks in att %}
+     <td>{{ marks }} </td>
+ {% endfor %}
+ </div>
+        </div>
+{% endblock %}

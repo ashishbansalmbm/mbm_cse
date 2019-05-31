@@ -1,0 +1,17 @@
+
+
+{% for field in form %}
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-lg-15">
+                <span class="text-danger large">{{ field.errors}}</span>
+        </div>
+
+        <label class="control-label col-lg-3">{{ field.label_tag }}</label>
+
+            <div class="col-sm-4">{{ field }}</div>
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+             </div>
+{% endfor %}
+

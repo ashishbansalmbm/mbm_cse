@@ -1,0 +1,33 @@
+{% extends 'user/base.html'%}
+{%  load staticfiles %}
+{% block title %}Offered Courses{% endblock %}
+
+{% block body %}
+
+        <div class="container mt-5 ">
+            <div class="row">
+                  <h1 style="margin-left:20px;"> OFFERED COURSES </h1>
+                <div style="margin-left:630px;">
+                    <a href="javascript:history.go(-1)"><img src="https://png.icons8.com/ios/150/3584fc/left-filled.png" height="50px" width="50px"></a>
+                </div>
+            </div>
+                  <table class="table table-striped" style="margin-top: 20px ;">
+                  <tr>
+                       <th>Course </th>
+                       <th>Year</th>
+                  </tr>
+
+                      {% for course in av_courses %}
+                          <tr>
+                               <td> {{course.course }}</td>
+                               <td>{{ course.year }}</td>
+                          </tr>
+
+                      {% endfor %}
+                  </table>
+        </div>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+    <style>
+        .logo {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .gap {
+            padding-top: 15%;
+            padding-bottom: 15%;
+        }
+
+        .vision {
+            padding-left: 30px;
+        }
+
+        @media screen and (max-width: 800px) {
+
+            .logo {
+                margin-left: auto;
+                display: block;
+                max-width: 150px;
+                width: 100%;
+                height: auto;
+                border-radius: 50%;
+            }
+
+            .gap {
+                padding-top: 55%;
+                padding-bottom: 15%;
+            }
+
+            .mid {
+                text-align: center;
+            }
+
+            .vision {
+                padding: 0px;
+            }
+
+        }
+
+    </style>
+
+    <div class="container gap">
+
+        <h3 class="mid animated jackInTheBox">ESRC(Robotics Club)</h3>
+        <div class="row">
+            <div class="col-lg-3 col-md-12">
+                <img class="logo mx-auto d-block hinge delay-1s" src="{% static 'home/img/esrc logo.jpg' %}">
+            </div>
+
+            <div class="col-lg-9 col-md-12">
+                <hr>
+                <p>
+                    It is one of the finest clubs of the college and is under the leadership of Dr. Alok Singh Gahlot
+                    (M.S.;B.tech) .
+                    Under his guidance, the club has organised various workshops for the students.
+                    It is the interest and passion of Dr. Alok singh Gahlot that the club is able to
+                    teach and help the students in the on growing field of ROBOTICS.
+                    This Club was founded by some of the ex-students with Dr. Alok taking under
+                    the consideration, the vast field of ROBOTICS.
+                    The robotics club plans to host events in which students can learn about the fundamentals
+                    of robotics and work in a friendly environment among helpful peers.
+                    Our members will work in teams to design, build, and program robots.
+                    These teams will then pit their robots against one another in competitions that will
+                    take place on campus. These Events will be open to all students and staff to enjoy.
+                </p>
+                <hr>
+            </div>
+        </div>
+
+        <div>
+
+            <br>
+            <h3 class="text-heading mid animated fadeInDownBig">IPC(Innovation and Programming Club)</h3>
+            <div class="row">
+
+                <div class="col-lg-3 col-md-12">
+                    <img class="logo mx-auto d-block animated rollIn delay-2s"
+                         src="{% static 'home/img/ipc logo.jpg' %}">
+                </div>
+
+                <div class="col-lg-9 col-md-12">
+                    <hr>
+                    <p>
+                        Programming Club aims to provide a nurturing environment for students from all
+                        streams and courses to develop their interest and skills in computer programming.
+                        The Club focuses equally on competitive programming as well as extra-curricular software
+                        projects.
+                        Club welcomes ideas, suggestions and sponsorships from faculty members, departments and
+                        industries to encourage its members. The Club is open to all segments of programming
+                        including desktop, UI/UX, Web, Mobile, Open Source, Gaming, AI, HCI etc.
+
+                        Target of this club is to build best personal skills of our students on computer
+                        programming for national, regional & international programming contest with a strong focus
+                        on learning and collaboration.
+                        Apart from studies this club gives students the opportunity to show their talent.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="vision">
+            <br>
+            <hr>
+            <h4 class="mid">Vision:</h4>
+            <p>
+                <br>To create a continuously growing community of individuals (students/scholars/faculties) who are
+                capable
+                of (or willing to) dive into the art of computer programming.
+                <br>
+            <hr>
+            <h4 class="mid">Mission:</h4></hr>
+            <br>1. To motivate members towards computer programming via multiple platforms/channels.
+            <br>2. To encourage students for participation in competitive programming.
+            <br>3. To provide support and expertise for representing the college at national/international programming
+            contests.
+            <br>4. To create a programming and problem-solving culture among students right from the start.
+            <br>5. To provide problems, approaches and support for developing software projects.
+            <br>6. To provide exposure to latest technologies and platforms used by the industry.
+            <br>7. To create a channel for frequent communication between current students and alumni currently working
+            in IT organizations.
+            </p>
+            <hr>
+
+        </div>
+    </div>
+
+
+{% endblock %}

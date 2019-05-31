@@ -1,0 +1,68 @@
+{% extends "user/base.html" %}
+{% block head %}
+    <title>Result</title>
+{% endblock %}
+{%  block body %}
+<style >
+
+.table {
+    background: #f9f9ff;
+    padding: 15px 0px 30px 0px;
+    min-width: 800px;
+}
+
+.td, .th {
+    color: #222222;
+    line-height: 40px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+ #id_course , #id_year {
+    display: block;
+    line-height: 24px;
+    border: none;
+    background: #f9f9ff;
+    padding: 3px 24px;
+    outline-color: #d0e4d0;
+    outline-style: solid;
+    outline-width: 1px;
+ }
+
+</style>
+
+<div style="margin-top: 80px ; padding: 0px 50px;">
+    <h1 class="mb-30" align="center">Semesterwise Result</h1>
+
+    <div class="table-responsive">
+
+    <table class="table">
+  <tr>
+
+    <th>Semester</th>
+    <th>Year</th>
+
+    <th>Total Marks</th>
+    <th>Obtained Marks</th>
+  </tr>
+
+{% for list,list2 in pack %}
+  <tr class="assrow">
+      <td><a href ="{% url 'assessment:selfcourseresult' list.semester list.year %}" style="">{{ list.get_semester_display }}</a></td>
+      <td>{{list.year}}</td>
+      <td>{{marks.pop}}</td>
+      <td>{{ list2 }} </td>
+
+
+
+  </tr>
+
+
+{% endfor %}
+</table>
+
+
+</div>
+</div>
+
+</body>
+{% endblock %}

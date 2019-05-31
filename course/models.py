@@ -1,8 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
-from program.models import Program
-from user.models import User
+from program.models import Program,ProgramOutcome
+from user.models import Profile
+import datetime
 # from forum.models import Forum
-from enumerations.enum import CourseType, Semester
+from django.urls import reverse
+from enumerations.enum import CourseType, Semester, CoPoLink
 
 
 class Course(models.Model):
@@ -11,7 +14,7 @@ class Course(models.Model):
     name = models.CharField(max_length=50)
     course_code = models.CharField(max_length=50)
     course_type = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in CourseType],
-                                   default=CourseType.M_TH)
+                                   default=CourseType.MTH)
     max_marks = models.IntegerField()
     credits = models.PositiveSmallIntegerField()
     objective = models.TextField()
@@ -19,10 +22,23 @@ class Course(models.Model):
     text_books = models.TextField()
     ref_material = models.TextField()
     prerequisite = models.TextField()
-    duration = models.DurationField()
-    hours = models.DurationField()
-    updated_on = models.DateField()
-    # forum = models.ForeignKey(Forum, on_delete=None) ##
+    duration = models.PositiveSmallIntegerField()
+    hours = models.PositiveSmallIntegerField()
+    updated_on = models.DateField("Date", default=datetime.date.today)
+    deleted = models.BooleanField(default=False)
+    # forum = models.ForeignKey(Forum, on_delete=None)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        unique_together = ('name', 'course_code', 'semester',),
+        permissions = (
+            ('can_view_course', 'can view course '),
+
+            ('can_create_course_faculty','can add course faculty'),
+
+             )
 
 
 class CourseProgram(models.Model):
@@ -30,27 +46,53 @@ class CourseProgram(models.Model):
     program = models.ForeignKey(Program, on_delete=None)
 
 
+class CourseAvailable(models.Model):
+    course = models.ForeignKey(Course, on_delete=None)
+    faculty = models.ForeignKey(User, on_delete=None)
+    year = models.PositiveIntegerField()
+    active = models.BooleanField(default=True)
+
+
 class CourseEnrollment(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=None)
-    year = models.PositiveSmallIntegerField()
+    year = models.PositiveIntegerField(default='2000')
+
+    class Meta:
+        unique_together = ('student','year','course'),
+        permissions = (
+            ('can_view_mycourse_faculty', 'can view mycourse faculty'),
+
+            ('can_view_mycourse_student', 'can view mycourse student'),
+
+
+        )
 
 
 class CourseOutcome(models.Model):
-    course = models.ForeignKey(Course, on_delete=None)
+    course = models.ForeignKey(Course, on_delete=None,)
     text = models.TextField()
-    strong_po = models.CharField(max_length=50)
-    weak_po = models.CharField(max_length=50)
+
+    def __str__(self):
+        return str(self.course.name) + '-'+self.text
 
 
 class CourseFeedback(models.Model):
     course = models.ForeignKey(Course, on_delete=None)
-    year = models.DateField()
+    year = models.PositiveIntegerField()
     active = models.BooleanField(default=False)
+    created_by = models.ForeignKey(User, on_delete=None)
+
+    def __str__(self):
+        return self.id
 
 
-class CourseAvailable(models.Model):
-    course = models.ForeignKey(Course, on_delete=None)
-    faculty = models.ForeignKey(User, on_delete=None)
-    year = models.DateField()
-    active = models.BooleanField()
+class CoPo(models.Model):
+    program_outcome = models.ForeignKey(ProgramOutcome, on_delete=None)
+    course_outcome = models.ForeignKey(CourseOutcome, on_delete=None)
+    level = models.CharField(max_length=10, choices=[(tag.name, tag.value) for tag in CoPoLink], default=CoPoLink.N)
+    user = models.ForeignKey(User, on_delete=None)
+    date = models.DateField("Date", default=datetime.date.today)
+
+    class Meta:
+        unique_together = ('program_outcome', 'course_outcome'),

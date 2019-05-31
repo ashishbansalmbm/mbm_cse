@@ -1,0 +1,44 @@
+{% extends 'user/base.html' %}
+{% load widget_tweaks %}
+ {% block head %}
+    <title>Student List</title>
+{% endblock %}
+
+{% block body %}
+
+        <div class="container">
+
+         <div class="col-lg-12" style="margin-left:100px; margin-top: 50px ;">
+    <form class="form-row" action="" method="get">
+        {% for field in filter.form %}
+            <div class="mt-10 ml-3">
+            {% if field.label == 'Semester' or field.label == 'Program' %}
+                {% render_field field class="nice-select" placeholder=field.label style="background-color: #f9f9ff;border-radius: 0px;margin-top: -1px;" %}
+            {% else %}
+            {% render_field field class="single-input" placeholder=field.label %}
+            {% endif %}
+            </div>
+        {% endfor %}
+        <button type="search" class="btn btn-success ml-3 mt-2"><i class="fa fa-search"></i> Search</button>
+    </form>
+
+    </div>
+         <table class="table mt-5">
+            <tr>
+                <th># Students
+                <th># Semester</th>
+                <th># Program</th>
+            </tr>
+
+        {% for student in filter.qs %}
+            <tr>
+                <td><a href="{% url 'student:profile' student.id %}" class="text-capitalize">{{ student }}</a></td>
+                <td>{{ student.get_semester_display }}</td>
+                <td>{{ student.program }}</td>
+            </tr>
+        {% endfor %}
+          </table>
+        </div>
+
+
+{% endblock %}

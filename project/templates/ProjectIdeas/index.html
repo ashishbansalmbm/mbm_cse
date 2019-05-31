@@ -1,0 +1,70 @@
+
+{% extends 'user/base.html' %}
+{% block head %} <title>Index</title>  {% endblock %}
+{% block body %}
+    <nav class="nav justify-content-end ">
+                <a class="nav-link genric-btn default-border" href="/project/create-team/">Create Team</a>
+                <a class="nav-link genric-btn default-border" href="/project/entry/">Create Project Entry</a>
+</nav>
+
+
+<div class="pro-main" style="margin:0px 40px">
+     <form action="" method="get">
+        {% for project in project_list.form %}
+            {{ project}}
+        {% endfor %}
+        <button type="search" class="btn btn-success ml-3 fa fa-search" id="search"></button>
+    </form>
+    <h3 class="text-center"> PROJECTS </h3>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="container">
+        <table class="table mt-10" >
+            <tr>
+                    <th>PROJECT TITLE</th>
+                    <th>ADDED BY</th>
+                    <th>DATE OF START</th>
+                    <th>TYPE</th>
+                    <th>FUNDING AGENCY</th>
+                    {% if request.user.profile.type == "F" %}
+                        <th>REPORT ABUSE</th>
+                        <th>MENTOR</th>
+                    {% endif %}
+                    <th>APPLY</th>
+            </tr>
+                {% for project in project_list.qs %}
+                {% if project.report == False %}
+
+            <tr>
+                        <td><a href="{% url 'project:description' project.id %}">{{ project.title }}</a></td>
+                        <td class="text-capitalize">{{ project.added_by }}</td>
+                        <td>{{ project.date_of_start }}</td>
+                        <td>{{ project.get_type_display }} </td>
+                        <td>{{ project.funding_agency}}</td>
+                        {% if request.user.profile.type == "F" %}
+                            <td><a href="{% url 'project:project-delete' project.id  %}" onclick="return confirm('Are you sure, you want to report?')">Report</a></td>
+                            {% if project.type == "IDEA" %}
+                                <td><a href="{% url 'project:project-mentor' project.id  %}">Mentor</a></td>
+                            {% else %}
+                                <td>{{project.supervisor}}</td>
+                            {% endif %}
+                        {% endif %}
+                        {% if project.type == "MNR" %}
+                            <td><a href="{% url 'project:TeamIndex' project.id %}">Apply</a></td>
+                        {% else %}
+                            <td>--</td>
+                        {% endif %}
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </table>
+    </div>
+
+</div>
+{% endblock %}

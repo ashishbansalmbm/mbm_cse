@@ -1,0 +1,36 @@
+{% extends 'user/base.html' %}
+
+ {% block head %}
+    <title>Student Profile</title>
+{% endblock %}
+
+{% block body %}
+
+        <div class="container mt-25">
+        <table class="table">
+            <tr>
+                <th>Department</th>
+                <th>Program</th>
+                <th>Semester</th>
+                <th>Father's Name</th>
+                <th>Mother's Name</th>
+                <th>Date of Admission</th>
+                <th>Area of Interest</th>
+                <th>Carrier Objective</th>
+            </tr>
+            <tr>
+                 <td>{{ student.department }}</td>
+                <td> {{ student.program}}</td>
+                <td>{{ student.semester }}</td>
+                <td>{{ student.father_name }}</td>
+                <td>{{ student.mother_name }}</td>
+                <td>{{ student.date_of_admission }}</td>
+                <td>{{ student.area_of_interest }}</td>
+                <td> {{ student.carrier_objective }}</td>
+            </tr>
+        </table>
+
+        </div>
+
+
+{% endblock %}

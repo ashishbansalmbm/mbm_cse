@@ -1,0 +1,47 @@
+{% extends 'user/base.html'%}
+{%  load staticfiles %}
+{% block title %} My Courses {% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+<div class="row">
+    <h2 class="text-left" style="margin-left:33px">MY COURSES </h2>
+    <div style="margin-left:730px;">
+         <a href="/course/"><img src="https://png.icons8.com/ios/150/3584fc/left-filled.png" height="50px" width="50px"></a>
+    </div>
+</div>
+
+<br>
+
+ <div class="container ">
+
+                  <table class="table table-striped">
+                  <tr>
+                      <th>Course Name</th>
+                      <th>Enrollment</th>
+
+                  </tr>
+                      {% for course in courses %}
+                          <tr>
+                               <td>   <div class="" data-sem="{{ course.semester }}" data-program="{{course.programdetails}}">
+                    <div class="" style="margin-left: 150px; margin-top: 15px;">
+                        {{ course.course }}-{{ course.year }}
+
+                    </div>
+       </div></td>
+                               <td> <a href="{% url 'course:enroll-student' course.id %}">
+                                    <button type="submit" class="btn btn-default">Enroll Student </button>
+                                    </a>
+                               </td>
+
+                          </tr>
+
+                      {% endfor %}
+                  </table>
+
+ </div>
+{% endblock %}
+
+
+

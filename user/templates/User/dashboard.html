@@ -1,0 +1,26 @@
+{% extends 'user/base.html' %}
+
+{% load staticfiles %}
+{% block head %}
+<title>Profile</title>
+    <style>
+    p {
+        font-family: 'Montserrat', monospace;
+        font-size: 15px;
+    }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="padding-top: 40px; padding-bottom: 150px"><br>
+        <u><h3 style="text-align: center">Welcome to the Student Portal</h3></u>
+        <br><hr>
+        <img src="{% static 'user/img/cse.png' %}" class="rounded mx-auto d-block " style="max-width: 100%;width: 250px;height: auto;" alt="...">
+    <h5 class="text-center">Student Portal has been designed to easy out your work by offering you various services
+        like viewing your profile, <br>course details and several other features.</h5>
+    </div>
+
+{% endblock %}
+

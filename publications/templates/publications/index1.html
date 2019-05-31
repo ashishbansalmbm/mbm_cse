@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+{% block title %}Publication Details{% endblock %}
+
+{% block body %}
+<html lang="en">
+<head>
+<!DOCTYPE html>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+<style>
+body {
+box-sizing:  border-box;
+}
+
+/* Style the header */
+body{
+
+    padding: 0;
+    background: white;
+
+
+}
+.header h1{
+    font-size: 110px;
+}
+.leftcolumn a{
+font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+<img src="http://www.asiaiga.org/images/banner_publications.jpg" class="img-thumbnail" alt="Cinque Terre" width="1200" height="336">
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Publications</h1>
+  </div>
+</div>
+
+
+          <ul>
+            {% for publication in object_list %}
+
+            <li>
+
+                {{ publication.title }}
+
+            <h4><span class="glyphicon glyphicon-calendar"></span> {{ publication.date_of_addition}}</h4>
+            <h4><span class="glyphicon glyphicon-user"></span>{{publication.author.get_full_name}}</h4>
+              <hr>
+            {% endfor %}
+              </li>
+          </ul>
+
+
+</body>
+
+</html>
+{% endblock %}

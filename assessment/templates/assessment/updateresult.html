@@ -1,0 +1,64 @@
+{% extends 'user/base.html' %}
+{% block head %}
+    <title>Create Result</title>
+{% endblock %}
+{% block body %}
+
+<style>
+    #result {
+            height: 40px;
+    width: max-content;
+    }
+</style>
+    <div style="margin-top: 80px ; padding: 0px 80px; margin-bottom: 150px;  width: 100;height: 500px;overflow: auto;">
+<h1 class="text-center">UPDATE RESULT</h1>
+<br>
+<br>
+
+    <div id="result" class="row">
+  <input type="text" value="Student/Question" class="single-input" style="width: 180px" disabled/>
+ {% for id,order in questions.items %}
+  <input type="text" value="{{ order }} (M.M ={{marks.pop}})" class="single-input "  style="    width: 180px" disabled/>
+ {% endfor %}
+    </div>
+  <br>
+  <br>
+
+
+{% for id,student in students.items %}
+    <div class="form-group">
+         <form action="" method="post" enctype="multipart/form-data">
+    <div id="result" class="row">
+             <input type="text" value="{{student.name}}" class="single-input  text-dark" style="width: 180px" disabled>
+
+    {% for ques,num in student.marks.items %}
+
+        {% csrf_token %}
+        <input type="number"  name="obtained_marks{{id}}{{ques}}" value="{{num}}" class="single-input text-dark" style="width: 180px">
+    {% endfor %}
+    </div>
+{% endfor %}
+
+<div class="row mt-3">
+    <div class="form-group">
+        <div >
+            <button onclick="return confirm('Are you Sure?');" type="submit" class="btn btn-default btn-sm ml-2">Save</button>
+        </div>
+    </div>
+
+    </form>
+
+        <form action="{% url 'assessment:resultupdate' assessment.pop  %}" method="post" style="display: inline;">
+            {% csrf_token %}
+
+
+          <button name="submit_result" onclick="return confirm('Save before submit!');" type="submit" class="btn btn-default btn-sm ml-2">Submit</button>
+
+
+        </form>
+      </div>
+    </div>
+    </div>
+
+
+{% endblock %}

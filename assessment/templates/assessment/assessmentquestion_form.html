@@ -1,0 +1,60 @@
+{% extends 'user/base.html' %}
+{% block head %}
+    <title>Add Questions</title>
+{% endblock %}
+{% load widget_tweaks %}
+{% block body %}
+
+<script>
+    function disable(){
+
+      $("#rt).prop("disabled",true);
+}
+</script>
+
+<script>
+    function disable(){
+     $("#rt").attr("disabled","disabled");
+}
+</script>
+
+<div style="margin-top: 80px ; padding: 0px 80px; margin-bottom: 150px">
+<h3 class="text-left">Add a New Question</h3>
+<br>
+<br>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for field in form %}
+
+    <div class="form-group">
+        <div >
+            <!--<span class="text-danger la">{{ field.errors }}</span>-->
+        </div>
+
+        <div class="row">
+        <label class="label col-lg-2" >{{ field.label_tag }}</label>
+        <div class="form-group col-lg-5 ">
+        {% if field.name == 'text' or field.name == 'marking_scheme' %}
+            {% render_field field class="single-textarea" %}
+        {% else %}
+            {% render_field field class="single-input" %}
+        {% endif %}
+        </div>
+        </div>
+
+
+
+    {% endfor %}
+
+
+        <div class="">
+            <div class="">
+                <button type="submit" id="rt" class="genric-btn success circle arrow mt-3" style="margin-left: 450px">Save</button>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+{% endblock %}

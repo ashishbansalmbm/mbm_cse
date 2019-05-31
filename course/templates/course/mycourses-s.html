@@ -1,0 +1,27 @@
+{% extends 'user/base.html'%}
+{%  load staticfiles %}
+{% block title %} My Courses {% endblock %}
+
+{% block body %}
+<div class="container mt-5" >
+     <div class="row">
+          <div class="col-lg-6">
+<h2 style="margin-left:10px;">MY COURSES </h2>
+     </div>
+          <div style="margin-left:770px; margin-top:-50px;">
+                <a href="/course/"><img src="https://png.icons8.com/ios/150/3584fc/left-filled.png" height="50px" width="50px"></a>
+          </div>
+     </div>
+ <div style="margin-left: 150px;">
+     {% for course in course_list %}
+     <div class="col-4" >
+          <div class="row mt-3">
+               {{ course.name }}
+          </div>
+     </div>
+     {% endfor %}
+</div>
+     </div>
+</div>
+{% endblock %}
+

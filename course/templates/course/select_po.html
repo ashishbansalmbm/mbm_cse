@@ -1,0 +1,70 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+{% block title %} Select PO {% endblock %}
+{% load widget_tweaks %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+          <h1 style="margin-left:;"> SELECT PO </h1>
+        <div style="margin-left:810px;">
+            <a href="javascript:history.go(-1)"><img src="https://png.icons8.com/ios/150/3584fc/left-filled.png" height="50px" width="50px"></a>
+        </div>
+    </div>
+
+
+    <div style="margin-left: 0px ;">
+
+        <form class="form-horizontal" role="form" id="po_form" action="{% url 'course:po-select' outcome.id %}"
+            method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ formset.management_form }}
+
+
+                {% for form in formset %}
+                <div class="row mt-3">
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                </div>
+                <br>
+                {% endfor %}
+
+              <div class="mt-2" style="margin-left: 300px;">
+                  <button type="submit" class="btn btn-default">Submit</button>
+              </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+
+<script type="application/javascript">
+    $(document).ready(function(){
+        $("#po_form select").each(function(){
+            processed = $(this).data("proc_status");
+            if(processed!=1){
+                id = $(this).attr("name");
+                val = $(this).val();
+                txt = $(this).children("option:selected").text();
+                if(id.indexOf("outcome")>=0)
+                {
+
+                    //$(this).attr("readonly","readonly");
+                    $(this).data("proc_status",1);
+                    $(this).after("<input type='hidden' name='"+id+"' value='"+val+"'/>");
+                    $(this).after("<h5>"+txt+"</h5>");
+                    $(this).remove();
+                }
+            }
+
+        });
+    });
+</script>
+{% endblock %}
+

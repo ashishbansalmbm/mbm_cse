@@ -1,0 +1,168 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+{% block head %} <title>Detail</title> {% endblock %}
+{% load widget_tweaks %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row" >
+        <div class=" ">
+            <h1 style="margin-left:15px;"> {{ course.name }} </h1>
+        </div>
+        <div style="margin-left:850px;">
+            <a href="javascript:history.go(-1)"><img src="https://png.icons8.com/ios/150/3584fc/left-filled.png" height="50px" width="50px"></a>
+        </div>
+    </div>
+
+   <div class="row">
+       <div class="col-lg-6 mt-4">
+           <h5 style="margin-left:;">
+                This course is offered in
+                   {% for p in programs %}
+                      {{ p.program }} ,
+                   {% endfor %}
+                   {{course.get_semester_display}}
+            </h5>
+       </div>
+ {% if request.user.profile.type == 'F' %}
+       <div class=" col-lg-6 mt-4" style="">
+                 <div class="row">
+                   <a href="{% url 'course:co-new' course.id %}">
+                       <input class="btn btn default btn-info" type="submit" value="ADD OUTCOMES" >
+                   </a>
+
+                   <form  action="{% url 'course:course-update' course.id %}" method="get" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% include 'course/form_template.html' %}
+                       <input class="btn btn default btn-info ml-1" type="submit" style="margin-right;" value="Edit" >
+                   </form>
+
+                    <form class="form-horizontal" role="form"  action="{% url 'course:course-delete' course.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input id="delete_{{ course.id }}" class="btn btn default btn-info ml-1" type="submit" value="Archive" >
+                    </form>
+                 </div>
+       </div>
+ {% endif %}
+   </div>
+
+</div>
+    <div class="container mt-10">
+
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Type</th>
+                    <th>Max Marks</th>
+                    <th>Credits</th>
+                    <th>Hours</th>
+                    <th>Duration</th>
+                    <th>Updated On</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td> {{course.course_code }}</td>
+                    <td>{{course.get_course_type_display }}</td>
+                    <td>{{course.max_marks}}</td>
+                    <td>{{course.credits}}</td>
+                    <td>{{course.hours}}</td>
+                    <td>{{course.duration}}</td>
+                    <td>{{course.updated_on}}</td>
+                </tr>
+
+                </table>
+            <br>
+
+
+                <table class="table">
+                 <thead class="thead-light">
+                <tr>
+                    <th>Objective</th>
+                </tr>
+                 </thead>
+                <tr>
+                    <td>{{ course.objective }}</td>
+                </tr>
+                </table>
+            <br>
+
+
+                <table class="table">
+                    <thead class="thead-light">
+                <tr>
+                    <th>Syllabus</th>
+                </tr>
+                    </thead>
+                <tr>
+                    <td>{{ course.syllabus }}</td>
+                </tr>
+                </table>
+            <br>
+                  <table class="table">
+                  <thead class="thead-light">
+                <tr>
+                    <th>Text Books</th>
+                </tr>
+                <tr>
+                    <td>{{ course.text_books }}</td>
+                </tr>
+                  </thead>
+                </table>
+            <br>
+                  <table class="table">
+                      <thead class="thead-light">
+
+                <tr>
+                    <th>Reference Material</th>
+                </tr>
+                <tr>
+                    <td>{{ course.ref_material }}</td>
+                </tr>
+                      </thead>
+                  </table>
+
+
+                      <br>
+                  <table class="table">
+                  <thead class="thead-light">
+                <tr>
+                    <th>Prerequisite</th>
+                </tr>
+                <tr>
+                    <td>{{ course.prerequisite }}</td>
+                </tr>
+                  </thead>
+                </table>
+        </div>
+
+
+
+
+
+                     {% block script %}
+
+                        <script type="application/javascript">
+                        $("#delete_{{ course.id }}").click(function(event) {
+                        event.stopPropagation();
+                        if(confirm("Do You want To Delete "))
+                        {
+                            alert('hi');
+                         currenElem.remove();
+                        }
+                        event.preventDefault();
+                        });
+                        </script>
+
+                     {% endblock %}
+
+
+
+
+
+
+
+
+{% endblock %}
+

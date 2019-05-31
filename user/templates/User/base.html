@@ -1,18 +1,419 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <!--Loads the path to your static files -->
-    {% load staticfiles %}
-    <link rel="stylesheet" href="https:maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
-{% block body %}
-{% endblock %}
-</body>
+
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+		<!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
+
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet'>
+
+        {% load static %}
+        <!-- Syntax Highlighter -->
+        <link rel="stylesheet" type="text/css" href="{% static 'user/syntax-highlighter/styles/shCore.css' %}" media="all">
+        <link rel="stylesheet" type="text/css" href="{% static 'user/syntax-highlighter/styles/shThemeDefault.css' %}" media="all">
+
+		<!-- Font Awesome CSS-->
+        <link rel="stylesheet" href="{% static 'user/css/font-awesome.min.css' %}">
+        <!-- Normalize/Reset CSS-->
+		<link rel="stylesheet" href="{% static 'user/css/normalize.min.css' %}">
+		<!-- Main CSS-->
+        <link rel="stylesheet" href="{% static 'user/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'home/css/nice-select.css' %}">
+
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="{% static 'home/css/linearicons.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/bootstrap.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/magnific-popup.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/nice-select.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/animate.min.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/owl.carousel.css' %}">
+			<link rel="stylesheet" href="{% static 'home/css/main.css' %}">
+
+            <style>
+            /* width */
+            ::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            /* Track */
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+                 label {
+                    display: flex;
+                    align-items: center;
+                    margin: 4px;
+
+                }
+                .table {
+                    background: #f9f9ff;
+                    padding: 15px 0px 30px 0px;
+                    min-width: 800px;
+                }
+
+                .td, .th {
+                    color: #222222;
+                    line-height: 40px;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                }
+
+                select , #id_start_date {
+                  border: none;
+                border-radius: 0px;
+                height: 40px;
+                background: #f9f9ff;
+                padding-left: 20px;
+                padding-right: 40px;
+                -webkit-tap-highlight-color: transparent;
+                box-sizing: border-box;
+                clear: both;
+                cursor: pointer;
+                display: block;
+                float: left;
+                font-family: inherit;
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 40px;
+                outline: none;
+                position: relative;
+                text-align: left !important;
+                -webkit-transition: all 0.2s ease-in-out;
+                transition: all 0.2s ease-in-out;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                /* user-select: none; */
+                white-space: nowrap;
+                width: auto;
+                }
+
+                #result , #re , #rew , #faculty , #student, #course {
+                    padding-left: 20px;
+                    border: red;
+                }
+
+                @media screen and (max-width: 800px){
+
+                    .left-sidebar {
+                        background-color: #fff;
+                        float: left;
+                        min-height: 100%;
+                        position: fixed;
+                        width: 34%;
+                        overflow: hidden;
+                        top: 0;
+                        bottom: 0;
+                    }
+
+                    #main-wrapper {
+                        float: right;
+                        margin-left: 34%;
+                        width: 66%;
+                    }
+
+                    #sb{
+                    margin-left: -5px
+                    }
+
+                    .snav{
+                        float: left;margin-left: 34%;
+                    }
+
+                }
+            </style>
+
+
+
+
+
+        {% block head %}
+        <title>User</title>
+        {% endblock %}
+
+
+
+
+    </head>
+
+    <body id="welcome">
+
+        <div class="snav">
+            <nav class="nav justify-content-end">
+                <a class="nav-link genric-btn default-border" href="{% url 'user:home' %}">Home</a>
+                {% if request.user.profile.type == 'F' %}
+                <a class="nav-link genric-btn default-border" href="{% url 'message:create_notification' %}">Create Notification</a>
+                {% endif %}
+
+            <div class="dropdown">
+                      <a class="nav-link genric-btn default-border"  style="color: #007bff;;" id="Message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Message <i class="fa fa-arrow-down"></i>
+                      </a>
+                      <div class="dropdown-menu" style="margin-right: 70px" aria-labelledby="Message">
+                        <a class="dropdown-item" href="{% url 'message:send' %}">Send Message</a>
+                        <a class="dropdown-item" href="{% url 'message:read' %}">My Messages</a>
+                      </div>
+                    </div>
+
+                   <div class="dropdown">
+                      <a class="nav-link genric-btn default-border"  style="color: #007bff;;" id="Accounts" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Accounts <i class="fa fa-arrow-down"></i>
+                      </a>
+                      <div class="dropdown-menu" style="margin-right: 70px" aria-labelledby="Accounts">
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                        <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
+                      </div>
+                    </div>
+
+            </nav>
+        </div>
+        <aside class="left-sidebar" style="background-color: #eaeaea" id="sidebar">
+
+
+            <div class="col-lg-12" style="text-align: center;margin-top: 8%;">
+                <a href="{% url 'user:home' %}">
+                    {% if request.user.profile.photo %}
+                    <img src="{{ request.user.profile.photo.url }}" alt="" style="width: 100px;height: 100px;" class="rounded-circle">
+                    <p style="font-family: 'Segoe UI' ; padding-left: 8px" class="text-capitalize"><b>{{ request.user.get_full_name }}</b></p>
+                    {% else %}
+                    <img src="{% static 'user/img/dummy_profile.png' %}" alt="" style="width: 100px;height: 100px;" class="rounded-circle">
+                    <p style="font-family: 'Segoe UI' ; padding-left: 8px" class="text-capitalize"><b>Cse Department</b></p>
+                    {% endif %}
+                </a>
+            </div>
+
+            <nav class="left-nav ">
+                <ul id="sb" >
+
+                    {% if request.user.profile.verified == True %}
+                        <li class="current"><a href="{% url 'user:dashboard' %}">Dashboard</a></li>
+
+                        {% if request.user.profile.type == "S" %}
+
+                            <li><a href="#student" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                  Profile </a></li>
+                               <!-- Dropdown menu links -->
+                                  <ul id="student" class="collapse">
+                                       <li><a href="{% url 'user:view_profile' %}">View Profile</a></li>
+                                        <li><a href="{% url 'student:update' %}">Student Details</a></li>
+                                  </ul>
+
+                            <li><a href="{% url 'assessment:selfresult' %}">Results</a></li>
+                             <li><a href="#re" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Projects</a></li>
+
+                            <ul class="collapse list-unstyled" id="re">
+
+                                <li><a href="{% url 'project:index' %}">Project Ideas</a></li>
+                                <li><a href="{% url 'project:myProject' %}">My Projects</a></li>
+                                <li><a href="#rew" class="dropdown-toggle" data-toggle="collapse" aria-expanded="true">Academic Projects</a></li>
+                                    <ul class="collapse list-unstyled" id="rew">
+                                             <li><a href="{% url 'project:applyforpro' %}">Apply for projects</a></li>
+                                    </ul>
+                                <li><a href="{% url 'project:myteam' %}">My Teams</a></li>
+                            </ul>
+
+                        {% elif request.user.profile.type == "F" %}
+
+                            <li><a href="#faculty" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                  Profile </a></li>
+                               <!-- Dropdown menu links -->
+                                  <ul id="faculty" class="collapse">
+                                       <li><a href="{% url 'user:view_profile' %}">View Profile</a></li>
+                                       <li><a href="{% url 'faculty:register' %}">Faculty Details</a></li>
+                                  </ul>
+
+                              <li><a href="#result" class="dropdown-toggle" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                  Result </a></li>
+                               <!-- Dropdown menu links -->
+                                  <ul id="result" class="collapse">
+                                      <li> <a href="{% url 'assessment:index' %}">Assessment & Results</a></li>
+                                      <li> <a href="{% url 'assessment:fac_res' %}">Show Results</a></li>
+                                      <li> <a href="{% url 'assessment:attainment_cl_display' %}">Course Outcomes</a></li>
+                                      <li> <a href="{% url 'assessment:attainment_pl_display' %}">Program Outcomes</a></li>
+                                  </ul>
+
+
+                            <li><a href="{% url 'faculty:student_list' %}">Student List</a></li>
+
+                            <li><a href="#re" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Projects</a></li>
+                            <ul class="collapse list-unstyled" id="re">
+
+                                <li><a href="{% url 'project:index' %}">Project Ideas</a></li>
+                                <li><a href="{% url 'project:myProject' %}">My Projects</a></li>
+                                <li><a href="#rew" class="dropdown-toggle" data-toggle="collapse" aria-expanded="true">Academic Projects</a></li>
+                                    <ul class="collapse list-unstyled" id="rew">
+                                            <li><a href="{% url 'project:project-academic_project' %}">Allot</a></li>
+                                            <li><a href="{% url 'project:verify' %}">Verify</a></li>
+                                    </ul>
+                                <li><a href="{% url 'project:myteam' %}">My Teams</a></li>
+                            </ul>
+
+
+                        {% endif %}
+
+                        <li><a href="#course" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Courses</a></li>
+                        <ul class="collapse list-unstyled" id="course">
+
+                                <li ><a href="{% url 'course:index' %}">Courses</a></li>
+                                {% if request.user.profile.type == "F" %}
+                                <li><a href="{% url 'course:mycourse-faculty'%}">My Courses</a></li>
+                                    {% elif request.user.profile.type == "S" %}
+                                    <li><a href="{% url 'course:mycourse-student'%}">My Courses</a></li>
+                                    {% endif %}
+
+                            </ul>
+
+
+                        <li><a href="{% url 'publications:index_user' %}">Publications</a></li>
+                        <li><a href="{% url 'resources:index_user' %}">Resources</a></li>
+                        <li><a href="{% url 'publications:index2_user' %}">Newsletters</a></li>
+
+
+
+                    {% else %}
+                    <li class="current"><a href="{% url 'user:dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'user:view_profile' %}">Profile</a></li>
+                    <li><a href="#video">Useful Links</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        </aside>
+
+
+
+
+
+		<div id="main-wrapper">
+		    <div class="main-content">
+		        <section id="welcome">
+
+                    {% block content %}
+
+
+                        {% endblock %}
+
+		        </section>
+
+                {% block body %}
+
+
+
+                {% endblock %}
+
+
+
+
+                <!-- <section id="installation">
+                    <div class="content-header">
+		                <h1>Startup Landing Page</h1>
+                    </div>
+                    <h2 class="title">Installing Template.</h2>
+
+                    <div class="section-content">
+                        <ol>
+                            <li>After unzip the download pack, you'll found a Template Folder with all the files.</li>
+                            <li>You can view this Template in any browser, you can display or edit the Template without an internet connection.(May not wotrk fonts and google map).</li>
+                            <li>The only section that will not work is the Contact Section which contains PHP code and requires a server environment for send messages.</li>
+                            <li>Now go to your cpanel or open your FTP Client (like <a target="_blank" href="https://filezilla-project.org/download.php">Filezilla</a>) and upload the content of the Template on your server root.</li>
+                            <li>Once the files are done uploading go to www.yourdomainname.com/index.html</li>
+                        </ol>
+                    </div>
+
+		        </section> -->
+
+
+
+		    </div>
+		</div>
+
+
+         <!-- POP UP WINDOW -->
+        <!-- Button trigger modal -->
+                <button hidden id="pop_up" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                  Launch demo modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{ title }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          {{ message }}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<!-- END POPUP WINDOW-->
+
+
+		<!-- Essential JavaScript Libraries
+		==============================================-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{% static 'user/js/jquery.nav.js' %}"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shCore.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shBrushXml.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shBrushCss.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shBrushJScript.js' %}"></script>
+        <script type="text/javascript" src="{% static 'user/syntax-highlighter/scripts/shBrushPhp.js' %}"></script>
+        <script type="text/javascript">
+            SyntaxHighlighter.all()
+        </script>
+        <script type="text/javascript" src="{% static 'user/js/custom.js' %}"></script>
+        {% if display == 1 %}
+                <script>
+                document.getElementById("pop_up").click();
+                </script>
+        {% endif %}
+
+        {% block script %}
+
+        {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+    </body>
 </html>

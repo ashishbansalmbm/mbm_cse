@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container section-gap" style="padding-top: 15% ">
+<h1 style="text-align:left;">
+    <mark>PUBLICATIONS </mark>
+</h1>
+
+
+
+            <div class="table " style="margin-top: 50px">
+            {% for publication in object_list %}
+
+
+                {{ publication.title }}
+                </a>
+            <tr> {{ publication.date_of_addition}}</tr>
+            <tr>{{publication.author}}</tr>
+            {% endfor %}
+
+          </div>
+</div>
+
+{% endblock %}

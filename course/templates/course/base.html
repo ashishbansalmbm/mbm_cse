@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Course{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy'rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'course/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>>
+<style>
+.dropbtn {
+    background-color: black;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+
+</head>
+<body>
+
+<div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'course:index' %}">Home</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="topNavBar">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="{% url 'course:course-offer' %}">
+                            <span class="glyphicon glyphicon" aria-hidden="true"></span>Offer&nbsp;Courses
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                            <span class="glyphicon glyphicon" aria-hidden="true"></span>
+                     <div class="dropdown">
+                     <button onclick="myFunction()" class="dropbtn">Course Enrollment</button>
+                     <div id="myDropdown" class="dropdown-content">
+                         <a href="{% url 'course:enroll-faculty' %}">Faculty</a>
+                         <a href="{% url 'course:enroll-student' %}">Student</a>
+                      </div>
+                      </div>
+                    </li>
+                </ul>
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+
+
+                <form class="navbar-form navbar-left" method="post" action="{% url 'course:course-search' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="srh" class="form-control" placeholder="Enter course" >
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </div>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="{% url 'course:course-add' %}">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span >&nbsp;Add Course
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span >&nbsp; Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script type="application/javascript">
+    </script>
+{% block body %}
+{% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends 'user/base.html' %}
+{% block head %}<title>Project Members </title> {% endblock %}
+{% block body %}
+<div class="pro-main" style="margin: 50px 10px;">
+    <p class="text-center mt-3">>> Project members Requests<<</p>
+
+    {% if obj %}
+    <table  class="table">
+        <tr>
+        <th>USER NAME</th>
+        <th>APPROVE</th>
+        <th>DISAPPROVE</th>
+        </tr>
+    {% for user in obj %}
+<tr>
+    <td>{{ user.first_name }} {{ user.last_name }}</td>
+     <td><a href="{% url 'project:member-approve' user.id ind %}" ><i class="fa fa-plus"></i></a></td>
+     <td><a href="{% url 'project:member-disapprove' user.id ind %}"><i class="fa fa-remove"></i></a></td>
+</tr>
+    {% endfor %}
+    </table>
+{% else %}
+<h3> NO PROJECT MEMBERS TO SHOW.</h3>
+{% endif %}
+</div>
+{% endblock %}

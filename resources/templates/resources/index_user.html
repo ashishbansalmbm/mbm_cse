@@ -1,0 +1,45 @@
+{% extends 'user/base.html'%}
+{% block title %}Resources{% endblock %}
+{%  load staticfiles %}
+{% block body %}
+
+    <img src="http://riverstonetogether.com/wp-content/uploads/2017/09/Resources-page-photo_0.jpg" alt="Cinque Terre" width="1100px" height="200px" style="margin: 0px">
+
+           <div class="btn float-left mt-20" style="margin: 30px">
+            <a href="{% url 'resources:resources-add' %}" class="btn btn-info"><i class="fa fa-plus"></i> ADD RESOURCES</a>
+            <a href="{% url 'resources:resource-my'%}" class="btn btn-info"><i class="fa fa-envelope"></i> MY RESOURCES</a>
+          </div>
+
+          <form class="float-right mt-30" method="post" action="{% url 'resources:resource-search' %}">
+                    {% csrf_token %}
+                    <div class="row" style="padding-right: 71px;">
+                       <div class="col-lg-7">
+                          <input type="text" name="srh" class="form-control" placeholder="Enter Year , Title, Type " style="padding-left: 40px;}">
+                       </div>
+                        <label class="col-lg-4">
+                            <button type="submit" class="genric-btn success-border radius" style="padding: 0; margin-top: -7px; width: 40px;"><i class="fa fa-search"></i> </button>
+                        </label>
+                    </div>
+                </form>
+
+
+
+<div class="container">
+        <div class="table" style="margin-top: 120px">
+          <ul >
+            {% for resource in object_list %}
+            <li >
+                <h3>  {{ resource.title.upper }}</h3>
+                <br>
+                <h4><span class="fa fa-calendar"></span> {{resource.date}},  {{resource.type}}
+                   <a href="{{resource.attachment.url}}" target="_blank" class="img-responsive">
+                       <input class="btn btn-primary" type="submit" value="Download" style="margin-left: 900px" ></a></h4>
+
+                <hr>
+            {% endfor %}
+              </li>
+          </ul>
+        </div>
+</div>
+
+{% endblock %}

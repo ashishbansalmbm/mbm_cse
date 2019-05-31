@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title> Faculty </title>
+
+
+{% endblock %}
+
+{% block body %}
+
+
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .card img {
+            height: auto;
+            max-height: 250px;
+        }
+
+        .card:hover {
+            position: relative;
+            top: -10px;
+            box-shadow: 15px 10px 35px 2px #5baea3;
+        }
+
+        @media screen and (max-width: 800px) {
+
+            .card img {
+                height: auto;
+                max-height: 200px;
+            }
+        }
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+    </style>
+
+    <div class="gap container">
+        <div class="row">
+
+            {% for f in detail %}
+                <div class="col-lg-4 col-md-4">
+                    <div class="card animated fadeInUpBig border-secondary mb-5">
+                        {% if f.user.profile.photo %}
+                            <img src="{{ f.user.profile.photo.url }}" alt="{{ f.user.get_full_name }}"
+                                 class="card-img-top">
+                        {% else %}
+                            <img src="{% static 'user/img/dummy_profile.png' %}" alt="{{ f.user.get_full_name }}"
+                                 class="card-img-top">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="text-capitalize card-title">Mr./Mrs. {{ f.user.first_name }} {{ f.user.last_name }}</h5>
+                        </div>
+
+                        <div class="card-footer">
+
+                            <h6 class="text-muted">
+                                {{ f.get_designation_display }}
+                            </h6>
+                            <p>
+                                Qualifications {{ f.qualification }}
+                            </p>
+
+                            <a href="#" class="btn btn-primary">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

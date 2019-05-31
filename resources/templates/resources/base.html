@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Resources{% endblock %}</title>
+    {% load staticfiles %}
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Satisfy'rel='stylesheet' type='text/css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'resources/style.css' %">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'user:home' %}">Home</a>
+            </div>
+
+
+
+                <form class="navbar-form navbar-right" role="search" method="get" action="#">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="q" value="">
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="{% url 'resources:resources-add' %}">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span >&nbsp;Add Resources
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="{% url 'resources:resource-my'%}">
+                            <span class="glyphicon glyphicon" aria-hidden="true"></span >&nbsp;&nbsp;My Resources
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <!-- /.navbar-collapse -->
+    <!-- /.container-fluid -->
+    </nav>
+
+{% block body %}
+{% endblock %}
+</body>
+</html>
