@@ -7,6 +7,7 @@ venv/*
 
 
 migrations/
+*.pyc
 
 venv/
 *.sqlite3
