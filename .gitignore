@@ -5,14 +5,11 @@ venv/*
 ./venv/
 ./venv/*
 
-migrations
-migrations/
-migrations/*
-./migrations
-./migrations/
-./migrations/*
 
-venv/ 
+migrations/
+
+venv/
+*.sqlite3
 *.sqlite
 
 .idea/
