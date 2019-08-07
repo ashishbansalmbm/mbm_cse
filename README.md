@@ -19,4 +19,4 @@ Link to my work
 9. https://github.com/RK1126/mbm_cse/blob/d012472c32a2f9389df7913ee27610c9e9e36ab4/assessment/views.py#L696
 10. https://github.com/RK1126/mbm_cse/blob/d012472c32a2f9389df7913ee27610c9e9e36ab4/assessment/views.py#L727
 
-And Some other functions.
+And Some other.
