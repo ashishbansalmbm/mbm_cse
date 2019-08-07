@@ -532,10 +532,9 @@ def result_student(request, stu_id):
             p.append(sum)
             marks_obj.append(total_marks)
         x.append(count)
-    #print(p)
-    #print('list',x)
+    
     y = max(x)
-    #print('y', y)
+   
     p.reverse()
     marks_obj.reverse()
     new_list = []
@@ -545,10 +544,6 @@ def result_student(request, stu_id):
 
 def search_or_calculate(request):
     if request.method == 'POST':
-        print("form is fine")
-        #form = Calculate(data=request.POST)
-        #if form.is_valid():
-        print('hey here')
         course_for_search = request.POST['course']
         year_for_search = request.POST['year']
         # if attainment for that result exit than forward to other page
@@ -563,15 +558,11 @@ def search_or_calculate(request):
             # msg this attainment alreay exists do you want to calculate again
             # if yes forward to function -> attainment_calculate
             # else redirect back to search page
-            print("This was printed")
             return render(request,'assessment/attainment_exists.html') # pop up
         else: # course av but not cal
-            # if doesn't exit than direct forward to function->attainment_calculate
-            print("The else was printed")
+            # if doesn't exit than direct forward to function->attainment_calculat
             url = request.build_absolute_uri(reverse('assessment:attainment-cal'))
-
             return HttpResponse(url)
-
     else:
         form = Calculate()
 
@@ -583,9 +574,7 @@ def get_valid_years(request):
         course_for_search = request.GET.get('cid',None)
         course_for_search2 = request.GET.get('course',None)
         course_for_search3 = request.GET.get('year',None)
-        print(course_for_search)
-
-        print("hello")
+   
         r_years = CourseAvailable.objects.filter(course=course_for_search)
         years =[]
         if r_years.exists():
@@ -627,8 +616,7 @@ def attainment_calculate(request):
 
                 check_for_match = AssessmentQuestion.objects.filter(condition_1 & condition_2)
                 # matched
-                print('oc, q', oc,q.id)
-                print('check_for_match', check_for_match)
+              
                 if check_for_match.exists():
                     per_outcome_question_marks[oc.id].append(avg_marks)
 
@@ -655,8 +643,8 @@ def attainment_calculate(request):
     l_for_marks.reverse()
 
     # now for table AttainmentCL fill the value
-    # pass values in function co_id, year_for_search, marks =??
-    feed_attainment_cl_table(course_for_search, year_for_search) # $$$$$$$$$$$$$$$$$$$$$$$$
+    # pass values in function co_id, year_for_search, marks
+    feed_attainment_cl_table(course_for_search, year_for_search) 
     return render(request, 'assessment/attainment_cal.html', {'outcomes': course_outcomes,
                                                               'assessment': related_assignment,
                                                               'att': l_for_marks,
@@ -689,12 +677,12 @@ def feed_attainment_pl_table(program,year):
     year_needed = year
     program_outcomes = ProgramOutcome.objects.filter(program=program_needed)
 
-    print(program_outcomes)
+
     cond_1 = Q(year=year_needed)
 
     for po in program_outcomes:
         query_for_marks = AttainmentCL.objects.filter(co_id__copo__program_outcome=po)
-        print('query_for_marks', query_for_marks)
+     
         marks =[]
 
         for att_obj_cl in query_for_marks:
