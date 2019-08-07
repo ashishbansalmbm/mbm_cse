@@ -9,7 +9,7 @@
 Link to my work
 1. [Assessment/models/class AttainmentAL](https://github.com/RK1126/mbm_cse/blob/d012472c32a2f9389df7913ee27610c9e9e36ab4/assessment/models.py#L58)
 2. [Assessment/models/class AttainmentCL](https://github.com/RK1126/mbm_cse/blob/d012472c32a2f9389df7913ee27610c9e9e36ab4/assessment/models.py#L67)
-3. [Assessment/models/class AttainmentCL](https://github.com/RK1126/mbm_cse/blob/d012472c32a2f9389df7913ee27610c9e9e36ab4/assessment/models.py#L73)
+3. [Assessment/models/class AttainmentPL](https://github.com/RK1126/mbm_cse/blob/d012472c32a2f9389df7913ee27610c9e9e36ab4/assessment/models.py#L73)
 
 4. [Assessment/views/def search_or_calculate](https://github.com/RK1126/mbm_cse/blob/d012472c32a2f9389df7913ee27610c9e9e36ab4/assessment/views.py#L545)
 5. [Assessment/views/def get_valid_years](https://github.com/RK1126/mbm_cse/blob/d012472c32a2f9389df7913ee27610c9e9e36ab4/assessment/views.py#L572)
