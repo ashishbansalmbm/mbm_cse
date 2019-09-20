@@ -47,6 +47,18 @@
             padding-bottom: 120px;
         }
 
+        #report_issue {
+            position: fixed;
+            bottom: 20px;
+            right: 0;
+            background: #f9f9ff;
+            padding: 4px;
+            border: double #908383;
+            border-right: hidden;
+            border-radius: 22px 0px 0px 22px;
+            color: red;
+        }
+
         @media screen and (max-width: 800px) {
             .gap {
                 padding-top: 100px;
@@ -81,6 +93,11 @@
         {% endif %}
 
     </div>
+
+    <a id="report_issue" class="text-center" href="https://github.com/ashishbansalmbm/mbm_cse/issues" target="_blank">
+        <span><i class="fa fa-bug"></i></span>
+        <b>REPORT ISSUE</b>
+    </a>
 
 
     <div class="container">

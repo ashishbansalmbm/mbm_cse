@@ -46,7 +46,7 @@ class AssessmentQuestion(models.Model):
 class AssessmentResult(models.Model):
     question = models.ForeignKey(AssessmentQuestion, on_delete=None)
     student = models.ForeignKey(Student, on_delete=None)
-    obtained_marks = models.IntegerField(blank=True,null=True)
+    obtained_marks = models.IntegerField(blank=True, null=True)
 
     class Meta:
         permissions = {

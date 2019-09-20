@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'resources',
     'project',
     'django_filters',
-    'schedule',
 ]
 
 MIDDLEWARE = [
